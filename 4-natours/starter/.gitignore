@@ -2,7 +2,7 @@
 .eslintcache
 .npm
 .nyc_output
-.cache/ff
+.cache
 *.log
 logs/
 node_modules/
