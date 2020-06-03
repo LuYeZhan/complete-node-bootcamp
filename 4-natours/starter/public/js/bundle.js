@@ -7,8 +7,8 @@
 // orig method which is the require for previous bundles
 parcelRequire = (function (modules, cache, entry, globalName) {
   // Save the require from previous bundle to this closure if any
-  let previousRequire = typeof parcelRequire === 'function' && parcelRequire;
-  let nodeRequire = typeof require === 'function' && require;
+  var previousRequire = typeof parcelRequire === 'function' && parcelRequire;
+  var nodeRequire = typeof require === 'function' && require;
 
   function newRequire(name, jumped) {
     if (!cache[name]) {
@@ -16,7 +16,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
         // if we cannot find the module within our internal map or
         // cache jump to the current global require ie. the last bundle
         // that was added to the page.
-        let currentRequire = typeof parcelRequire === 'function' && parcelRequire;
+        var currentRequire = typeof parcelRequire === 'function' && parcelRequire;
         if (!jumped && currentRequire) {
           return currentRequire(name, true);
         }
@@ -34,7 +34,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
           return nodeRequire(name);
         }
 
-        let err = new Error('Cannot find module \'' + name + '\'');
+        var err = new Error('Cannot find module \'' + name + '\'');
         err.code = 'MODULE_NOT_FOUND';
         throw err;
       }
@@ -42,7 +42,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
       localRequire.resolve = resolve;
       localRequire.cache = {};
 
-      let module = cache[name] = new newRequire.Module(name);
+      var module = cache[name] = new newRequire.Module(name);
 
       modules[name][0].call(module.exports, localRequire, module, module.exports, this);
     }
@@ -75,8 +75,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
     }, {}];
   };
 
-  let error;
-  for (let i = 0; i < entry.length; i++) {
+  var error;
+  for (var i = 0; i < entry.length; i++) {
     try {
       newRequire(entry[i]);
     } catch (e) {
@@ -90,7 +90,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   if (entry.length) {
     // Expose entry point to Node, AMD or browser globals
     // Based on https://github.com/ForbesLindesay/umd/blob/master/template.js
-    let mainExports = newRequire(entry[entry.length - 1]);
+    var mainExports = newRequire(entry[entry.length - 1]);
 
     // CommonJS
     if (typeof exports === "object" && typeof module !== "undefined") {
@@ -120,14 +120,14 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"../../node_modules/core-js/modules/_global.js":[function(require,module,exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-let global = module.exports = typeof window != 'undefined' && window.Math == Math
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
   ? window : typeof self != 'undefined' && self.Math == Math ? self
   // eslint-disable-next-line no-new-func
   : Function('return this')();
 if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 },{}],"../../node_modules/core-js/modules/_core.js":[function(require,module,exports) {
-let core = module.exports = { version: '2.6.11' };
+var core = module.exports = { version: '2.6.11' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 },{}],"../../node_modules/core-js/modules/_is-object.js":[function(require,module,exports) {
@@ -136,7 +136,7 @@ module.exports = function (it) {
 };
 
 },{}],"../../node_modules/core-js/modules/_an-object.js":[function(require,module,exports) {
-let isObject = require('./_is-object');
+var isObject = require('./_is-object');
 module.exports = function (it) {
   if (!isObject(it)) throw TypeError(it + ' is not an object!');
   return it;
@@ -158,10 +158,10 @@ module.exports = !require('./_fails')(function () {
 });
 
 },{"./_fails":"../../node_modules/core-js/modules/_fails.js"}],"../../node_modules/core-js/modules/_dom-create.js":[function(require,module,exports) {
-let isObject = require('./_is-object');
-let document = require('./_global').document;
+var isObject = require('./_is-object');
+var document = require('./_global').document;
 // typeof document.createElement is 'object' in old IE
-let is = isObject(document) && isObject(document.createElement);
+var is = isObject(document) && isObject(document.createElement);
 module.exports = function (it) {
   return is ? document.createElement(it) : {};
 };
@@ -173,12 +173,12 @@ module.exports = !require('./_descriptors') && !require('./_fails')(function () 
 
 },{"./_descriptors":"../../node_modules/core-js/modules/_descriptors.js","./_fails":"../../node_modules/core-js/modules/_fails.js","./_dom-create":"../../node_modules/core-js/modules/_dom-create.js"}],"../../node_modules/core-js/modules/_to-primitive.js":[function(require,module,exports) {
 // 7.1.1 ToPrimitive(input [, PreferredType])
-let isObject = require('./_is-object');
+var isObject = require('./_is-object');
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
 // and the second argument - flag - preferred type is a string
 module.exports = function (it, S) {
   if (!isObject(it)) return it;
-  let fn, val;
+  var fn, val;
   if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
   if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
   if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
@@ -186,10 +186,10 @@ module.exports = function (it, S) {
 };
 
 },{"./_is-object":"../../node_modules/core-js/modules/_is-object.js"}],"../../node_modules/core-js/modules/_object-dp.js":[function(require,module,exports) {
-let anObject = require('./_an-object');
-let IE8_DOM_DEFINE = require('./_ie8-dom-define');
-let toPrimitive = require('./_to-primitive');
-let dP = Object.defineProperty;
+var anObject = require('./_an-object');
+var IE8_DOM_DEFINE = require('./_ie8-dom-define');
+var toPrimitive = require('./_to-primitive');
+var dP = Object.defineProperty;
 
 exports.f = require('./_descriptors') ? Object.defineProperty : function defineProperty(O, P, Attributes) {
   anObject(O);
@@ -214,8 +214,8 @@ module.exports = function (bitmap, value) {
 };
 
 },{}],"../../node_modules/core-js/modules/_hide.js":[function(require,module,exports) {
-let dP = require('./_object-dp');
-let createDesc = require('./_property-desc');
+var dP = require('./_object-dp');
+var createDesc = require('./_property-desc');
 module.exports = require('./_descriptors') ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
 } : function (object, key, value) {
@@ -224,14 +224,14 @@ module.exports = require('./_descriptors') ? function (object, key, value) {
 };
 
 },{"./_object-dp":"../../node_modules/core-js/modules/_object-dp.js","./_property-desc":"../../node_modules/core-js/modules/_property-desc.js","./_descriptors":"../../node_modules/core-js/modules/_descriptors.js"}],"../../node_modules/core-js/modules/_has.js":[function(require,module,exports) {
-let hasOwnProperty = {}.hasOwnProperty;
+var hasOwnProperty = {}.hasOwnProperty;
 module.exports = function (it, key) {
   return hasOwnProperty.call(it, key);
 };
 
 },{}],"../../node_modules/core-js/modules/_uid.js":[function(require,module,exports) {
-let id = 0;
-let px = Math.random();
+var id = 0;
+var px = Math.random();
 module.exports = function (key) {
   return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 };
@@ -241,10 +241,10 @@ module.exports = false;
 
 },{}],"../../node_modules/core-js/modules/_shared.js":[function(require,module,exports) {
 
-let core = require('./_core');
-let global = require('./_global');
-let SHARED = '__core-js_shared__';
-let store = global[SHARED] || (global[SHARED] = {});
+var core = require('./_core');
+var global = require('./_global');
+var SHARED = '__core-js_shared__';
+var store = global[SHARED] || (global[SHARED] = {});
 
 (module.exports = function (key, value) {
   return store[key] || (store[key] = value !== undefined ? value : {});
@@ -259,20 +259,20 @@ module.exports = require('./_shared')('native-function-to-string', Function.toSt
 
 },{"./_shared":"../../node_modules/core-js/modules/_shared.js"}],"../../node_modules/core-js/modules/_redefine.js":[function(require,module,exports) {
 
-let global = require('./_global');
-let hide = require('./_hide');
-let has = require('./_has');
-let SRC = require('./_uid')('src');
-let $toString = require('./_function-to-string');
-let TO_STRING = 'toString';
-let TPL = ('' + $toString).split(TO_STRING);
+var global = require('./_global');
+var hide = require('./_hide');
+var has = require('./_has');
+var SRC = require('./_uid')('src');
+var $toString = require('./_function-to-string');
+var TO_STRING = 'toString';
+var TPL = ('' + $toString).split(TO_STRING);
 
 require('./_core').inspectSource = function (it) {
   return $toString.call(it);
 };
 
 (module.exports = function (O, key, val, safe) {
-  let isFunction = typeof val == 'function';
+  var isFunction = typeof val == 'function';
   if (isFunction) has(val, 'name') || hide(val, 'name', key);
   if (O[key] === val) return;
   if (isFunction) has(val, SRC) || hide(val, SRC, O[key] ? '' + O[key] : TPL.join(String(key)));
@@ -299,7 +299,7 @@ module.exports = function (it) {
 
 },{}],"../../node_modules/core-js/modules/_ctx.js":[function(require,module,exports) {
 // optional / simple context binding
-let aFunction = require('./_a-function');
+var aFunction = require('./_a-function');
 module.exports = function (fn, that, length) {
   aFunction(fn);
   if (that === undefined) return fn;
@@ -321,23 +321,23 @@ module.exports = function (fn, that, length) {
 
 },{"./_a-function":"../../node_modules/core-js/modules/_a-function.js"}],"../../node_modules/core-js/modules/_export.js":[function(require,module,exports) {
 
-let global = require('./_global');
-let core = require('./_core');
-let hide = require('./_hide');
-let redefine = require('./_redefine');
-let ctx = require('./_ctx');
-let PROTOTYPE = 'prototype';
+var global = require('./_global');
+var core = require('./_core');
+var hide = require('./_hide');
+var redefine = require('./_redefine');
+var ctx = require('./_ctx');
+var PROTOTYPE = 'prototype';
 
-let $export = function (type, name, source) {
-  let IS_FORCED = type & $export.F;
-  let IS_GLOBAL = type & $export.G;
-  let IS_STATIC = type & $export.S;
-  let IS_PROTO = type & $export.P;
-  let IS_BIND = type & $export.B;
-  let target = IS_GLOBAL ? global : IS_STATIC ? global[name] || (global[name] = {}) : (global[name] || {})[PROTOTYPE];
-  let exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
-  let expProto = exports[PROTOTYPE] || (exports[PROTOTYPE] = {});
-  let key, own, out, exp;
+var $export = function (type, name, source) {
+  var IS_FORCED = type & $export.F;
+  var IS_GLOBAL = type & $export.G;
+  var IS_STATIC = type & $export.S;
+  var IS_PROTO = type & $export.P;
+  var IS_BIND = type & $export.B;
+  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] || (global[name] = {}) : (global[name] || {})[PROTOTYPE];
+  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
+  var expProto = exports[PROTOTYPE] || (exports[PROTOTYPE] = {});
+  var key, own, out, exp;
   if (IS_GLOBAL) source = name;
   for (key in source) {
     // contains in native
@@ -374,23 +374,23 @@ module.exports = function (it) {
 
 },{}],"../../node_modules/core-js/modules/_to-object.js":[function(require,module,exports) {
 // 7.1.13 ToObject(argument)
-let defined = require('./_defined');
+var defined = require('./_defined');
 module.exports = function (it) {
   return Object(defined(it));
 };
 
 },{"./_defined":"../../node_modules/core-js/modules/_defined.js"}],"../../node_modules/core-js/modules/_to-integer.js":[function(require,module,exports) {
 // 7.1.4 ToInteger
-let ceil = Math.ceil;
-let floor = Math.floor;
+var ceil = Math.ceil;
+var floor = Math.floor;
 module.exports = function (it) {
   return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 };
 
 },{}],"../../node_modules/core-js/modules/_to-absolute-index.js":[function(require,module,exports) {
-let toInteger = require('./_to-integer');
-let max = Math.max;
-let min = Math.min;
+var toInteger = require('./_to-integer');
+var max = Math.max;
+var min = Math.min;
 module.exports = function (index, length) {
   index = toInteger(index);
   return index < 0 ? max(index + length, 0) : min(index, length);
@@ -398,8 +398,8 @@ module.exports = function (index, length) {
 
 },{"./_to-integer":"../../node_modules/core-js/modules/_to-integer.js"}],"../../node_modules/core-js/modules/_to-length.js":[function(require,module,exports) {
 // 7.1.15 ToLength
-let toInteger = require('./_to-integer');
-let min = Math.min;
+var toInteger = require('./_to-integer');
+var min = Math.min;
 module.exports = function (it) {
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
@@ -407,18 +407,18 @@ module.exports = function (it) {
 },{"./_to-integer":"../../node_modules/core-js/modules/_to-integer.js"}],"../../node_modules/core-js/modules/_array-copy-within.js":[function(require,module,exports) {
 // 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
 'use strict';
-let toObject = require('./_to-object');
-let toAbsoluteIndex = require('./_to-absolute-index');
-let toLength = require('./_to-length');
+var toObject = require('./_to-object');
+var toAbsoluteIndex = require('./_to-absolute-index');
+var toLength = require('./_to-length');
 
 module.exports = [].copyWithin || function copyWithin(target /* = 0 */, start /* = 0, end = @length */) {
-  let O = toObject(this);
-  let len = toLength(O.length);
-  let to = toAbsoluteIndex(target, len);
-  let from = toAbsoluteIndex(start, len);
-  let end = arguments.length > 2 ? arguments[2] : undefined;
-  let count = Math.min((end === undefined ? len : toAbsoluteIndex(end, len)) - from, len - to);
-  let inc = 1;
+  var O = toObject(this);
+  var len = toLength(O.length);
+  var to = toAbsoluteIndex(target, len);
+  var from = toAbsoluteIndex(start, len);
+  var end = arguments.length > 2 ? arguments[2] : undefined;
+  var count = Math.min((end === undefined ? len : toAbsoluteIndex(end, len)) - from, len - to);
+  var inc = 1;
   if (from < to && to < from + count) {
     inc = -1;
     from += count - 1;
@@ -433,12 +433,12 @@ module.exports = [].copyWithin || function copyWithin(target /* = 0 */, start /*
 };
 
 },{"./_to-object":"../../node_modules/core-js/modules/_to-object.js","./_to-absolute-index":"../../node_modules/core-js/modules/_to-absolute-index.js","./_to-length":"../../node_modules/core-js/modules/_to-length.js"}],"../../node_modules/core-js/modules/_wks.js":[function(require,module,exports) {
-let store = require('./_shared')('wks');
-let uid = require('./_uid');
-let Symbol = require('./_global').Symbol;
-let USE_SYMBOL = typeof Symbol == 'function';
+var store = require('./_shared')('wks');
+var uid = require('./_uid');
+var Symbol = require('./_global').Symbol;
+var USE_SYMBOL = typeof Symbol == 'function';
 
-let $exports = module.exports = function (name) {
+var $exports = module.exports = function (name) {
   return store[name] || (store[name] =
     USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
 };
@@ -447,8 +447,8 @@ $exports.store = store;
 
 },{"./_shared":"../../node_modules/core-js/modules/_shared.js","./_uid":"../../node_modules/core-js/modules/_uid.js","./_global":"../../node_modules/core-js/modules/_global.js"}],"../../node_modules/core-js/modules/_add-to-unscopables.js":[function(require,module,exports) {
 // 22.1.3.31 Array.prototype[@@unscopables]
-let UNSCOPABLES = require('./_wks')('unscopables');
-let ArrayProto = Array.prototype;
+var UNSCOPABLES = require('./_wks')('unscopables');
+var ArrayProto = Array.prototype;
 if (ArrayProto[UNSCOPABLES] == undefined) require('./_hide')(ArrayProto, UNSCOPABLES, {});
 module.exports = function (key) {
   ArrayProto[UNSCOPABLES][key] = true;
@@ -456,7 +456,7 @@ module.exports = function (key) {
 
 },{"./_wks":"../../node_modules/core-js/modules/_wks.js","./_hide":"../../node_modules/core-js/modules/_hide.js"}],"../../node_modules/core-js/modules/es6.array.copy-within.js":[function(require,module,exports) {
 // 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.P, 'Array', { copyWithin: require('./_array-copy-within') });
 
@@ -465,30 +465,30 @@ require('./_add-to-unscopables')('copyWithin');
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_array-copy-within":"../../node_modules/core-js/modules/_array-copy-within.js","./_add-to-unscopables":"../../node_modules/core-js/modules/_add-to-unscopables.js"}],"../../node_modules/core-js/modules/_array-fill.js":[function(require,module,exports) {
 // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
 'use strict';
-let toObject = require('./_to-object');
-let toAbsoluteIndex = require('./_to-absolute-index');
-let toLength = require('./_to-length');
+var toObject = require('./_to-object');
+var toAbsoluteIndex = require('./_to-absolute-index');
+var toLength = require('./_to-length');
 module.exports = function fill(value /* , start = 0, end = @length */) {
-  let O = toObject(this);
-  let length = toLength(O.length);
-  let aLen = arguments.length;
-  let index = toAbsoluteIndex(aLen > 1 ? arguments[1] : undefined, length);
-  let end = aLen > 2 ? arguments[2] : undefined;
-  let endPos = end === undefined ? length : toAbsoluteIndex(end, length);
+  var O = toObject(this);
+  var length = toLength(O.length);
+  var aLen = arguments.length;
+  var index = toAbsoluteIndex(aLen > 1 ? arguments[1] : undefined, length);
+  var end = aLen > 2 ? arguments[2] : undefined;
+  var endPos = end === undefined ? length : toAbsoluteIndex(end, length);
   while (endPos > index) O[index++] = value;
   return O;
 };
 
 },{"./_to-object":"../../node_modules/core-js/modules/_to-object.js","./_to-absolute-index":"../../node_modules/core-js/modules/_to-absolute-index.js","./_to-length":"../../node_modules/core-js/modules/_to-length.js"}],"../../node_modules/core-js/modules/es6.array.fill.js":[function(require,module,exports) {
 // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.P, 'Array', { fill: require('./_array-fill') });
 
 require('./_add-to-unscopables')('fill');
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_array-fill":"../../node_modules/core-js/modules/_array-fill.js","./_add-to-unscopables":"../../node_modules/core-js/modules/_add-to-unscopables.js"}],"../../node_modules/core-js/modules/_cof.js":[function(require,module,exports) {
-let toString = {}.toString;
+var toString = {}.toString;
 
 module.exports = function (it) {
   return toString.call(it).slice(8, -1);
@@ -496,7 +496,7 @@ module.exports = function (it) {
 
 },{}],"../../node_modules/core-js/modules/_iobject.js":[function(require,module,exports) {
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-let cof = require('./_cof');
+var cof = require('./_cof');
 // eslint-disable-next-line no-prototype-builtins
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
@@ -504,18 +504,18 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 },{"./_cof":"../../node_modules/core-js/modules/_cof.js"}],"../../node_modules/core-js/modules/_is-array.js":[function(require,module,exports) {
 // 7.2.2 IsArray(argument)
-let cof = require('./_cof');
+var cof = require('./_cof');
 module.exports = Array.isArray || function isArray(arg) {
   return cof(arg) == 'Array';
 };
 
 },{"./_cof":"../../node_modules/core-js/modules/_cof.js"}],"../../node_modules/core-js/modules/_array-species-constructor.js":[function(require,module,exports) {
-let isObject = require('./_is-object');
-let isArray = require('./_is-array');
-let SPECIES = require('./_wks')('species');
+var isObject = require('./_is-object');
+var isArray = require('./_is-array');
+var SPECIES = require('./_wks')('species');
 
 module.exports = function (original) {
-  let C;
+  var C;
   if (isArray(original)) {
     C = original.constructor;
     // cross-realm fallback
@@ -529,7 +529,7 @@ module.exports = function (original) {
 
 },{"./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_is-array":"../../node_modules/core-js/modules/_is-array.js","./_wks":"../../node_modules/core-js/modules/_wks.js"}],"../../node_modules/core-js/modules/_array-species-create.js":[function(require,module,exports) {
 // 9.4.2.3 ArraySpeciesCreate(originalArray, length)
-let speciesConstructor = require('./_array-species-constructor');
+var speciesConstructor = require('./_array-species-constructor');
 
 module.exports = function (original, length) {
   return new (speciesConstructor(original))(length);
@@ -543,27 +543,27 @@ module.exports = function (original, length) {
 // 4 -> Array#every
 // 5 -> Array#find
 // 6 -> Array#findIndex
-let ctx = require('./_ctx');
-let IObject = require('./_iobject');
-let toObject = require('./_to-object');
-let toLength = require('./_to-length');
-let asc = require('./_array-species-create');
+var ctx = require('./_ctx');
+var IObject = require('./_iobject');
+var toObject = require('./_to-object');
+var toLength = require('./_to-length');
+var asc = require('./_array-species-create');
 module.exports = function (TYPE, $create) {
-  let IS_MAP = TYPE == 1;
-  let IS_FILTER = TYPE == 2;
-  let IS_SOME = TYPE == 3;
-  let IS_EVERY = TYPE == 4;
-  let IS_FIND_INDEX = TYPE == 6;
-  let NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
-  let create = $create || asc;
+  var IS_MAP = TYPE == 1;
+  var IS_FILTER = TYPE == 2;
+  var IS_SOME = TYPE == 3;
+  var IS_EVERY = TYPE == 4;
+  var IS_FIND_INDEX = TYPE == 6;
+  var NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
+  var create = $create || asc;
   return function ($this, callbackfn, that) {
-    let O = toObject($this);
-    let self = IObject(O);
-    let f = ctx(callbackfn, that, 3);
-    let length = toLength(self.length);
-    let index = 0;
-    let result = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined;
-    let val, res;
+    var O = toObject($this);
+    var self = IObject(O);
+    var f = ctx(callbackfn, that, 3);
+    var length = toLength(self.length);
+    var index = 0;
+    var result = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined;
+    var val, res;
     for (;length > index; index++) if (NO_HOLES || index in self) {
       val = self[index];
       res = f(val, index, O);
@@ -584,10 +584,10 @@ module.exports = function (TYPE, $create) {
 },{"./_ctx":"../../node_modules/core-js/modules/_ctx.js","./_iobject":"../../node_modules/core-js/modules/_iobject.js","./_to-object":"../../node_modules/core-js/modules/_to-object.js","./_to-length":"../../node_modules/core-js/modules/_to-length.js","./_array-species-create":"../../node_modules/core-js/modules/_array-species-create.js"}],"../../node_modules/core-js/modules/es6.array.find.js":[function(require,module,exports) {
 'use strict';
 // 22.1.3.8 Array.prototype.find(predicate, thisArg = undefined)
-let $export = require('./_export');
-let $find = require('./_array-methods')(5);
-let KEY = 'find';
-let forced = true;
+var $export = require('./_export');
+var $find = require('./_array-methods')(5);
+var KEY = 'find';
+var forced = true;
 // Shouldn't skip holes
 if (KEY in []) Array(1)[KEY](function () { forced = false; });
 $export($export.P + $export.F * forced, 'Array', {
@@ -600,10 +600,10 @@ require('./_add-to-unscopables')(KEY);
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_array-methods":"../../node_modules/core-js/modules/_array-methods.js","./_add-to-unscopables":"../../node_modules/core-js/modules/_add-to-unscopables.js"}],"../../node_modules/core-js/modules/es6.array.find-index.js":[function(require,module,exports) {
 'use strict';
 // 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
-let $export = require('./_export');
-let $find = require('./_array-methods')(6);
-let KEY = 'findIndex';
-let forced = true;
+var $export = require('./_export');
+var $find = require('./_array-methods')(6);
+var KEY = 'findIndex';
+var forced = true;
 // Shouldn't skip holes
 if (KEY in []) Array(1)[KEY](function () { forced = false; });
 $export($export.P + $export.F * forced, 'Array', {
@@ -616,17 +616,17 @@ require('./_add-to-unscopables')(KEY);
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_array-methods":"../../node_modules/core-js/modules/_array-methods.js","./_add-to-unscopables":"../../node_modules/core-js/modules/_add-to-unscopables.js"}],"../../node_modules/core-js/modules/_flatten-into-array.js":[function(require,module,exports) {
 'use strict';
 // https://tc39.github.io/proposal-flatMap/#sec-FlattenIntoArray
-let isArray = require('./_is-array');
-let isObject = require('./_is-object');
-let toLength = require('./_to-length');
-let ctx = require('./_ctx');
-let IS_CONCAT_SPREADABLE = require('./_wks')('isConcatSpreadable');
+var isArray = require('./_is-array');
+var isObject = require('./_is-object');
+var toLength = require('./_to-length');
+var ctx = require('./_ctx');
+var IS_CONCAT_SPREADABLE = require('./_wks')('isConcatSpreadable');
 
 function flattenIntoArray(target, original, source, sourceLen, start, depth, mapper, thisArg) {
-  let targetIndex = start;
-  let sourceIndex = 0;
-  let mapFn = mapper ? ctx(mapper, thisArg, 3) : false;
-  let element, spreadable;
+  var targetIndex = start;
+  var sourceIndex = 0;
+  var mapFn = mapper ? ctx(mapper, thisArg, 3) : false;
+  var element, spreadable;
 
   while (sourceIndex < sourceLen) {
     if (sourceIndex in source) {
@@ -657,17 +657,17 @@ module.exports = flattenIntoArray;
 },{"./_is-array":"../../node_modules/core-js/modules/_is-array.js","./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_to-length":"../../node_modules/core-js/modules/_to-length.js","./_ctx":"../../node_modules/core-js/modules/_ctx.js","./_wks":"../../node_modules/core-js/modules/_wks.js"}],"../../node_modules/core-js/modules/es7.array.flat-map.js":[function(require,module,exports) {
 'use strict';
 // https://tc39.github.io/proposal-flatMap/#sec-Array.prototype.flatMap
-let $export = require('./_export');
-let flattenIntoArray = require('./_flatten-into-array');
-let toObject = require('./_to-object');
-let toLength = require('./_to-length');
-let aFunction = require('./_a-function');
-let arraySpeciesCreate = require('./_array-species-create');
+var $export = require('./_export');
+var flattenIntoArray = require('./_flatten-into-array');
+var toObject = require('./_to-object');
+var toLength = require('./_to-length');
+var aFunction = require('./_a-function');
+var arraySpeciesCreate = require('./_array-species-create');
 
 $export($export.P, 'Array', {
   flatMap: function flatMap(callbackfn /* , thisArg */) {
-    let O = toObject(this);
-    let sourceLen, A;
+    var O = toObject(this);
+    var sourceLen, A;
     aFunction(callbackfn);
     sourceLen = toLength(O.length);
     A = arraySpeciesCreate(O, 0);
@@ -680,13 +680,13 @@ require('./_add-to-unscopables')('flatMap');
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_flatten-into-array":"../../node_modules/core-js/modules/_flatten-into-array.js","./_to-object":"../../node_modules/core-js/modules/_to-object.js","./_to-length":"../../node_modules/core-js/modules/_to-length.js","./_a-function":"../../node_modules/core-js/modules/_a-function.js","./_array-species-create":"../../node_modules/core-js/modules/_array-species-create.js","./_add-to-unscopables":"../../node_modules/core-js/modules/_add-to-unscopables.js"}],"../../node_modules/core-js/modules/_iter-call.js":[function(require,module,exports) {
 // call something on iterator step with safe closing on error
-let anObject = require('./_an-object');
+var anObject = require('./_an-object');
 module.exports = function (iterator, fn, value, entries) {
   try {
     return entries ? fn(anObject(value)[0], value[1]) : fn(value);
   // 7.4.6 IteratorClose(iterator, completion)
   } catch (e) {
-    let ret = iterator['return'];
+    var ret = iterator['return'];
     if (ret !== undefined) anObject(ret.call(iterator));
     throw e;
   }
@@ -697,9 +697,9 @@ module.exports = {};
 
 },{}],"../../node_modules/core-js/modules/_is-array-iter.js":[function(require,module,exports) {
 // check on default Array iterator
-let Iterators = require('./_iterators');
-let ITERATOR = require('./_wks')('iterator');
-let ArrayProto = Array.prototype;
+var Iterators = require('./_iterators');
+var ITERATOR = require('./_wks')('iterator');
+var ArrayProto = Array.prototype;
 
 module.exports = function (it) {
   return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
@@ -707,8 +707,8 @@ module.exports = function (it) {
 
 },{"./_iterators":"../../node_modules/core-js/modules/_iterators.js","./_wks":"../../node_modules/core-js/modules/_wks.js"}],"../../node_modules/core-js/modules/_create-property.js":[function(require,module,exports) {
 'use strict';
-let $defineProperty = require('./_object-dp');
-let createDesc = require('./_property-desc');
+var $defineProperty = require('./_object-dp');
+var createDesc = require('./_property-desc');
 
 module.exports = function (object, index, value) {
   if (index in object) $defineProperty.f(object, index, createDesc(0, value));
@@ -717,20 +717,20 @@ module.exports = function (object, index, value) {
 
 },{"./_object-dp":"../../node_modules/core-js/modules/_object-dp.js","./_property-desc":"../../node_modules/core-js/modules/_property-desc.js"}],"../../node_modules/core-js/modules/_classof.js":[function(require,module,exports) {
 // getting tag from 19.1.3.6 Object.prototype.toString()
-let cof = require('./_cof');
-let TAG = require('./_wks')('toStringTag');
+var cof = require('./_cof');
+var TAG = require('./_wks')('toStringTag');
 // ES3 wrong here
-let ARG = cof(function () { return arguments; }()) == 'Arguments';
+var ARG = cof(function () { return arguments; }()) == 'Arguments';
 
 // fallback for IE11 Script Access Denied error
-let tryGet = function (it, key) {
+var tryGet = function (it, key) {
   try {
     return it[key];
   } catch (e) { /* empty */ }
 };
 
 module.exports = function (it) {
-  let O, T, B;
+  var O, T, B;
   return it === undefined ? 'Undefined' : it === null ? 'Null'
     // @@toStringTag case
     : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
@@ -741,9 +741,9 @@ module.exports = function (it) {
 };
 
 },{"./_cof":"../../node_modules/core-js/modules/_cof.js","./_wks":"../../node_modules/core-js/modules/_wks.js"}],"../../node_modules/core-js/modules/core.get-iterator-method.js":[function(require,module,exports) {
-let classof = require('./_classof');
-let ITERATOR = require('./_wks')('iterator');
-let Iterators = require('./_iterators');
+var classof = require('./_classof');
+var ITERATOR = require('./_wks')('iterator');
+var Iterators = require('./_iterators');
 module.exports = require('./_core').getIteratorMethod = function (it) {
   if (it != undefined) return it[ITERATOR]
     || it['@@iterator']
@@ -751,11 +751,11 @@ module.exports = require('./_core').getIteratorMethod = function (it) {
 };
 
 },{"./_classof":"../../node_modules/core-js/modules/_classof.js","./_wks":"../../node_modules/core-js/modules/_wks.js","./_iterators":"../../node_modules/core-js/modules/_iterators.js","./_core":"../../node_modules/core-js/modules/_core.js"}],"../../node_modules/core-js/modules/_iter-detect.js":[function(require,module,exports) {
-let ITERATOR = require('./_wks')('iterator');
-let SAFE_CLOSING = false;
+var ITERATOR = require('./_wks')('iterator');
+var SAFE_CLOSING = false;
 
 try {
-  let riter = [7][ITERATOR]();
+  var riter = [7][ITERATOR]();
   riter['return'] = function () { SAFE_CLOSING = true; };
   // eslint-disable-next-line no-throw-literal
   Array.from(riter, function () { throw 2; });
@@ -763,10 +763,10 @@ try {
 
 module.exports = function (exec, skipClosing) {
   if (!skipClosing && !SAFE_CLOSING) return false;
-  let safe = false;
+  var safe = false;
   try {
-    let arr = [7];
-    let iter = arr[ITERATOR]();
+    var arr = [7];
+    var iter = arr[ITERATOR]();
     iter.next = function () { return { done: safe = true }; };
     arr[ITERATOR] = function () { return iter; };
     exec(arr);
@@ -776,26 +776,26 @@ module.exports = function (exec, skipClosing) {
 
 },{"./_wks":"../../node_modules/core-js/modules/_wks.js"}],"../../node_modules/core-js/modules/es6.array.from.js":[function(require,module,exports) {
 'use strict';
-let ctx = require('./_ctx');
-let $export = require('./_export');
-let toObject = require('./_to-object');
-let call = require('./_iter-call');
-let isArrayIter = require('./_is-array-iter');
-let toLength = require('./_to-length');
-let createProperty = require('./_create-property');
-let getIterFn = require('./core.get-iterator-method');
+var ctx = require('./_ctx');
+var $export = require('./_export');
+var toObject = require('./_to-object');
+var call = require('./_iter-call');
+var isArrayIter = require('./_is-array-iter');
+var toLength = require('./_to-length');
+var createProperty = require('./_create-property');
+var getIterFn = require('./core.get-iterator-method');
 
 $export($export.S + $export.F * !require('./_iter-detect')(function (iter) { Array.from(iter); }), 'Array', {
   // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
   from: function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
-    let O = toObject(arrayLike);
-    let C = typeof this == 'function' ? this : Array;
-    let aLen = arguments.length;
-    let mapfn = aLen > 1 ? arguments[1] : undefined;
-    let mapping = mapfn !== undefined;
-    let index = 0;
-    let iterFn = getIterFn(O);
-    let length, result, step, iterator;
+    var O = toObject(arrayLike);
+    var C = typeof this == 'function' ? this : Array;
+    var aLen = arguments.length;
+    var mapfn = aLen > 1 ? arguments[1] : undefined;
+    var mapping = mapfn !== undefined;
+    var index = 0;
+    var iterFn = getIterFn(O);
+    var length, result, step, iterator;
     if (mapping) mapfn = ctx(mapfn, aLen > 2 ? arguments[2] : undefined, 2);
     // if object isn't iterable or it's array with default iterator - use simple case
     if (iterFn != undefined && !(C == Array && isArrayIter(iterFn))) {
@@ -815,8 +815,8 @@ $export($export.S + $export.F * !require('./_iter-detect')(function (iter) { Arr
 
 },{"./_ctx":"../../node_modules/core-js/modules/_ctx.js","./_export":"../../node_modules/core-js/modules/_export.js","./_to-object":"../../node_modules/core-js/modules/_to-object.js","./_iter-call":"../../node_modules/core-js/modules/_iter-call.js","./_is-array-iter":"../../node_modules/core-js/modules/_is-array-iter.js","./_to-length":"../../node_modules/core-js/modules/_to-length.js","./_create-property":"../../node_modules/core-js/modules/_create-property.js","./core.get-iterator-method":"../../node_modules/core-js/modules/core.get-iterator-method.js","./_iter-detect":"../../node_modules/core-js/modules/_iter-detect.js"}],"../../node_modules/core-js/modules/_to-iobject.js":[function(require,module,exports) {
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-let IObject = require('./_iobject');
-let defined = require('./_defined');
+var IObject = require('./_iobject');
+var defined = require('./_defined');
 module.exports = function (it) {
   return IObject(defined(it));
 };
@@ -824,15 +824,15 @@ module.exports = function (it) {
 },{"./_iobject":"../../node_modules/core-js/modules/_iobject.js","./_defined":"../../node_modules/core-js/modules/_defined.js"}],"../../node_modules/core-js/modules/_array-includes.js":[function(require,module,exports) {
 // false -> Array#indexOf
 // true  -> Array#includes
-let toIObject = require('./_to-iobject');
-let toLength = require('./_to-length');
-let toAbsoluteIndex = require('./_to-absolute-index');
+var toIObject = require('./_to-iobject');
+var toLength = require('./_to-length');
+var toAbsoluteIndex = require('./_to-absolute-index');
 module.exports = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
-    let O = toIObject($this);
-    let length = toLength(O.length);
-    let index = toAbsoluteIndex(fromIndex, length);
-    let value;
+    var O = toIObject($this);
+    var length = toLength(O.length);
+    var index = toAbsoluteIndex(fromIndex, length);
+    var value;
     // Array#includes uses SameValueZero equality algorithm
     // eslint-disable-next-line no-self-compare
     if (IS_INCLUDES && el != el) while (length > index) {
@@ -849,8 +849,8 @@ module.exports = function (IS_INCLUDES) {
 },{"./_to-iobject":"../../node_modules/core-js/modules/_to-iobject.js","./_to-length":"../../node_modules/core-js/modules/_to-length.js","./_to-absolute-index":"../../node_modules/core-js/modules/_to-absolute-index.js"}],"../../node_modules/core-js/modules/es7.array.includes.js":[function(require,module,exports) {
 'use strict';
 // https://github.com/tc39/Array.prototype.includes
-let $export = require('./_export');
-let $includes = require('./_array-includes')(true);
+var $export = require('./_export');
+var $includes = require('./_array-includes')(true);
 
 $export($export.P, 'Array', {
   includes: function includes(el /* , fromIndex = 0 */) {
@@ -866,23 +866,23 @@ module.exports = function (done, value) {
 };
 
 },{}],"../../node_modules/core-js/modules/_shared-key.js":[function(require,module,exports) {
-let shared = require('./_shared')('keys');
-let uid = require('./_uid');
+var shared = require('./_shared')('keys');
+var uid = require('./_uid');
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
 
 },{"./_shared":"../../node_modules/core-js/modules/_shared.js","./_uid":"../../node_modules/core-js/modules/_uid.js"}],"../../node_modules/core-js/modules/_object-keys-internal.js":[function(require,module,exports) {
-let has = require('./_has');
-let toIObject = require('./_to-iobject');
-let arrayIndexOf = require('./_array-includes')(false);
-let IE_PROTO = require('./_shared-key')('IE_PROTO');
+var has = require('./_has');
+var toIObject = require('./_to-iobject');
+var arrayIndexOf = require('./_array-includes')(false);
+var IE_PROTO = require('./_shared-key')('IE_PROTO');
 
 module.exports = function (object, names) {
-  let O = toIObject(object);
-  let i = 0;
-  let result = [];
-  let key;
+  var O = toIObject(object);
+  var i = 0;
+  var result = [];
+  var key;
   for (key in O) if (key != IE_PROTO) has(O, key) && result.push(key);
   // Don't enum bug & hidden keys
   while (names.length > i) if (has(O, key = names[i++])) {
@@ -899,49 +899,49 @@ module.exports = (
 
 },{}],"../../node_modules/core-js/modules/_object-keys.js":[function(require,module,exports) {
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-let $keys = require('./_object-keys-internal');
-let enumBugKeys = require('./_enum-bug-keys');
+var $keys = require('./_object-keys-internal');
+var enumBugKeys = require('./_enum-bug-keys');
 
 module.exports = Object.keys || function keys(O) {
   return $keys(O, enumBugKeys);
 };
 
 },{"./_object-keys-internal":"../../node_modules/core-js/modules/_object-keys-internal.js","./_enum-bug-keys":"../../node_modules/core-js/modules/_enum-bug-keys.js"}],"../../node_modules/core-js/modules/_object-dps.js":[function(require,module,exports) {
-let dP = require('./_object-dp');
-let anObject = require('./_an-object');
-let getKeys = require('./_object-keys');
+var dP = require('./_object-dp');
+var anObject = require('./_an-object');
+var getKeys = require('./_object-keys');
 
 module.exports = require('./_descriptors') ? Object.defineProperties : function defineProperties(O, Properties) {
   anObject(O);
-  let keys = getKeys(Properties);
-  let length = keys.length;
-  let i = 0;
-  let P;
+  var keys = getKeys(Properties);
+  var length = keys.length;
+  var i = 0;
+  var P;
   while (length > i) dP.f(O, P = keys[i++], Properties[P]);
   return O;
 };
 
 },{"./_object-dp":"../../node_modules/core-js/modules/_object-dp.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_object-keys":"../../node_modules/core-js/modules/_object-keys.js","./_descriptors":"../../node_modules/core-js/modules/_descriptors.js"}],"../../node_modules/core-js/modules/_html.js":[function(require,module,exports) {
-let document = require('./_global').document;
+var document = require('./_global').document;
 module.exports = document && document.documentElement;
 
 },{"./_global":"../../node_modules/core-js/modules/_global.js"}],"../../node_modules/core-js/modules/_object-create.js":[function(require,module,exports) {
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-let anObject = require('./_an-object');
-let dPs = require('./_object-dps');
-let enumBugKeys = require('./_enum-bug-keys');
-let IE_PROTO = require('./_shared-key')('IE_PROTO');
-let Empty = function () { /* empty */ };
-let PROTOTYPE = 'prototype';
+var anObject = require('./_an-object');
+var dPs = require('./_object-dps');
+var enumBugKeys = require('./_enum-bug-keys');
+var IE_PROTO = require('./_shared-key')('IE_PROTO');
+var Empty = function () { /* empty */ };
+var PROTOTYPE = 'prototype';
 
 // Create object with fake `null` prototype: use iframe Object with cleared prototype
-let createDict = function () {
+var createDict = function () {
   // Thrash, waste and sodomy: IE GC bug
-  let iframe = require('./_dom-create')('iframe');
-  let i = enumBugKeys.length;
-  let lt = '<';
-  let gt = '>';
-  let iframeDocument;
+  var iframe = require('./_dom-create')('iframe');
+  var i = enumBugKeys.length;
+  var lt = '<';
+  var gt = '>';
+  var iframeDocument;
   iframe.style.display = 'none';
   require('./_html').appendChild(iframe);
   iframe.src = 'javascript:'; // eslint-disable-line no-script-url
@@ -957,7 +957,7 @@ let createDict = function () {
 };
 
 module.exports = Object.create || function create(O, Properties) {
-  let result;
+  var result;
   if (O !== null) {
     Empty[PROTOTYPE] = anObject(O);
     result = new Empty();
@@ -969,9 +969,9 @@ module.exports = Object.create || function create(O, Properties) {
 };
 
 },{"./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_object-dps":"../../node_modules/core-js/modules/_object-dps.js","./_enum-bug-keys":"../../node_modules/core-js/modules/_enum-bug-keys.js","./_shared-key":"../../node_modules/core-js/modules/_shared-key.js","./_dom-create":"../../node_modules/core-js/modules/_dom-create.js","./_html":"../../node_modules/core-js/modules/_html.js"}],"../../node_modules/core-js/modules/_set-to-string-tag.js":[function(require,module,exports) {
-let def = require('./_object-dp').f;
-let has = require('./_has');
-let TAG = require('./_wks')('toStringTag');
+var def = require('./_object-dp').f;
+var has = require('./_has');
+var TAG = require('./_wks')('toStringTag');
 
 module.exports = function (it, tag, stat) {
   if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
@@ -979,10 +979,10 @@ module.exports = function (it, tag, stat) {
 
 },{"./_object-dp":"../../node_modules/core-js/modules/_object-dp.js","./_has":"../../node_modules/core-js/modules/_has.js","./_wks":"../../node_modules/core-js/modules/_wks.js"}],"../../node_modules/core-js/modules/_iter-create.js":[function(require,module,exports) {
 'use strict';
-let create = require('./_object-create');
-let descriptor = require('./_property-desc');
-let setToStringTag = require('./_set-to-string-tag');
-let IteratorPrototype = {};
+var create = require('./_object-create');
+var descriptor = require('./_property-desc');
+var setToStringTag = require('./_set-to-string-tag');
+var IteratorPrototype = {};
 
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
 require('./_hide')(IteratorPrototype, require('./_wks')('iterator'), function () { return this; });
@@ -994,10 +994,10 @@ module.exports = function (Constructor, NAME, next) {
 
 },{"./_object-create":"../../node_modules/core-js/modules/_object-create.js","./_property-desc":"../../node_modules/core-js/modules/_property-desc.js","./_set-to-string-tag":"../../node_modules/core-js/modules/_set-to-string-tag.js","./_hide":"../../node_modules/core-js/modules/_hide.js","./_wks":"../../node_modules/core-js/modules/_wks.js"}],"../../node_modules/core-js/modules/_object-gpo.js":[function(require,module,exports) {
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-let has = require('./_has');
-let toObject = require('./_to-object');
-let IE_PROTO = require('./_shared-key')('IE_PROTO');
-let ObjectProto = Object.prototype;
+var has = require('./_has');
+var toObject = require('./_to-object');
+var IE_PROTO = require('./_shared-key')('IE_PROTO');
+var ObjectProto = Object.prototype;
 
 module.exports = Object.getPrototypeOf || function (O) {
   O = toObject(O);
@@ -1009,40 +1009,40 @@ module.exports = Object.getPrototypeOf || function (O) {
 
 },{"./_has":"../../node_modules/core-js/modules/_has.js","./_to-object":"../../node_modules/core-js/modules/_to-object.js","./_shared-key":"../../node_modules/core-js/modules/_shared-key.js"}],"../../node_modules/core-js/modules/_iter-define.js":[function(require,module,exports) {
 'use strict';
-let LIBRARY = require('./_library');
-let $export = require('./_export');
-let redefine = require('./_redefine');
-let hide = require('./_hide');
-let Iterators = require('./_iterators');
-let $iterCreate = require('./_iter-create');
-let setToStringTag = require('./_set-to-string-tag');
-let getPrototypeOf = require('./_object-gpo');
-let ITERATOR = require('./_wks')('iterator');
-let BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
-let FF_ITERATOR = '@@iterator';
-let KEYS = 'keys';
-let VALUES = 'values';
+var LIBRARY = require('./_library');
+var $export = require('./_export');
+var redefine = require('./_redefine');
+var hide = require('./_hide');
+var Iterators = require('./_iterators');
+var $iterCreate = require('./_iter-create');
+var setToStringTag = require('./_set-to-string-tag');
+var getPrototypeOf = require('./_object-gpo');
+var ITERATOR = require('./_wks')('iterator');
+var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
+var FF_ITERATOR = '@@iterator';
+var KEYS = 'keys';
+var VALUES = 'values';
 
-let returnThis = function () { return this; };
+var returnThis = function () { return this; };
 
 module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
   $iterCreate(Constructor, NAME, next);
-  let getMethod = function (kind) {
+  var getMethod = function (kind) {
     if (!BUGGY && kind in proto) return proto[kind];
     switch (kind) {
       case KEYS: return function keys() { return new Constructor(this, kind); };
       case VALUES: return function values() { return new Constructor(this, kind); };
     } return function entries() { return new Constructor(this, kind); };
   };
-  let TAG = NAME + ' Iterator';
-  let DEF_VALUES = DEFAULT == VALUES;
-  let VALUES_BUG = false;
-  let proto = Base.prototype;
-  let $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT];
-  let $default = $native || getMethod(DEFAULT);
-  let $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined;
-  let $anyNative = NAME == 'Array' ? proto.entries || $native : $native;
-  let methods, key, IteratorPrototype;
+  var TAG = NAME + ' Iterator';
+  var DEF_VALUES = DEFAULT == VALUES;
+  var VALUES_BUG = false;
+  var proto = Base.prototype;
+  var $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT];
+  var $default = $native || getMethod(DEFAULT);
+  var $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined;
+  var $anyNative = NAME == 'Array' ? proto.entries || $native : $native;
+  var methods, key, IteratorPrototype;
   // Fix native
   if ($anyNative) {
     IteratorPrototype = getPrototypeOf($anyNative.call(new Base()));
@@ -1080,10 +1080,10 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
 
 },{"./_library":"../../node_modules/core-js/modules/_library.js","./_export":"../../node_modules/core-js/modules/_export.js","./_redefine":"../../node_modules/core-js/modules/_redefine.js","./_hide":"../../node_modules/core-js/modules/_hide.js","./_iterators":"../../node_modules/core-js/modules/_iterators.js","./_iter-create":"../../node_modules/core-js/modules/_iter-create.js","./_set-to-string-tag":"../../node_modules/core-js/modules/_set-to-string-tag.js","./_object-gpo":"../../node_modules/core-js/modules/_object-gpo.js","./_wks":"../../node_modules/core-js/modules/_wks.js"}],"../../node_modules/core-js/modules/es6.array.iterator.js":[function(require,module,exports) {
 'use strict';
-let addToUnscopables = require('./_add-to-unscopables');
-let step = require('./_iter-step');
-let Iterators = require('./_iterators');
-let toIObject = require('./_to-iobject');
+var addToUnscopables = require('./_add-to-unscopables');
+var step = require('./_iter-step');
+var Iterators = require('./_iterators');
+var toIObject = require('./_to-iobject');
 
 // 22.1.3.4 Array.prototype.entries()
 // 22.1.3.13 Array.prototype.keys()
@@ -1095,9 +1095,9 @@ module.exports = require('./_iter-define')(Array, 'Array', function (iterated, k
   this._k = kind;                // kind
 // 22.1.5.2.1 %ArrayIteratorPrototype%.next()
 }, function () {
-  let O = this._t;
-  let kind = this._k;
-  let index = this._i++;
+  var O = this._t;
+  var kind = this._k;
+  var index = this._i++;
   if (!O || index >= O.length) {
     this._t = undefined;
     return step(1);
@@ -1116,8 +1116,8 @@ addToUnscopables('entries');
 
 },{"./_add-to-unscopables":"../../node_modules/core-js/modules/_add-to-unscopables.js","./_iter-step":"../../node_modules/core-js/modules/_iter-step.js","./_iterators":"../../node_modules/core-js/modules/_iterators.js","./_to-iobject":"../../node_modules/core-js/modules/_to-iobject.js","./_iter-define":"../../node_modules/core-js/modules/_iter-define.js"}],"../../node_modules/core-js/modules/es6.array.of.js":[function(require,module,exports) {
 'use strict';
-let $export = require('./_export');
-let createProperty = require('./_create-property');
+var $export = require('./_export');
+var createProperty = require('./_create-property');
 
 // WebKit Array.of isn't generic
 $export($export.S + $export.F * require('./_fails')(function () {
@@ -1126,9 +1126,9 @@ $export($export.S + $export.F * require('./_fails')(function () {
 }), 'Array', {
   // 22.1.2.3 Array.of( ...items)
   of: function of(/* ...args */) {
-    let index = 0;
-    let aLen = arguments.length;
-    let result = new (typeof this == 'function' ? this : Array)(aLen);
+    var index = 0;
+    var aLen = arguments.length;
+    var result = new (typeof this == 'function' ? this : Array)(aLen);
     while (aLen > index) createProperty(result, index, arguments[index++]);
     result.length = aLen;
     return result;
@@ -1137,7 +1137,7 @@ $export($export.S + $export.F * require('./_fails')(function () {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_create-property":"../../node_modules/core-js/modules/_create-property.js","./_fails":"../../node_modules/core-js/modules/_fails.js"}],"../../node_modules/core-js/modules/_strict-method.js":[function(require,module,exports) {
 'use strict';
-let fails = require('./_fails');
+var fails = require('./_fails');
 
 module.exports = function (method, arg) {
   return !!method && fails(function () {
@@ -1148,12 +1148,12 @@ module.exports = function (method, arg) {
 
 },{"./_fails":"../../node_modules/core-js/modules/_fails.js"}],"../../node_modules/core-js/modules/es6.array.sort.js":[function(require,module,exports) {
 'use strict';
-let $export = require('./_export');
-let aFunction = require('./_a-function');
-let toObject = require('./_to-object');
-let fails = require('./_fails');
-let $sort = [].sort;
-let test = [1, 2, 3];
+var $export = require('./_export');
+var aFunction = require('./_a-function');
+var toObject = require('./_to-object');
+var fails = require('./_fails');
+var $sort = [].sort;
+var test = [1, 2, 3];
 
 $export($export.P + $export.F * (fails(function () {
   // IE8-
@@ -1174,13 +1174,13 @@ $export($export.P + $export.F * (fails(function () {
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_a-function":"../../node_modules/core-js/modules/_a-function.js","./_to-object":"../../node_modules/core-js/modules/_to-object.js","./_fails":"../../node_modules/core-js/modules/_fails.js","./_strict-method":"../../node_modules/core-js/modules/_strict-method.js"}],"../../node_modules/core-js/modules/_set-species.js":[function(require,module,exports) {
 
 'use strict';
-let global = require('./_global');
-let dP = require('./_object-dp');
-let DESCRIPTORS = require('./_descriptors');
-let SPECIES = require('./_wks')('species');
+var global = require('./_global');
+var dP = require('./_object-dp');
+var DESCRIPTORS = require('./_descriptors');
+var SPECIES = require('./_wks')('species');
 
 module.exports = function (KEY) {
-  let C = global[KEY];
+  var C = global[KEY];
   if (DESCRIPTORS && C && !C[SPECIES]) dP.f(C, SPECIES, {
     configurable: true,
     get: function () { return this; }
@@ -1192,9 +1192,9 @@ require('./_set-species')('Array');
 
 },{"./_set-species":"../../node_modules/core-js/modules/_set-species.js"}],"../../node_modules/core-js/modules/_date-to-primitive.js":[function(require,module,exports) {
 'use strict';
-let anObject = require('./_an-object');
-let toPrimitive = require('./_to-primitive');
-let NUMBER = 'number';
+var anObject = require('./_an-object');
+var toPrimitive = require('./_to-primitive');
+var NUMBER = 'number';
 
 module.exports = function (hint) {
   if (hint !== 'string' && hint !== NUMBER && hint !== 'default') throw TypeError('Incorrect hint');
@@ -1202,17 +1202,17 @@ module.exports = function (hint) {
 };
 
 },{"./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_to-primitive":"../../node_modules/core-js/modules/_to-primitive.js"}],"../../node_modules/core-js/modules/es6.date.to-primitive.js":[function(require,module,exports) {
-let TO_PRIMITIVE = require('./_wks')('toPrimitive');
-let proto = Date.prototype;
+var TO_PRIMITIVE = require('./_wks')('toPrimitive');
+var proto = Date.prototype;
 
 if (!(TO_PRIMITIVE in proto)) require('./_hide')(proto, TO_PRIMITIVE, require('./_date-to-primitive'));
 
 },{"./_wks":"../../node_modules/core-js/modules/_wks.js","./_hide":"../../node_modules/core-js/modules/_hide.js","./_date-to-primitive":"../../node_modules/core-js/modules/_date-to-primitive.js"}],"../../node_modules/core-js/modules/es6.function.has-instance.js":[function(require,module,exports) {
 'use strict';
-let isObject = require('./_is-object');
-let getPrototypeOf = require('./_object-gpo');
-let HAS_INSTANCE = require('./_wks')('hasInstance');
-let FunctionProto = Function.prototype;
+var isObject = require('./_is-object');
+var getPrototypeOf = require('./_object-gpo');
+var HAS_INSTANCE = require('./_wks')('hasInstance');
+var FunctionProto = Function.prototype;
 // 19.2.3.6 Function.prototype[@@hasInstance](V)
 if (!(HAS_INSTANCE in FunctionProto)) require('./_object-dp').f(FunctionProto, HAS_INSTANCE, { value: function (O) {
   if (typeof this != 'function' || !isObject(O)) return false;
@@ -1223,10 +1223,10 @@ if (!(HAS_INSTANCE in FunctionProto)) require('./_object-dp').f(FunctionProto, H
 } });
 
 },{"./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_object-gpo":"../../node_modules/core-js/modules/_object-gpo.js","./_wks":"../../node_modules/core-js/modules/_wks.js","./_object-dp":"../../node_modules/core-js/modules/_object-dp.js"}],"../../node_modules/core-js/modules/es6.function.name.js":[function(require,module,exports) {
-let dP = require('./_object-dp').f;
-let FProto = Function.prototype;
-let nameRE = /^\s*function ([^ (]*)/;
-let NAME = 'name';
+var dP = require('./_object-dp').f;
+var FProto = Function.prototype;
+var nameRE = /^\s*function ([^ (]*)/;
+var NAME = 'name';
 
 // 19.2.4.2 name
 NAME in FProto || require('./_descriptors') && dP(FProto, NAME, {
@@ -1241,9 +1241,9 @@ NAME in FProto || require('./_descriptors') && dP(FProto, NAME, {
 });
 
 },{"./_object-dp":"../../node_modules/core-js/modules/_object-dp.js","./_descriptors":"../../node_modules/core-js/modules/_descriptors.js"}],"../../node_modules/core-js/modules/_redefine-all.js":[function(require,module,exports) {
-let redefine = require('./_redefine');
+var redefine = require('./_redefine');
 module.exports = function (target, src, safe) {
-  for (let key in src) redefine(target, key, src[key], safe);
+  for (var key in src) redefine(target, key, src[key], safe);
   return target;
 };
 
@@ -1255,19 +1255,19 @@ module.exports = function (it, Constructor, name, forbiddenField) {
 };
 
 },{}],"../../node_modules/core-js/modules/_for-of.js":[function(require,module,exports) {
-let ctx = require('./_ctx');
-let call = require('./_iter-call');
-let isArrayIter = require('./_is-array-iter');
-let anObject = require('./_an-object');
-let toLength = require('./_to-length');
-let getIterFn = require('./core.get-iterator-method');
-let BREAK = {};
-let RETURN = {};
-let exports = module.exports = function (iterable, entries, fn, that, ITERATOR) {
-  let iterFn = ITERATOR ? function () { return iterable; } : getIterFn(iterable);
-  let f = ctx(fn, that, entries ? 2 : 1);
-  let index = 0;
-  let length, step, iterator, result;
+var ctx = require('./_ctx');
+var call = require('./_iter-call');
+var isArrayIter = require('./_is-array-iter');
+var anObject = require('./_an-object');
+var toLength = require('./_to-length');
+var getIterFn = require('./core.get-iterator-method');
+var BREAK = {};
+var RETURN = {};
+var exports = module.exports = function (iterable, entries, fn, that, ITERATOR) {
+  var iterFn = ITERATOR ? function () { return iterable; } : getIterFn(iterable);
+  var f = ctx(fn, that, entries ? 2 : 1);
+  var index = 0;
+  var length, step, iterator, result;
   if (typeof iterFn != 'function') throw TypeError(iterable + ' is not iterable!');
   // fast case for arrays with default iterator
   if (isArrayIter(iterFn)) for (length = toLength(iterable.length); length > index; index++) {
@@ -1282,24 +1282,24 @@ exports.BREAK = BREAK;
 exports.RETURN = RETURN;
 
 },{"./_ctx":"../../node_modules/core-js/modules/_ctx.js","./_iter-call":"../../node_modules/core-js/modules/_iter-call.js","./_is-array-iter":"../../node_modules/core-js/modules/_is-array-iter.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_to-length":"../../node_modules/core-js/modules/_to-length.js","./core.get-iterator-method":"../../node_modules/core-js/modules/core.get-iterator-method.js"}],"../../node_modules/core-js/modules/_meta.js":[function(require,module,exports) {
-let META = require('./_uid')('meta');
-let isObject = require('./_is-object');
-let has = require('./_has');
-let setDesc = require('./_object-dp').f;
-let id = 0;
-let isExtensible = Object.isExtensible || function () {
+var META = require('./_uid')('meta');
+var isObject = require('./_is-object');
+var has = require('./_has');
+var setDesc = require('./_object-dp').f;
+var id = 0;
+var isExtensible = Object.isExtensible || function () {
   return true;
 };
-let FREEZE = !require('./_fails')(function () {
+var FREEZE = !require('./_fails')(function () {
   return isExtensible(Object.preventExtensions({}));
 });
-let setMeta = function (it) {
+var setMeta = function (it) {
   setDesc(it, META, { value: {
     i: 'O' + ++id, // object ID
     w: {}          // weak collections IDs
   } });
 };
-let fastKey = function (it, create) {
+var fastKey = function (it, create) {
   // return primitive with prefix
   if (!isObject(it)) return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
   if (!has(it, META)) {
@@ -1312,7 +1312,7 @@ let fastKey = function (it, create) {
   // return object ID
   } return it[META].i;
 };
-let getWeak = function (it, create) {
+var getWeak = function (it, create) {
   if (!has(it, META)) {
     // can't set metadata to uncaught frozen object
     if (!isExtensible(it)) return true;
@@ -1324,11 +1324,11 @@ let getWeak = function (it, create) {
   } return it[META].w;
 };
 // add metadata on freeze-family methods calling
-let onFreeze = function (it) {
+var onFreeze = function (it) {
   if (FREEZE && meta.NEED && isExtensible(it) && !has(it, META)) setMeta(it);
   return it;
 };
-let meta = module.exports = {
+var meta = module.exports = {
   KEY: META,
   NEED: false,
   fastKey: fastKey,
@@ -1337,7 +1337,7 @@ let meta = module.exports = {
 };
 
 },{"./_uid":"../../node_modules/core-js/modules/_uid.js","./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_has":"../../node_modules/core-js/modules/_has.js","./_object-dp":"../../node_modules/core-js/modules/_object-dp.js","./_fails":"../../node_modules/core-js/modules/_fails.js"}],"../../node_modules/core-js/modules/_validate-collection.js":[function(require,module,exports) {
-let isObject = require('./_is-object');
+var isObject = require('./_is-object');
 module.exports = function (it, TYPE) {
   if (!isObject(it) || it._t !== TYPE) throw TypeError('Incompatible receiver, ' + TYPE + ' required!');
   return it;
@@ -1345,24 +1345,24 @@ module.exports = function (it, TYPE) {
 
 },{"./_is-object":"../../node_modules/core-js/modules/_is-object.js"}],"../../node_modules/core-js/modules/_collection-strong.js":[function(require,module,exports) {
 'use strict';
-let dP = require('./_object-dp').f;
-let create = require('./_object-create');
-let redefineAll = require('./_redefine-all');
-let ctx = require('./_ctx');
-let anInstance = require('./_an-instance');
-let forOf = require('./_for-of');
-let $iterDefine = require('./_iter-define');
-let step = require('./_iter-step');
-let setSpecies = require('./_set-species');
-let DESCRIPTORS = require('./_descriptors');
-let fastKey = require('./_meta').fastKey;
-let validate = require('./_validate-collection');
-let SIZE = DESCRIPTORS ? '_s' : 'size';
+var dP = require('./_object-dp').f;
+var create = require('./_object-create');
+var redefineAll = require('./_redefine-all');
+var ctx = require('./_ctx');
+var anInstance = require('./_an-instance');
+var forOf = require('./_for-of');
+var $iterDefine = require('./_iter-define');
+var step = require('./_iter-step');
+var setSpecies = require('./_set-species');
+var DESCRIPTORS = require('./_descriptors');
+var fastKey = require('./_meta').fastKey;
+var validate = require('./_validate-collection');
+var SIZE = DESCRIPTORS ? '_s' : 'size';
 
-let getEntry = function (that, key) {
+var getEntry = function (that, key) {
   // fast case
-  let index = fastKey(key);
-  let entry;
+  var index = fastKey(key);
+  var entry;
   if (index !== 'F') return that._i[index];
   // frozen object case
   for (entry = that._f; entry; entry = entry.n) {
@@ -1372,7 +1372,7 @@ let getEntry = function (that, key) {
 
 module.exports = {
   getConstructor: function (wrapper, NAME, IS_MAP, ADDER) {
-    let C = wrapper(function (that, iterable) {
+    var C = wrapper(function (that, iterable) {
       anInstance(that, C, NAME, '_i');
       that._t = NAME;         // collection type
       that._i = create(null); // index
@@ -1385,7 +1385,7 @@ module.exports = {
       // 23.1.3.1 Map.prototype.clear()
       // 23.2.3.2 Set.prototype.clear()
       clear: function clear() {
-        for (let that = validate(this, NAME), data = that._i, entry = that._f; entry; entry = entry.n) {
+        for (var that = validate(this, NAME), data = that._i, entry = that._f; entry; entry = entry.n) {
           entry.r = true;
           if (entry.p) entry.p = entry.p.n = undefined;
           delete data[entry.i];
@@ -1396,11 +1396,11 @@ module.exports = {
       // 23.1.3.3 Map.prototype.delete(key)
       // 23.2.3.4 Set.prototype.delete(value)
       'delete': function (key) {
-        let that = validate(this, NAME);
-        let entry = getEntry(that, key);
+        var that = validate(this, NAME);
+        var entry = getEntry(that, key);
         if (entry) {
-          let next = entry.n;
-          let prev = entry.p;
+          var next = entry.n;
+          var prev = entry.p;
           delete that._i[entry.i];
           entry.r = true;
           if (prev) prev.n = next;
@@ -1414,8 +1414,8 @@ module.exports = {
       // 23.1.3.5 Map.prototype.forEach(callbackfn, thisArg = undefined)
       forEach: function forEach(callbackfn /* , that = undefined */) {
         validate(this, NAME);
-        let f = ctx(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
-        let entry;
+        var f = ctx(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        var entry;
         while (entry = entry ? entry.n : this._f) {
           f(entry.v, entry.k, this);
           // revert to the last existing entry
@@ -1436,8 +1436,8 @@ module.exports = {
     return C;
   },
   def: function (that, key, value) {
-    let entry = getEntry(that, key);
-    let prev, index;
+    var entry = getEntry(that, key);
+    var prev, index;
     // change existing entry
     if (entry) {
       entry.v = value;
@@ -1467,9 +1467,9 @@ module.exports = {
       this._k = kind;                     // kind
       this._l = undefined;                // previous
     }, function () {
-      let that = this;
-      let kind = that._k;
-      let entry = that._l;
+      var that = this;
+      var kind = that._k;
+      var entry = that._l;
       // revert to the last existing entry
       while (entry && entry.r) entry = entry.p;
       // get next entry
@@ -1493,13 +1493,13 @@ module.exports = {
 exports.f = {}.propertyIsEnumerable;
 
 },{}],"../../node_modules/core-js/modules/_object-gopd.js":[function(require,module,exports) {
-let pIE = require('./_object-pie');
-let createDesc = require('./_property-desc');
-let toIObject = require('./_to-iobject');
-let toPrimitive = require('./_to-primitive');
-let has = require('./_has');
-let IE8_DOM_DEFINE = require('./_ie8-dom-define');
-let gOPD = Object.getOwnPropertyDescriptor;
+var pIE = require('./_object-pie');
+var createDesc = require('./_property-desc');
+var toIObject = require('./_to-iobject');
+var toPrimitive = require('./_to-primitive');
+var has = require('./_has');
+var IE8_DOM_DEFINE = require('./_ie8-dom-define');
+var gOPD = Object.getOwnPropertyDescriptor;
 
 exports.f = require('./_descriptors') ? gOPD : function getOwnPropertyDescriptor(O, P) {
   O = toIObject(O);
@@ -1513,9 +1513,9 @@ exports.f = require('./_descriptors') ? gOPD : function getOwnPropertyDescriptor
 },{"./_object-pie":"../../node_modules/core-js/modules/_object-pie.js","./_property-desc":"../../node_modules/core-js/modules/_property-desc.js","./_to-iobject":"../../node_modules/core-js/modules/_to-iobject.js","./_to-primitive":"../../node_modules/core-js/modules/_to-primitive.js","./_has":"../../node_modules/core-js/modules/_has.js","./_ie8-dom-define":"../../node_modules/core-js/modules/_ie8-dom-define.js","./_descriptors":"../../node_modules/core-js/modules/_descriptors.js"}],"../../node_modules/core-js/modules/_set-proto.js":[function(require,module,exports) {
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
-let isObject = require('./_is-object');
-let anObject = require('./_an-object');
-let check = function (O, proto) {
+var isObject = require('./_is-object');
+var anObject = require('./_an-object');
+var check = function (O, proto) {
   anObject(O);
   if (!isObject(proto) && proto !== null) throw TypeError(proto + ": can't set as prototype!");
 };
@@ -1538,11 +1538,11 @@ module.exports = {
 };
 
 },{"./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_ctx":"../../node_modules/core-js/modules/_ctx.js","./_object-gopd":"../../node_modules/core-js/modules/_object-gopd.js"}],"../../node_modules/core-js/modules/_inherit-if-required.js":[function(require,module,exports) {
-let isObject = require('./_is-object');
-let setPrototypeOf = require('./_set-proto').set;
+var isObject = require('./_is-object');
+var setPrototypeOf = require('./_set-proto').set;
 module.exports = function (that, target, C) {
-  let S = target.constructor;
-  let P;
+  var S = target.constructor;
+  var P;
   if (S !== C && typeof S == 'function' && (P = S.prototype) !== C.prototype && isObject(P) && setPrototypeOf) {
     setPrototypeOf(that, P);
   } return that;
@@ -1551,27 +1551,27 @@ module.exports = function (that, target, C) {
 },{"./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_set-proto":"../../node_modules/core-js/modules/_set-proto.js"}],"../../node_modules/core-js/modules/_collection.js":[function(require,module,exports) {
 
 'use strict';
-let global = require('./_global');
-let $export = require('./_export');
-let redefine = require('./_redefine');
-let redefineAll = require('./_redefine-all');
-let meta = require('./_meta');
-let forOf = require('./_for-of');
-let anInstance = require('./_an-instance');
-let isObject = require('./_is-object');
-let fails = require('./_fails');
-let $iterDetect = require('./_iter-detect');
-let setToStringTag = require('./_set-to-string-tag');
-let inheritIfRequired = require('./_inherit-if-required');
+var global = require('./_global');
+var $export = require('./_export');
+var redefine = require('./_redefine');
+var redefineAll = require('./_redefine-all');
+var meta = require('./_meta');
+var forOf = require('./_for-of');
+var anInstance = require('./_an-instance');
+var isObject = require('./_is-object');
+var fails = require('./_fails');
+var $iterDetect = require('./_iter-detect');
+var setToStringTag = require('./_set-to-string-tag');
+var inheritIfRequired = require('./_inherit-if-required');
 
 module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
-  let Base = global[NAME];
-  let C = Base;
-  let ADDER = IS_MAP ? 'set' : 'add';
-  let proto = C && C.prototype;
-  let O = {};
-  let fixMethod = function (KEY) {
-    let fn = proto[KEY];
+  var Base = global[NAME];
+  var C = Base;
+  var ADDER = IS_MAP ? 'set' : 'add';
+  var proto = C && C.prototype;
+  var O = {};
+  var fixMethod = function (KEY) {
+    var fn = proto[KEY];
     redefine(proto, KEY,
       KEY == 'delete' ? function (a) {
         return IS_WEAK && !isObject(a) ? false : fn.call(this, a === 0 ? 0 : a);
@@ -1591,25 +1591,25 @@ module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
     redefineAll(C.prototype, methods);
     meta.NEED = true;
   } else {
-    let instance = new C();
+    var instance = new C();
     // early implementations not supports chaining
-    let HASNT_CHAINING = instance[ADDER](IS_WEAK ? {} : -0, 1) != instance;
+    var HASNT_CHAINING = instance[ADDER](IS_WEAK ? {} : -0, 1) != instance;
     // V8 ~  Chromium 40- weak-collections throws on primitives, but should return false
-    let THROWS_ON_PRIMITIVES = fails(function () { instance.has(1); });
+    var THROWS_ON_PRIMITIVES = fails(function () { instance.has(1); });
     // most early implementations doesn't supports iterables, most modern - not close it correctly
-    let ACCEPT_ITERABLES = $iterDetect(function (iter) { new C(iter); }); // eslint-disable-line no-new
+    var ACCEPT_ITERABLES = $iterDetect(function (iter) { new C(iter); }); // eslint-disable-line no-new
     // for early implementations -0 and +0 not the same
-    let BUGGY_ZERO = !IS_WEAK && fails(function () {
+    var BUGGY_ZERO = !IS_WEAK && fails(function () {
       // V8 ~ Chromium 42- fails only with 5+ elements
-      let $instance = new C();
-      let index = 5;
+      var $instance = new C();
+      var index = 5;
       while (index--) $instance[ADDER](index, index);
       return !$instance.has(-0);
     });
     if (!ACCEPT_ITERABLES) {
       C = wrapper(function (target, iterable) {
         anInstance(target, C, NAME);
-        let that = inheritIfRequired(new Base(), target, C);
+        var that = inheritIfRequired(new Base(), target, C);
         if (iterable != undefined) forOf(iterable, IS_MAP, that[ADDER], that);
         return that;
       });
@@ -1638,9 +1638,9 @@ module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
 
 },{"./_global":"../../node_modules/core-js/modules/_global.js","./_export":"../../node_modules/core-js/modules/_export.js","./_redefine":"../../node_modules/core-js/modules/_redefine.js","./_redefine-all":"../../node_modules/core-js/modules/_redefine-all.js","./_meta":"../../node_modules/core-js/modules/_meta.js","./_for-of":"../../node_modules/core-js/modules/_for-of.js","./_an-instance":"../../node_modules/core-js/modules/_an-instance.js","./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_fails":"../../node_modules/core-js/modules/_fails.js","./_iter-detect":"../../node_modules/core-js/modules/_iter-detect.js","./_set-to-string-tag":"../../node_modules/core-js/modules/_set-to-string-tag.js","./_inherit-if-required":"../../node_modules/core-js/modules/_inherit-if-required.js"}],"../../node_modules/core-js/modules/es6.map.js":[function(require,module,exports) {
 'use strict';
-let strong = require('./_collection-strong');
-let validate = require('./_validate-collection');
-let MAP = 'Map';
+var strong = require('./_collection-strong');
+var validate = require('./_validate-collection');
+var MAP = 'Map';
 
 // 23.1 Map Objects
 module.exports = require('./_collection')(MAP, function (get) {
@@ -1648,7 +1648,7 @@ module.exports = require('./_collection')(MAP, function (get) {
 }, {
   // 23.1.3.6 Map.prototype.get(key)
   get: function get(key) {
-    let entry = strong.getEntry(validate(this, MAP), key);
+    var entry = strong.getEntry(validate(this, MAP), key);
     return entry && entry.v;
   },
   // 23.1.3.9 Map.prototype.set(key, value)
@@ -1665,10 +1665,10 @@ module.exports = Math.log1p || function log1p(x) {
 
 },{}],"../../node_modules/core-js/modules/es6.math.acosh.js":[function(require,module,exports) {
 // 20.2.2.3 Math.acosh(x)
-let $export = require('./_export');
-let log1p = require('./_math-log1p');
-let sqrt = Math.sqrt;
-let $acosh = Math.acosh;
+var $export = require('./_export');
+var log1p = require('./_math-log1p');
+var sqrt = Math.sqrt;
+var $acosh = Math.acosh;
 
 $export($export.S + $export.F * !($acosh
   // V8 bug: https://code.google.com/p/v8/issues/detail?id=3509
@@ -1685,8 +1685,8 @@ $export($export.S + $export.F * !($acosh
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_math-log1p":"../../node_modules/core-js/modules/_math-log1p.js"}],"../../node_modules/core-js/modules/es6.math.asinh.js":[function(require,module,exports) {
 // 20.2.2.5 Math.asinh(x)
-let $export = require('./_export');
-let $asinh = Math.asinh;
+var $export = require('./_export');
+var $asinh = Math.asinh;
 
 function asinh(x) {
   return !isFinite(x = +x) || x == 0 ? x : x < 0 ? -asinh(-x) : Math.log(x + Math.sqrt(x * x + 1));
@@ -1697,8 +1697,8 @@ $export($export.S + $export.F * !($asinh && 1 / $asinh(0) > 0), 'Math', { asinh:
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js"}],"../../node_modules/core-js/modules/es6.math.atanh.js":[function(require,module,exports) {
 // 20.2.2.7 Math.atanh(x)
-let $export = require('./_export');
-let $atanh = Math.atanh;
+var $export = require('./_export');
+var $atanh = Math.atanh;
 
 // Tor Browser bug: Math.atanh(-0) -> 0
 $export($export.S + $export.F * !($atanh && 1 / $atanh(-0) < 0), 'Math', {
@@ -1716,8 +1716,8 @@ module.exports = Math.sign || function sign(x) {
 
 },{}],"../../node_modules/core-js/modules/es6.math.cbrt.js":[function(require,module,exports) {
 // 20.2.2.9 Math.cbrt(x)
-let $export = require('./_export');
-let sign = require('./_math-sign');
+var $export = require('./_export');
+var sign = require('./_math-sign');
 
 $export($export.S, 'Math', {
   cbrt: function cbrt(x) {
@@ -1727,7 +1727,7 @@ $export($export.S, 'Math', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_math-sign":"../../node_modules/core-js/modules/_math-sign.js"}],"../../node_modules/core-js/modules/es6.math.clz32.js":[function(require,module,exports) {
 // 20.2.2.11 Math.clz32(x)
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.S, 'Math', {
   clz32: function clz32(x) {
@@ -1737,8 +1737,8 @@ $export($export.S, 'Math', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js"}],"../../node_modules/core-js/modules/es6.math.cosh.js":[function(require,module,exports) {
 // 20.2.2.12 Math.cosh(x)
-let $export = require('./_export');
-let exp = Math.exp;
+var $export = require('./_export');
+var exp = Math.exp;
 
 $export($export.S, 'Math', {
   cosh: function cosh(x) {
@@ -1748,7 +1748,7 @@ $export($export.S, 'Math', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js"}],"../../node_modules/core-js/modules/_math-expm1.js":[function(require,module,exports) {
 // 20.2.2.14 Math.expm1(x)
-let $expm1 = Math.expm1;
+var $expm1 = Math.expm1;
 module.exports = (!$expm1
   // Old FF bug
   || $expm1(10) > 22025.465794806719 || $expm1(10) < 22025.4657948067165168
@@ -1760,28 +1760,28 @@ module.exports = (!$expm1
 
 },{}],"../../node_modules/core-js/modules/es6.math.expm1.js":[function(require,module,exports) {
 // 20.2.2.14 Math.expm1(x)
-let $export = require('./_export');
-let $expm1 = require('./_math-expm1');
+var $export = require('./_export');
+var $expm1 = require('./_math-expm1');
 
 $export($export.S + $export.F * ($expm1 != Math.expm1), 'Math', { expm1: $expm1 });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_math-expm1":"../../node_modules/core-js/modules/_math-expm1.js"}],"../../node_modules/core-js/modules/_math-fround.js":[function(require,module,exports) {
 // 20.2.2.16 Math.fround(x)
-let sign = require('./_math-sign');
-let pow = Math.pow;
-let EPSILON = pow(2, -52);
-let EPSILON32 = pow(2, -23);
-let MAX32 = pow(2, 127) * (2 - EPSILON32);
-let MIN32 = pow(2, -126);
+var sign = require('./_math-sign');
+var pow = Math.pow;
+var EPSILON = pow(2, -52);
+var EPSILON32 = pow(2, -23);
+var MAX32 = pow(2, 127) * (2 - EPSILON32);
+var MIN32 = pow(2, -126);
 
-let roundTiesToEven = function (n) {
+var roundTiesToEven = function (n) {
   return n + 1 / EPSILON - 1 / EPSILON;
 };
 
 module.exports = Math.fround || function fround(x) {
-  let $abs = Math.abs(x);
-  let $sign = sign(x);
-  let a, result;
+  var $abs = Math.abs(x);
+  var $sign = sign(x);
+  var a, result;
   if ($abs < MIN32) return $sign * roundTiesToEven($abs / MIN32 / EPSILON32) * MIN32 * EPSILON32;
   a = (1 + EPSILON32 / EPSILON) * $abs;
   result = a - (a - $abs);
@@ -1792,22 +1792,22 @@ module.exports = Math.fround || function fround(x) {
 
 },{"./_math-sign":"../../node_modules/core-js/modules/_math-sign.js"}],"../../node_modules/core-js/modules/es6.math.fround.js":[function(require,module,exports) {
 // 20.2.2.16 Math.fround(x)
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.S, 'Math', { fround: require('./_math-fround') });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_math-fround":"../../node_modules/core-js/modules/_math-fround.js"}],"../../node_modules/core-js/modules/es6.math.hypot.js":[function(require,module,exports) {
 // 20.2.2.17 Math.hypot([value1[, value2[, … ]]])
-let $export = require('./_export');
-let abs = Math.abs;
+var $export = require('./_export');
+var abs = Math.abs;
 
 $export($export.S, 'Math', {
-  hypot: function hypot(value1, value2) { // eslint-disable-line no-unused-lets
-    let sum = 0;
-    let i = 0;
-    let aLen = arguments.length;
-    let larg = 0;
-    let arg, div;
+  hypot: function hypot(value1, value2) { // eslint-disable-line no-unused-vars
+    var sum = 0;
+    var i = 0;
+    var aLen = arguments.length;
+    var larg = 0;
+    var arg, div;
     while (i < aLen) {
       arg = abs(arguments[i++]);
       if (larg < arg) {
@@ -1825,32 +1825,32 @@ $export($export.S, 'Math', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js"}],"../../node_modules/core-js/modules/es6.math.imul.js":[function(require,module,exports) {
 // 20.2.2.18 Math.imul(x, y)
-let $export = require('./_export');
-let $imul = Math.imul;
+var $export = require('./_export');
+var $imul = Math.imul;
 
 // some WebKit versions fails with big numbers, some has wrong arity
 $export($export.S + $export.F * require('./_fails')(function () {
   return $imul(0xffffffff, 5) != -5 || $imul.length != 2;
 }), 'Math', {
   imul: function imul(x, y) {
-    let UINT16 = 0xffff;
-    let xn = +x;
-    let yn = +y;
-    let xl = UINT16 & xn;
-    let yl = UINT16 & yn;
+    var UINT16 = 0xffff;
+    var xn = +x;
+    var yn = +y;
+    var xl = UINT16 & xn;
+    var yl = UINT16 & yn;
     return 0 | xl * yl + ((UINT16 & xn >>> 16) * yl + xl * (UINT16 & yn >>> 16) << 16 >>> 0);
   }
 });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_fails":"../../node_modules/core-js/modules/_fails.js"}],"../../node_modules/core-js/modules/es6.math.log1p.js":[function(require,module,exports) {
 // 20.2.2.20 Math.log1p(x)
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.S, 'Math', { log1p: require('./_math-log1p') });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_math-log1p":"../../node_modules/core-js/modules/_math-log1p.js"}],"../../node_modules/core-js/modules/es6.math.log10.js":[function(require,module,exports) {
 // 20.2.2.21 Math.log10(x)
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.S, 'Math', {
   log10: function log10(x) {
@@ -1860,7 +1860,7 @@ $export($export.S, 'Math', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js"}],"../../node_modules/core-js/modules/es6.math.log2.js":[function(require,module,exports) {
 // 20.2.2.22 Math.log2(x)
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.S, 'Math', {
   log2: function log2(x) {
@@ -1870,15 +1870,15 @@ $export($export.S, 'Math', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js"}],"../../node_modules/core-js/modules/es6.math.sign.js":[function(require,module,exports) {
 // 20.2.2.28 Math.sign(x)
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.S, 'Math', { sign: require('./_math-sign') });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_math-sign":"../../node_modules/core-js/modules/_math-sign.js"}],"../../node_modules/core-js/modules/es6.math.sinh.js":[function(require,module,exports) {
 // 20.2.2.30 Math.sinh(x)
-let $export = require('./_export');
-let expm1 = require('./_math-expm1');
-let exp = Math.exp;
+var $export = require('./_export');
+var expm1 = require('./_math-expm1');
+var exp = Math.exp;
 
 // V8 near Chromium 38 has a problem with very small numbers
 $export($export.S + $export.F * require('./_fails')(function () {
@@ -1893,21 +1893,21 @@ $export($export.S + $export.F * require('./_fails')(function () {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_math-expm1":"../../node_modules/core-js/modules/_math-expm1.js","./_fails":"../../node_modules/core-js/modules/_fails.js"}],"../../node_modules/core-js/modules/es6.math.tanh.js":[function(require,module,exports) {
 // 20.2.2.33 Math.tanh(x)
-let $export = require('./_export');
-let expm1 = require('./_math-expm1');
-let exp = Math.exp;
+var $export = require('./_export');
+var expm1 = require('./_math-expm1');
+var exp = Math.exp;
 
 $export($export.S, 'Math', {
   tanh: function tanh(x) {
-    let a = expm1(x = +x);
-    let b = expm1(-x);
+    var a = expm1(x = +x);
+    var b = expm1(-x);
     return a == Infinity ? 1 : b == Infinity ? -1 : (a - b) / (exp(x) + exp(-x));
   }
 });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_math-expm1":"../../node_modules/core-js/modules/_math-expm1.js"}],"../../node_modules/core-js/modules/es6.math.trunc.js":[function(require,module,exports) {
 // 20.2.2.34 Math.trunc(x)
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.S, 'Math', {
   trunc: function trunc(it) {
@@ -1917,8 +1917,8 @@ $export($export.S, 'Math', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js"}],"../../node_modules/core-js/modules/_object-gopn.js":[function(require,module,exports) {
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-let $keys = require('./_object-keys-internal');
-let hiddenKeys = require('./_enum-bug-keys').concat('length', 'prototype');
+var $keys = require('./_object-keys-internal');
+var hiddenKeys = require('./_enum-bug-keys').concat('length', 'prototype');
 
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return $keys(O, hiddenKeys);
@@ -1929,21 +1929,21 @@ module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u20
   '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
 
 },{}],"../../node_modules/core-js/modules/_string-trim.js":[function(require,module,exports) {
-let $export = require('./_export');
-let defined = require('./_defined');
-let fails = require('./_fails');
-let spaces = require('./_string-ws');
-let space = '[' + spaces + ']';
-let non = '\u200b\u0085';
-let ltrim = RegExp('^' + space + space + '*');
-let rtrim = RegExp(space + space + '*$');
+var $export = require('./_export');
+var defined = require('./_defined');
+var fails = require('./_fails');
+var spaces = require('./_string-ws');
+var space = '[' + spaces + ']';
+var non = '\u200b\u0085';
+var ltrim = RegExp('^' + space + space + '*');
+var rtrim = RegExp(space + space + '*$');
 
-let exporter = function (KEY, exec, ALIAS) {
-  let exp = {};
-  let FORCE = fails(function () {
+var exporter = function (KEY, exec, ALIAS) {
+  var exp = {};
+  var FORCE = fails(function () {
     return !!spaces[KEY]() || non[KEY]() != non;
   });
-  let fn = exp[KEY] = FORCE ? exec(trim) : spaces[KEY];
+  var fn = exp[KEY] = FORCE ? exec(trim) : spaces[KEY];
   if (ALIAS) exp[ALIAS] = fn;
   $export($export.P + $export.F * FORCE, 'String', exp);
 };
@@ -1951,7 +1951,7 @@ let exporter = function (KEY, exec, ALIAS) {
 // 1 -> String#trimLeft
 // 2 -> String#trimRight
 // 3 -> String#trim
-let trim = exporter.trim = function (string, TYPE) {
+var trim = exporter.trim = function (string, TYPE) {
   string = String(defined(string));
   if (TYPE & 1) string = string.replace(ltrim, '');
   if (TYPE & 2) string = string.replace(rtrim, '');
@@ -1963,31 +1963,31 @@ module.exports = exporter;
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_defined":"../../node_modules/core-js/modules/_defined.js","./_fails":"../../node_modules/core-js/modules/_fails.js","./_string-ws":"../../node_modules/core-js/modules/_string-ws.js"}],"../../node_modules/core-js/modules/es6.number.constructor.js":[function(require,module,exports) {
 
 'use strict';
-let global = require('./_global');
-let has = require('./_has');
-let cof = require('./_cof');
-let inheritIfRequired = require('./_inherit-if-required');
-let toPrimitive = require('./_to-primitive');
-let fails = require('./_fails');
-let gOPN = require('./_object-gopn').f;
-let gOPD = require('./_object-gopd').f;
-let dP = require('./_object-dp').f;
-let $trim = require('./_string-trim').trim;
-let NUMBER = 'Number';
-let $Number = global[NUMBER];
-let Base = $Number;
-let proto = $Number.prototype;
+var global = require('./_global');
+var has = require('./_has');
+var cof = require('./_cof');
+var inheritIfRequired = require('./_inherit-if-required');
+var toPrimitive = require('./_to-primitive');
+var fails = require('./_fails');
+var gOPN = require('./_object-gopn').f;
+var gOPD = require('./_object-gopd').f;
+var dP = require('./_object-dp').f;
+var $trim = require('./_string-trim').trim;
+var NUMBER = 'Number';
+var $Number = global[NUMBER];
+var Base = $Number;
+var proto = $Number.prototype;
 // Opera ~12 has broken Object#toString
-let BROKEN_COF = cof(require('./_object-create')(proto)) == NUMBER;
-let TRIM = 'trim' in String.prototype;
+var BROKEN_COF = cof(require('./_object-create')(proto)) == NUMBER;
+var TRIM = 'trim' in String.prototype;
 
 // 7.1.3 ToNumber(argument)
-let toNumber = function (argument) {
-  let it = toPrimitive(argument, false);
+var toNumber = function (argument) {
+  var it = toPrimitive(argument, false);
   if (typeof it == 'string' && it.length > 2) {
     it = TRIM ? it.trim() : $trim(it, 3);
-    let first = it.charCodeAt(0);
-    let third, radix, maxCode;
+    var first = it.charCodeAt(0);
+    var third, radix, maxCode;
     if (first === 43 || first === 45) {
       third = it.charCodeAt(2);
       if (third === 88 || third === 120) return NaN; // Number('+0x1') should be NaN, old V8 fix
@@ -1997,7 +1997,7 @@ let toNumber = function (argument) {
         case 79: case 111: radix = 8; maxCode = 55; break; // fast equal /^0o[0-7]+$/i
         default: return +it;
       }
-      for (let digits = it.slice(2), i = 0, l = digits.length, code; i < l; i++) {
+      for (var digits = it.slice(2), i = 0, l = digits.length, code; i < l; i++) {
         code = digits.charCodeAt(i);
         // parseInt parses a string to a first unavailable symbol
         // but ToNumber should return NaN if a string contains unavailable symbols
@@ -2009,14 +2009,14 @@ let toNumber = function (argument) {
 
 if (!$Number(' 0o1') || !$Number('0b1') || $Number('+0x1')) {
   $Number = function Number(value) {
-    let it = arguments.length < 1 ? 0 : value;
-    let that = this;
+    var it = arguments.length < 1 ? 0 : value;
+    var that = this;
     return that instanceof $Number
       // check on 1..constructor(foo) case
       && (BROKEN_COF ? fails(function () { proto.valueOf.call(that); }) : cof(that) != NUMBER)
         ? inheritIfRequired(new Base(toNumber(it)), that, $Number) : toNumber(it);
   };
-  for (let keys = require('./_descriptors') ? gOPN(Base) : (
+  for (var keys = require('./_descriptors') ? gOPN(Base) : (
     // ES3:
     'MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,' +
     // ES6 (in case, if modules with ES6 Number statics required before):
@@ -2034,14 +2034,14 @@ if (!$Number(' 0o1') || !$Number('0b1') || $Number('+0x1')) {
 
 },{"./_global":"../../node_modules/core-js/modules/_global.js","./_has":"../../node_modules/core-js/modules/_has.js","./_cof":"../../node_modules/core-js/modules/_cof.js","./_inherit-if-required":"../../node_modules/core-js/modules/_inherit-if-required.js","./_to-primitive":"../../node_modules/core-js/modules/_to-primitive.js","./_fails":"../../node_modules/core-js/modules/_fails.js","./_object-gopn":"../../node_modules/core-js/modules/_object-gopn.js","./_object-gopd":"../../node_modules/core-js/modules/_object-gopd.js","./_object-dp":"../../node_modules/core-js/modules/_object-dp.js","./_string-trim":"../../node_modules/core-js/modules/_string-trim.js","./_object-create":"../../node_modules/core-js/modules/_object-create.js","./_descriptors":"../../node_modules/core-js/modules/_descriptors.js","./_redefine":"../../node_modules/core-js/modules/_redefine.js"}],"../../node_modules/core-js/modules/es6.number.epsilon.js":[function(require,module,exports) {
 // 20.1.2.1 Number.EPSILON
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.S, 'Number', { EPSILON: Math.pow(2, -52) });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js"}],"../../node_modules/core-js/modules/es6.number.is-finite.js":[function(require,module,exports) {
 // 20.1.2.2 Number.isFinite(number)
-let $export = require('./_export');
-let _isFinite = require('./_global').isFinite;
+var $export = require('./_export');
+var _isFinite = require('./_global').isFinite;
 
 $export($export.S, 'Number', {
   isFinite: function isFinite(it) {
@@ -2051,21 +2051,21 @@ $export($export.S, 'Number', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_global":"../../node_modules/core-js/modules/_global.js"}],"../../node_modules/core-js/modules/_is-integer.js":[function(require,module,exports) {
 // 20.1.2.3 Number.isInteger(number)
-let isObject = require('./_is-object');
-let floor = Math.floor;
+var isObject = require('./_is-object');
+var floor = Math.floor;
 module.exports = function isInteger(it) {
   return !isObject(it) && isFinite(it) && floor(it) === it;
 };
 
 },{"./_is-object":"../../node_modules/core-js/modules/_is-object.js"}],"../../node_modules/core-js/modules/es6.number.is-integer.js":[function(require,module,exports) {
 // 20.1.2.3 Number.isInteger(number)
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.S, 'Number', { isInteger: require('./_is-integer') });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_is-integer":"../../node_modules/core-js/modules/_is-integer.js"}],"../../node_modules/core-js/modules/es6.number.is-nan.js":[function(require,module,exports) {
 // 20.1.2.4 Number.isNaN(number)
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.S, 'Number', {
   isNaN: function isNaN(number) {
@@ -2076,9 +2076,9 @@ $export($export.S, 'Number', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js"}],"../../node_modules/core-js/modules/es6.number.is-safe-integer.js":[function(require,module,exports) {
 // 20.1.2.5 Number.isSafeInteger(number)
-let $export = require('./_export');
-let isInteger = require('./_is-integer');
-let abs = Math.abs;
+var $export = require('./_export');
+var isInteger = require('./_is-integer');
+var abs = Math.abs;
 
 $export($export.S, 'Number', {
   isSafeInteger: function isSafeInteger(number) {
@@ -2088,46 +2088,46 @@ $export($export.S, 'Number', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_is-integer":"../../node_modules/core-js/modules/_is-integer.js"}],"../../node_modules/core-js/modules/es6.number.max-safe-integer.js":[function(require,module,exports) {
 // 20.1.2.6 Number.MAX_SAFE_INTEGER
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.S, 'Number', { MAX_SAFE_INTEGER: 0x1fffffffffffff });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js"}],"../../node_modules/core-js/modules/es6.number.min-safe-integer.js":[function(require,module,exports) {
 // 20.1.2.10 Number.MIN_SAFE_INTEGER
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.S, 'Number', { MIN_SAFE_INTEGER: -0x1fffffffffffff });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js"}],"../../node_modules/core-js/modules/_parse-float.js":[function(require,module,exports) {
-let $parseFloat = require('./_global').parseFloat;
-let $trim = require('./_string-trim').trim;
+var $parseFloat = require('./_global').parseFloat;
+var $trim = require('./_string-trim').trim;
 
 module.exports = 1 / $parseFloat(require('./_string-ws') + '-0') !== -Infinity ? function parseFloat(str) {
-  let string = $trim(String(str), 3);
-  let result = $parseFloat(string);
+  var string = $trim(String(str), 3);
+  var result = $parseFloat(string);
   return result === 0 && string.charAt(0) == '-' ? -0 : result;
 } : $parseFloat;
 
 },{"./_global":"../../node_modules/core-js/modules/_global.js","./_string-trim":"../../node_modules/core-js/modules/_string-trim.js","./_string-ws":"../../node_modules/core-js/modules/_string-ws.js"}],"../../node_modules/core-js/modules/es6.number.parse-float.js":[function(require,module,exports) {
-let $export = require('./_export');
-let $parseFloat = require('./_parse-float');
+var $export = require('./_export');
+var $parseFloat = require('./_parse-float');
 // 20.1.2.12 Number.parseFloat(string)
 $export($export.S + $export.F * (Number.parseFloat != $parseFloat), 'Number', { parseFloat: $parseFloat });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_parse-float":"../../node_modules/core-js/modules/_parse-float.js"}],"../../node_modules/core-js/modules/_parse-int.js":[function(require,module,exports) {
-let $parseInt = require('./_global').parseInt;
-let $trim = require('./_string-trim').trim;
-let ws = require('./_string-ws');
-let hex = /^[-+]?0[xX]/;
+var $parseInt = require('./_global').parseInt;
+var $trim = require('./_string-trim').trim;
+var ws = require('./_string-ws');
+var hex = /^[-+]?0[xX]/;
 
 module.exports = $parseInt(ws + '08') !== 8 || $parseInt(ws + '0x16') !== 22 ? function parseInt(str, radix) {
-  let string = $trim(String(str), 3);
+  var string = $trim(String(str), 3);
   return $parseInt(string, (radix >>> 0) || (hex.test(string) ? 16 : 10));
 } : $parseInt;
 
 },{"./_global":"../../node_modules/core-js/modules/_global.js","./_string-trim":"../../node_modules/core-js/modules/_string-trim.js","./_string-ws":"../../node_modules/core-js/modules/_string-ws.js"}],"../../node_modules/core-js/modules/es6.number.parse-int.js":[function(require,module,exports) {
-let $export = require('./_export');
-let $parseInt = require('./_parse-int');
+var $export = require('./_export');
+var $parseInt = require('./_parse-int');
 // 20.1.2.13 Number.parseInt(string, radix)
 $export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', { parseInt: $parseInt });
 
@@ -2137,36 +2137,36 @@ exports.f = Object.getOwnPropertySymbols;
 },{}],"../../node_modules/core-js/modules/_object-assign.js":[function(require,module,exports) {
 'use strict';
 // 19.1.2.1 Object.assign(target, source, ...)
-let DESCRIPTORS = require('./_descriptors');
-let getKeys = require('./_object-keys');
-let gOPS = require('./_object-gops');
-let pIE = require('./_object-pie');
-let toObject = require('./_to-object');
-let IObject = require('./_iobject');
-let $assign = Object.assign;
+var DESCRIPTORS = require('./_descriptors');
+var getKeys = require('./_object-keys');
+var gOPS = require('./_object-gops');
+var pIE = require('./_object-pie');
+var toObject = require('./_to-object');
+var IObject = require('./_iobject');
+var $assign = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
 module.exports = !$assign || require('./_fails')(function () {
-  let A = {};
-  let B = {};
+  var A = {};
+  var B = {};
   // eslint-disable-next-line no-undef
-  let S = Symbol();
-  let K = 'abcdefghijklmnopqrst';
+  var S = Symbol();
+  var K = 'abcdefghijklmnopqrst';
   A[S] = 7;
   K.split('').forEach(function (k) { B[k] = k; });
   return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-}) ? function assign(target, source) { // eslint-disable-line no-unused-lets
-  let T = toObject(target);
-  let aLen = arguments.length;
-  let index = 1;
-  let getSymbols = gOPS.f;
-  let isEnum = pIE.f;
+}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
+  var T = toObject(target);
+  var aLen = arguments.length;
+  var index = 1;
+  var getSymbols = gOPS.f;
+  var isEnum = pIE.f;
   while (aLen > index) {
-    let S = IObject(arguments[index++]);
-    let keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
-    let length = keys.length;
-    let j = 0;
-    let key;
+    var S = IObject(arguments[index++]);
+    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
+    var length = keys.length;
+    var j = 0;
+    var key;
     while (length > j) {
       key = keys[j++];
       if (!DESCRIPTORS || isEnum.call(S, key)) T[key] = S[key];
@@ -2176,7 +2176,7 @@ module.exports = !$assign || require('./_fails')(function () {
 
 },{"./_descriptors":"../../node_modules/core-js/modules/_descriptors.js","./_object-keys":"../../node_modules/core-js/modules/_object-keys.js","./_object-gops":"../../node_modules/core-js/modules/_object-gops.js","./_object-pie":"../../node_modules/core-js/modules/_object-pie.js","./_to-object":"../../node_modules/core-js/modules/_to-object.js","./_iobject":"../../node_modules/core-js/modules/_iobject.js","./_fails":"../../node_modules/core-js/modules/_fails.js"}],"../../node_modules/core-js/modules/es6.object.assign.js":[function(require,module,exports) {
 // 19.1.3.1 Object.assign(target, source)
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.S + $export.F, 'Object', { assign: require('./_object-assign') });
 
@@ -2184,7 +2184,7 @@ $export($export.S + $export.F, 'Object', { assign: require('./_object-assign') }
 'use strict';
 // Forced replacement prototype accessors methods
 module.exports = require('./_library') || !require('./_fails')(function () {
-  let K = Math.random();
+  var K = Math.random();
   // In FF throws only define methods
   // eslint-disable-next-line no-undef, no-useless-call
   __defineSetter__.call(null, K, function () { /* empty */ });
@@ -2193,10 +2193,10 @@ module.exports = require('./_library') || !require('./_fails')(function () {
 
 },{"./_library":"../../node_modules/core-js/modules/_library.js","./_fails":"../../node_modules/core-js/modules/_fails.js","./_global":"../../node_modules/core-js/modules/_global.js"}],"../../node_modules/core-js/modules/es7.object.define-getter.js":[function(require,module,exports) {
 'use strict';
-let $export = require('./_export');
-let toObject = require('./_to-object');
-let aFunction = require('./_a-function');
-let $defineProperty = require('./_object-dp');
+var $export = require('./_export');
+var toObject = require('./_to-object');
+var aFunction = require('./_a-function');
+var $defineProperty = require('./_object-dp');
 
 // B.2.2.2 Object.prototype.__defineGetter__(P, getter)
 require('./_descriptors') && $export($export.P + require('./_object-forced-pam'), 'Object', {
@@ -2207,10 +2207,10 @@ require('./_descriptors') && $export($export.P + require('./_object-forced-pam')
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_to-object":"../../node_modules/core-js/modules/_to-object.js","./_a-function":"../../node_modules/core-js/modules/_a-function.js","./_object-dp":"../../node_modules/core-js/modules/_object-dp.js","./_descriptors":"../../node_modules/core-js/modules/_descriptors.js","./_object-forced-pam":"../../node_modules/core-js/modules/_object-forced-pam.js"}],"../../node_modules/core-js/modules/es7.object.define-setter.js":[function(require,module,exports) {
 'use strict';
-let $export = require('./_export');
-let toObject = require('./_to-object');
-let aFunction = require('./_a-function');
-let $defineProperty = require('./_object-dp');
+var $export = require('./_export');
+var toObject = require('./_to-object');
+var aFunction = require('./_a-function');
+var $defineProperty = require('./_object-dp');
 
 // B.2.2.3 Object.prototype.__defineSetter__(P, setter)
 require('./_descriptors') && $export($export.P + require('./_object-forced-pam'), 'Object', {
@@ -2220,18 +2220,18 @@ require('./_descriptors') && $export($export.P + require('./_object-forced-pam')
 });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_to-object":"../../node_modules/core-js/modules/_to-object.js","./_a-function":"../../node_modules/core-js/modules/_a-function.js","./_object-dp":"../../node_modules/core-js/modules/_object-dp.js","./_descriptors":"../../node_modules/core-js/modules/_descriptors.js","./_object-forced-pam":"../../node_modules/core-js/modules/_object-forced-pam.js"}],"../../node_modules/core-js/modules/_object-to-array.js":[function(require,module,exports) {
-let DESCRIPTORS = require('./_descriptors');
-let getKeys = require('./_object-keys');
-let toIObject = require('./_to-iobject');
-let isEnum = require('./_object-pie').f;
+var DESCRIPTORS = require('./_descriptors');
+var getKeys = require('./_object-keys');
+var toIObject = require('./_to-iobject');
+var isEnum = require('./_object-pie').f;
 module.exports = function (isEntries) {
   return function (it) {
-    let O = toIObject(it);
-    let keys = getKeys(O);
-    let length = keys.length;
-    let i = 0;
-    let result = [];
-    let key;
+    var O = toIObject(it);
+    var keys = getKeys(O);
+    var length = keys.length;
+    var i = 0;
+    var result = [];
+    var key;
     while (length > i) {
       key = keys[i++];
       if (!DESCRIPTORS || isEnum.call(O, key)) {
@@ -2244,8 +2244,8 @@ module.exports = function (isEntries) {
 
 },{"./_descriptors":"../../node_modules/core-js/modules/_descriptors.js","./_object-keys":"../../node_modules/core-js/modules/_object-keys.js","./_to-iobject":"../../node_modules/core-js/modules/_to-iobject.js","./_object-pie":"../../node_modules/core-js/modules/_object-pie.js"}],"../../node_modules/core-js/modules/es7.object.entries.js":[function(require,module,exports) {
 // https://github.com/tc39/proposal-object-values-entries
-let $export = require('./_export');
-let $entries = require('./_object-to-array')(true);
+var $export = require('./_export');
+var $entries = require('./_object-to-array')(true);
 
 $export($export.S, 'Object', {
   entries: function entries(it) {
@@ -2255,20 +2255,20 @@ $export($export.S, 'Object', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_object-to-array":"../../node_modules/core-js/modules/_object-to-array.js"}],"../../node_modules/core-js/modules/_object-sap.js":[function(require,module,exports) {
 // most Object methods by ES6 should accept primitives
-let $export = require('./_export');
-let core = require('./_core');
-let fails = require('./_fails');
+var $export = require('./_export');
+var core = require('./_core');
+var fails = require('./_fails');
 module.exports = function (KEY, exec) {
-  let fn = (core.Object || {})[KEY] || Object[KEY];
-  let exp = {};
+  var fn = (core.Object || {})[KEY] || Object[KEY];
+  var exp = {};
   exp[KEY] = exec(fn);
   $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
 };
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_core":"../../node_modules/core-js/modules/_core.js","./_fails":"../../node_modules/core-js/modules/_fails.js"}],"../../node_modules/core-js/modules/es6.object.freeze.js":[function(require,module,exports) {
 // 19.1.2.5 Object.freeze(O)
-let isObject = require('./_is-object');
-let meta = require('./_meta').onFreeze;
+var isObject = require('./_is-object');
+var meta = require('./_meta').onFreeze;
 
 require('./_object-sap')('freeze', function ($freeze) {
   return function freeze(it) {
@@ -2278,8 +2278,8 @@ require('./_object-sap')('freeze', function ($freeze) {
 
 },{"./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_meta":"../../node_modules/core-js/modules/_meta.js","./_object-sap":"../../node_modules/core-js/modules/_object-sap.js"}],"../../node_modules/core-js/modules/es6.object.get-own-property-descriptor.js":[function(require,module,exports) {
 // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
-let toIObject = require('./_to-iobject');
-let $getOwnPropertyDescriptor = require('./_object-gopd').f;
+var toIObject = require('./_to-iobject');
+var $getOwnPropertyDescriptor = require('./_object-gopd').f;
 
 require('./_object-sap')('getOwnPropertyDescriptor', function () {
   return function getOwnPropertyDescriptor(it, key) {
@@ -2289,32 +2289,32 @@ require('./_object-sap')('getOwnPropertyDescriptor', function () {
 
 },{"./_to-iobject":"../../node_modules/core-js/modules/_to-iobject.js","./_object-gopd":"../../node_modules/core-js/modules/_object-gopd.js","./_object-sap":"../../node_modules/core-js/modules/_object-sap.js"}],"../../node_modules/core-js/modules/_own-keys.js":[function(require,module,exports) {
 // all object keys, includes non-enumerable and symbols
-let gOPN = require('./_object-gopn');
-let gOPS = require('./_object-gops');
-let anObject = require('./_an-object');
-let Reflect = require('./_global').Reflect;
+var gOPN = require('./_object-gopn');
+var gOPS = require('./_object-gops');
+var anObject = require('./_an-object');
+var Reflect = require('./_global').Reflect;
 module.exports = Reflect && Reflect.ownKeys || function ownKeys(it) {
-  let keys = gOPN.f(anObject(it));
-  let getSymbols = gOPS.f;
+  var keys = gOPN.f(anObject(it));
+  var getSymbols = gOPS.f;
   return getSymbols ? keys.concat(getSymbols(it)) : keys;
 };
 
 },{"./_object-gopn":"../../node_modules/core-js/modules/_object-gopn.js","./_object-gops":"../../node_modules/core-js/modules/_object-gops.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_global":"../../node_modules/core-js/modules/_global.js"}],"../../node_modules/core-js/modules/es7.object.get-own-property-descriptors.js":[function(require,module,exports) {
 // https://github.com/tc39/proposal-object-getownpropertydescriptors
-let $export = require('./_export');
-let ownKeys = require('./_own-keys');
-let toIObject = require('./_to-iobject');
-let gOPD = require('./_object-gopd');
-let createProperty = require('./_create-property');
+var $export = require('./_export');
+var ownKeys = require('./_own-keys');
+var toIObject = require('./_to-iobject');
+var gOPD = require('./_object-gopd');
+var createProperty = require('./_create-property');
 
 $export($export.S, 'Object', {
   getOwnPropertyDescriptors: function getOwnPropertyDescriptors(object) {
-    let O = toIObject(object);
-    let getDesc = gOPD.f;
-    let keys = ownKeys(O);
-    let result = {};
-    let i = 0;
-    let key, desc;
+    var O = toIObject(object);
+    var getDesc = gOPD.f;
+    var keys = ownKeys(O);
+    var result = {};
+    var i = 0;
+    var key, desc;
     while (keys.length > i) {
       desc = getDesc(O, key = keys[i++]);
       if (desc !== undefined) createProperty(result, key, desc);
@@ -2325,14 +2325,14 @@ $export($export.S, 'Object', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_own-keys":"../../node_modules/core-js/modules/_own-keys.js","./_to-iobject":"../../node_modules/core-js/modules/_to-iobject.js","./_object-gopd":"../../node_modules/core-js/modules/_object-gopd.js","./_create-property":"../../node_modules/core-js/modules/_create-property.js"}],"../../node_modules/core-js/modules/_object-gopn-ext.js":[function(require,module,exports) {
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-let toIObject = require('./_to-iobject');
-let gOPN = require('./_object-gopn').f;
-let toString = {}.toString;
+var toIObject = require('./_to-iobject');
+var gOPN = require('./_object-gopn').f;
+var toString = {}.toString;
 
-let windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
+var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
   ? Object.getOwnPropertyNames(window) : [];
 
-let getWindowNames = function (it) {
+var getWindowNames = function (it) {
   try {
     return gOPN(it);
   } catch (e) {
@@ -2352,8 +2352,8 @@ require('./_object-sap')('getOwnPropertyNames', function () {
 
 },{"./_object-sap":"../../node_modules/core-js/modules/_object-sap.js","./_object-gopn-ext":"../../node_modules/core-js/modules/_object-gopn-ext.js"}],"../../node_modules/core-js/modules/es6.object.get-prototype-of.js":[function(require,module,exports) {
 // 19.1.2.9 Object.getPrototypeOf(O)
-let toObject = require('./_to-object');
-let $getPrototypeOf = require('./_object-gpo');
+var toObject = require('./_to-object');
+var $getPrototypeOf = require('./_object-gpo');
 
 require('./_object-sap')('getPrototypeOf', function () {
   return function getPrototypeOf(it) {
@@ -2363,18 +2363,18 @@ require('./_object-sap')('getPrototypeOf', function () {
 
 },{"./_to-object":"../../node_modules/core-js/modules/_to-object.js","./_object-gpo":"../../node_modules/core-js/modules/_object-gpo.js","./_object-sap":"../../node_modules/core-js/modules/_object-sap.js"}],"../../node_modules/core-js/modules/es7.object.lookup-getter.js":[function(require,module,exports) {
 'use strict';
-let $export = require('./_export');
-let toObject = require('./_to-object');
-let toPrimitive = require('./_to-primitive');
-let getPrototypeOf = require('./_object-gpo');
-let getOwnPropertyDescriptor = require('./_object-gopd').f;
+var $export = require('./_export');
+var toObject = require('./_to-object');
+var toPrimitive = require('./_to-primitive');
+var getPrototypeOf = require('./_object-gpo');
+var getOwnPropertyDescriptor = require('./_object-gopd').f;
 
 // B.2.2.4 Object.prototype.__lookupGetter__(P)
 require('./_descriptors') && $export($export.P + require('./_object-forced-pam'), 'Object', {
   __lookupGetter__: function __lookupGetter__(P) {
-    let O = toObject(this);
-    let K = toPrimitive(P, true);
-    let D;
+    var O = toObject(this);
+    var K = toPrimitive(P, true);
+    var D;
     do {
       if (D = getOwnPropertyDescriptor(O, K)) return D.get;
     } while (O = getPrototypeOf(O));
@@ -2383,18 +2383,18 @@ require('./_descriptors') && $export($export.P + require('./_object-forced-pam')
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_to-object":"../../node_modules/core-js/modules/_to-object.js","./_to-primitive":"../../node_modules/core-js/modules/_to-primitive.js","./_object-gpo":"../../node_modules/core-js/modules/_object-gpo.js","./_object-gopd":"../../node_modules/core-js/modules/_object-gopd.js","./_descriptors":"../../node_modules/core-js/modules/_descriptors.js","./_object-forced-pam":"../../node_modules/core-js/modules/_object-forced-pam.js"}],"../../node_modules/core-js/modules/es7.object.lookup-setter.js":[function(require,module,exports) {
 'use strict';
-let $export = require('./_export');
-let toObject = require('./_to-object');
-let toPrimitive = require('./_to-primitive');
-let getPrototypeOf = require('./_object-gpo');
-let getOwnPropertyDescriptor = require('./_object-gopd').f;
+var $export = require('./_export');
+var toObject = require('./_to-object');
+var toPrimitive = require('./_to-primitive');
+var getPrototypeOf = require('./_object-gpo');
+var getOwnPropertyDescriptor = require('./_object-gopd').f;
 
 // B.2.2.5 Object.prototype.__lookupSetter__(P)
 require('./_descriptors') && $export($export.P + require('./_object-forced-pam'), 'Object', {
   __lookupSetter__: function __lookupSetter__(P) {
-    let O = toObject(this);
-    let K = toPrimitive(P, true);
-    let D;
+    var O = toObject(this);
+    var K = toPrimitive(P, true);
+    var D;
     do {
       if (D = getOwnPropertyDescriptor(O, K)) return D.set;
     } while (O = getPrototypeOf(O));
@@ -2403,8 +2403,8 @@ require('./_descriptors') && $export($export.P + require('./_object-forced-pam')
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_to-object":"../../node_modules/core-js/modules/_to-object.js","./_to-primitive":"../../node_modules/core-js/modules/_to-primitive.js","./_object-gpo":"../../node_modules/core-js/modules/_object-gpo.js","./_object-gopd":"../../node_modules/core-js/modules/_object-gopd.js","./_descriptors":"../../node_modules/core-js/modules/_descriptors.js","./_object-forced-pam":"../../node_modules/core-js/modules/_object-forced-pam.js"}],"../../node_modules/core-js/modules/es6.object.prevent-extensions.js":[function(require,module,exports) {
 // 19.1.2.15 Object.preventExtensions(O)
-let isObject = require('./_is-object');
-let meta = require('./_meta').onFreeze;
+var isObject = require('./_is-object');
+var meta = require('./_meta').onFreeze;
 
 require('./_object-sap')('preventExtensions', function ($preventExtensions) {
   return function preventExtensions(it) {
@@ -2415,8 +2415,8 @@ require('./_object-sap')('preventExtensions', function ($preventExtensions) {
 },{"./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_meta":"../../node_modules/core-js/modules/_meta.js","./_object-sap":"../../node_modules/core-js/modules/_object-sap.js"}],"../../node_modules/core-js/modules/es6.object.to-string.js":[function(require,module,exports) {
 'use strict';
 // 19.1.3.6 Object.prototype.toString()
-let classof = require('./_classof');
-let test = {};
+var classof = require('./_classof');
+var test = {};
 test[require('./_wks')('toStringTag')] = 'z';
 if (test + '' != '[object z]') {
   require('./_redefine')(Object.prototype, 'toString', function toString() {
@@ -2433,12 +2433,12 @@ module.exports = Object.is || function is(x, y) {
 
 },{}],"../../node_modules/core-js/modules/es6.object.is.js":[function(require,module,exports) {
 // 19.1.3.10 Object.is(value1, value2)
-let $export = require('./_export');
+var $export = require('./_export');
 $export($export.S, 'Object', { is: require('./_same-value') });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_same-value":"../../node_modules/core-js/modules/_same-value.js"}],"../../node_modules/core-js/modules/es6.object.is-frozen.js":[function(require,module,exports) {
 // 19.1.2.12 Object.isFrozen(O)
-let isObject = require('./_is-object');
+var isObject = require('./_is-object');
 
 require('./_object-sap')('isFrozen', function ($isFrozen) {
   return function isFrozen(it) {
@@ -2448,7 +2448,7 @@ require('./_object-sap')('isFrozen', function ($isFrozen) {
 
 },{"./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_object-sap":"../../node_modules/core-js/modules/_object-sap.js"}],"../../node_modules/core-js/modules/es6.object.is-sealed.js":[function(require,module,exports) {
 // 19.1.2.13 Object.isSealed(O)
-let isObject = require('./_is-object');
+var isObject = require('./_is-object');
 
 require('./_object-sap')('isSealed', function ($isSealed) {
   return function isSealed(it) {
@@ -2458,7 +2458,7 @@ require('./_object-sap')('isSealed', function ($isSealed) {
 
 },{"./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_object-sap":"../../node_modules/core-js/modules/_object-sap.js"}],"../../node_modules/core-js/modules/es6.object.is-extensible.js":[function(require,module,exports) {
 // 19.1.2.11 Object.isExtensible(O)
-let isObject = require('./_is-object');
+var isObject = require('./_is-object');
 
 require('./_object-sap')('isExtensible', function ($isExtensible) {
   return function isExtensible(it) {
@@ -2468,8 +2468,8 @@ require('./_object-sap')('isExtensible', function ($isExtensible) {
 
 },{"./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_object-sap":"../../node_modules/core-js/modules/_object-sap.js"}],"../../node_modules/core-js/modules/es6.object.keys.js":[function(require,module,exports) {
 // 19.1.2.14 Object.keys(O)
-let toObject = require('./_to-object');
-let $keys = require('./_object-keys');
+var toObject = require('./_to-object');
+var $keys = require('./_object-keys');
 
 require('./_object-sap')('keys', function () {
   return function keys(it) {
@@ -2479,8 +2479,8 @@ require('./_object-sap')('keys', function () {
 
 },{"./_to-object":"../../node_modules/core-js/modules/_to-object.js","./_object-keys":"../../node_modules/core-js/modules/_object-keys.js","./_object-sap":"../../node_modules/core-js/modules/_object-sap.js"}],"../../node_modules/core-js/modules/es6.object.seal.js":[function(require,module,exports) {
 // 19.1.2.17 Object.seal(O)
-let isObject = require('./_is-object');
-let meta = require('./_meta').onFreeze;
+var isObject = require('./_is-object');
+var meta = require('./_meta').onFreeze;
 
 require('./_object-sap')('seal', function ($seal) {
   return function seal(it) {
@@ -2490,8 +2490,8 @@ require('./_object-sap')('seal', function ($seal) {
 
 },{"./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_meta":"../../node_modules/core-js/modules/_meta.js","./_object-sap":"../../node_modules/core-js/modules/_object-sap.js"}],"../../node_modules/core-js/modules/es7.object.values.js":[function(require,module,exports) {
 // https://github.com/tc39/proposal-object-values-entries
-let $export = require('./_export');
-let $values = require('./_object-to-array')(false);
+var $export = require('./_export');
+var $values = require('./_object-to-array')(false);
 
 $export($export.S, 'Object', {
   values: function values(it) {
@@ -2501,19 +2501,19 @@ $export($export.S, 'Object', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_object-to-array":"../../node_modules/core-js/modules/_object-to-array.js"}],"../../node_modules/core-js/modules/_species-constructor.js":[function(require,module,exports) {
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
-let anObject = require('./_an-object');
-let aFunction = require('./_a-function');
-let SPECIES = require('./_wks')('species');
+var anObject = require('./_an-object');
+var aFunction = require('./_a-function');
+var SPECIES = require('./_wks')('species');
 module.exports = function (O, D) {
-  let C = anObject(O).constructor;
-  let S;
+  var C = anObject(O).constructor;
+  var S;
   return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? D : aFunction(S);
 };
 
 },{"./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_a-function":"../../node_modules/core-js/modules/_a-function.js","./_wks":"../../node_modules/core-js/modules/_wks.js"}],"../../node_modules/core-js/modules/_invoke.js":[function(require,module,exports) {
 // fast apply, http://jsperf.lnkit.com/fast-apply/5
 module.exports = function (fn, args, that) {
-  let un = that === undefined;
+  var un = that === undefined;
   switch (args.length) {
     case 0: return un ? fn()
                       : fn.call(that);
@@ -2531,37 +2531,37 @@ module.exports = function (fn, args, that) {
 },{}],"../../node_modules/core-js/modules/_task.js":[function(require,module,exports) {
 
 
-let ctx = require('./_ctx');
-let invoke = require('./_invoke');
-let html = require('./_html');
-let cel = require('./_dom-create');
-let global = require('./_global');
-let process = global.process;
-let setTask = global.setImmediate;
-let clearTask = global.clearImmediate;
-let MessageChannel = global.MessageChannel;
-let Dispatch = global.Dispatch;
-let counter = 0;
-let queue = {};
-let ONREADYSTATECHANGE = 'onreadystatechange';
-let defer, channel, port;
-let run = function () {
-  let id = +this;
+var ctx = require('./_ctx');
+var invoke = require('./_invoke');
+var html = require('./_html');
+var cel = require('./_dom-create');
+var global = require('./_global');
+var process = global.process;
+var setTask = global.setImmediate;
+var clearTask = global.clearImmediate;
+var MessageChannel = global.MessageChannel;
+var Dispatch = global.Dispatch;
+var counter = 0;
+var queue = {};
+var ONREADYSTATECHANGE = 'onreadystatechange';
+var defer, channel, port;
+var run = function () {
+  var id = +this;
   // eslint-disable-next-line no-prototype-builtins
   if (queue.hasOwnProperty(id)) {
-    let fn = queue[id];
+    var fn = queue[id];
     delete queue[id];
     fn();
   }
 };
-let listener = function (event) {
+var listener = function (event) {
   run.call(event.data);
 };
 // Node.js 0.9+ & IE10+ has setImmediate, otherwise:
 if (!setTask || !clearTask) {
   setTask = function setImmediate(fn) {
-    let args = [];
-    let i = 1;
+    var args = [];
+    var i = 1;
     while (arguments.length > i) args.push(arguments[i++]);
     queue[++counter] = function () {
       // eslint-disable-next-line no-new-func
@@ -2619,18 +2619,18 @@ module.exports = {
 },{"./_ctx":"../../node_modules/core-js/modules/_ctx.js","./_invoke":"../../node_modules/core-js/modules/_invoke.js","./_html":"../../node_modules/core-js/modules/_html.js","./_dom-create":"../../node_modules/core-js/modules/_dom-create.js","./_global":"../../node_modules/core-js/modules/_global.js","./_cof":"../../node_modules/core-js/modules/_cof.js"}],"../../node_modules/core-js/modules/_microtask.js":[function(require,module,exports) {
 
 
-let global = require('./_global');
-let macrotask = require('./_task').set;
-let Observer = global.MutationObserver || global.WebKitMutationObserver;
-let process = global.process;
-let Promise = global.Promise;
-let isNode = require('./_cof')(process) == 'process';
+var global = require('./_global');
+var macrotask = require('./_task').set;
+var Observer = global.MutationObserver || global.WebKitMutationObserver;
+var process = global.process;
+var Promise = global.Promise;
+var isNode = require('./_cof')(process) == 'process';
 
 module.exports = function () {
-  let head, last, notify;
+  var head, last, notify;
 
-  let flush = function () {
-    let parent, fn;
+  var flush = function () {
+    var parent, fn;
     if (isNode && (parent = process.domain)) parent.exit();
     while (head) {
       fn = head.fn;
@@ -2653,8 +2653,8 @@ module.exports = function () {
     };
   // browsers with MutationObserver, except iOS Safari - https://github.com/zloirock/core-js/issues/339
   } else if (Observer && !(global.navigator && global.navigator.standalone)) {
-    let toggle = true;
-    let node = document.createTextNode('');
+    var toggle = true;
+    var node = document.createTextNode('');
     new Observer(flush).observe(node, { characterData: true }); // eslint-disable-line no-new
     notify = function () {
       node.data = toggle = !toggle;
@@ -2662,7 +2662,7 @@ module.exports = function () {
   // environments with maybe non-completely correct, but existent Promise
   } else if (Promise && Promise.resolve) {
     // Promise.resolve without an argument throws an error in LG WebOS 2
-    let promise = Promise.resolve(undefined);
+    var promise = Promise.resolve(undefined);
     notify = function () {
       promise.then(flush);
     };
@@ -2680,7 +2680,7 @@ module.exports = function () {
   }
 
   return function (fn) {
-    let task = { fn: fn, next: undefined };
+    var task = { fn: fn, next: undefined };
     if (last) last.next = task;
     if (!head) {
       head = task;
@@ -2692,10 +2692,10 @@ module.exports = function () {
 },{"./_global":"../../node_modules/core-js/modules/_global.js","./_task":"../../node_modules/core-js/modules/_task.js","./_cof":"../../node_modules/core-js/modules/_cof.js"}],"../../node_modules/core-js/modules/_new-promise-capability.js":[function(require,module,exports) {
 'use strict';
 // 25.4.1.5 NewPromiseCapability(C)
-let aFunction = require('./_a-function');
+var aFunction = require('./_a-function');
 
 function PromiseCapability(C) {
-  let resolve, reject;
+  var resolve, reject;
   this.promise = new C(function ($$resolve, $$reject) {
     if (resolve !== undefined || reject !== undefined) throw TypeError('Bad Promise constructor');
     resolve = $$resolve;
@@ -2720,21 +2720,21 @@ module.exports = function (exec) {
 
 },{}],"../../node_modules/core-js/modules/_user-agent.js":[function(require,module,exports) {
 
-let global = require('./_global');
-let navigator = global.navigator;
+var global = require('./_global');
+var navigator = global.navigator;
 
 module.exports = navigator && navigator.userAgent || '';
 
 },{"./_global":"../../node_modules/core-js/modules/_global.js"}],"../../node_modules/core-js/modules/_promise-resolve.js":[function(require,module,exports) {
-let anObject = require('./_an-object');
-let isObject = require('./_is-object');
-let newPromiseCapability = require('./_new-promise-capability');
+var anObject = require('./_an-object');
+var isObject = require('./_is-object');
+var newPromiseCapability = require('./_new-promise-capability');
 
 module.exports = function (C, x) {
   anObject(C);
   if (isObject(x) && x.constructor === C) return x;
-  let promiseCapability = newPromiseCapability.f(C);
-  let resolve = promiseCapability.resolve;
+  var promiseCapability = newPromiseCapability.f(C);
+  var resolve = promiseCapability.resolve;
   resolve(x);
   return promiseCapability.promise;
 };
@@ -2743,38 +2743,38 @@ module.exports = function (C, x) {
 
 
 'use strict';
-let LIBRARY = require('./_library');
-let global = require('./_global');
-let ctx = require('./_ctx');
-let classof = require('./_classof');
-let $export = require('./_export');
-let isObject = require('./_is-object');
-let aFunction = require('./_a-function');
-let anInstance = require('./_an-instance');
-let forOf = require('./_for-of');
-let speciesConstructor = require('./_species-constructor');
-let task = require('./_task').set;
-let microtask = require('./_microtask')();
-let newPromiseCapabilityModule = require('./_new-promise-capability');
-let perform = require('./_perform');
-let userAgent = require('./_user-agent');
-let promiseResolve = require('./_promise-resolve');
-let PROMISE = 'Promise';
-let TypeError = global.TypeError;
-let process = global.process;
-let versions = process && process.versions;
-let v8 = versions && versions.v8 || '';
-let $Promise = global[PROMISE];
-let isNode = classof(process) == 'process';
-let empty = function () { /* empty */ };
-let Internal, newGenericPromiseCapability, OwnPromiseCapability, Wrapper;
-let newPromiseCapability = newGenericPromiseCapability = newPromiseCapabilityModule.f;
+var LIBRARY = require('./_library');
+var global = require('./_global');
+var ctx = require('./_ctx');
+var classof = require('./_classof');
+var $export = require('./_export');
+var isObject = require('./_is-object');
+var aFunction = require('./_a-function');
+var anInstance = require('./_an-instance');
+var forOf = require('./_for-of');
+var speciesConstructor = require('./_species-constructor');
+var task = require('./_task').set;
+var microtask = require('./_microtask')();
+var newPromiseCapabilityModule = require('./_new-promise-capability');
+var perform = require('./_perform');
+var userAgent = require('./_user-agent');
+var promiseResolve = require('./_promise-resolve');
+var PROMISE = 'Promise';
+var TypeError = global.TypeError;
+var process = global.process;
+var versions = process && process.versions;
+var v8 = versions && versions.v8 || '';
+var $Promise = global[PROMISE];
+var isNode = classof(process) == 'process';
+var empty = function () { /* empty */ };
+var Internal, newGenericPromiseCapability, OwnPromiseCapability, Wrapper;
+var newPromiseCapability = newGenericPromiseCapability = newPromiseCapabilityModule.f;
 
-let USE_NATIVE = !!function () {
+var USE_NATIVE = !!function () {
   try {
     // correct subclassing with @@species support
-    let promise = $Promise.resolve(1);
-    let FakePromise = (promise.constructor = {})[require('./_wks')('species')] = function (exec) {
+    var promise = $Promise.resolve(1);
+    var FakePromise = (promise.constructor = {})[require('./_wks')('species')] = function (exec) {
       exec(empty, empty);
     };
     // unhandled rejections tracking support, NodeJS Promise without it fails @@species test
@@ -2789,24 +2789,24 @@ let USE_NATIVE = !!function () {
 }();
 
 // helpers
-let isThenable = function (it) {
-  let then;
+var isThenable = function (it) {
+  var then;
   return isObject(it) && typeof (then = it.then) == 'function' ? then : false;
 };
-let notify = function (promise, isReject) {
+var notify = function (promise, isReject) {
   if (promise._n) return;
   promise._n = true;
-  let chain = promise._c;
+  var chain = promise._c;
   microtask(function () {
-    let value = promise._v;
-    let ok = promise._s == 1;
-    let i = 0;
-    let run = function (reaction) {
-      let handler = ok ? reaction.ok : reaction.fail;
-      let resolve = reaction.resolve;
-      let reject = reaction.reject;
-      let domain = reaction.domain;
-      let result, then, exited;
+    var value = promise._v;
+    var ok = promise._s == 1;
+    var i = 0;
+    var run = function (reaction) {
+      var handler = ok ? reaction.ok : reaction.fail;
+      var resolve = reaction.resolve;
+      var reject = reaction.reject;
+      var domain = reaction.domain;
+      var result, then, exited;
       try {
         if (handler) {
           if (!ok) {
@@ -2833,17 +2833,17 @@ let notify = function (promise, isReject) {
         reject(e);
       }
     };
-    while (chain.length > i) run(chain[i++]); // letiable length - can't use forEach
+    while (chain.length > i) run(chain[i++]); // variable length - can't use forEach
     promise._c = [];
     promise._n = false;
     if (isReject && !promise._h) onUnhandled(promise);
   });
 };
-let onUnhandled = function (promise) {
+var onUnhandled = function (promise) {
   task.call(global, function () {
-    let value = promise._v;
-    let unhandled = isUnhandled(promise);
-    let result, handler, console;
+    var value = promise._v;
+    var unhandled = isUnhandled(promise);
+    var result, handler, console;
     if (unhandled) {
       result = perform(function () {
         if (isNode) {
@@ -2860,12 +2860,12 @@ let onUnhandled = function (promise) {
     if (unhandled && result.e) throw result.v;
   });
 };
-let isUnhandled = function (promise) {
+var isUnhandled = function (promise) {
   return promise._h !== 1 && (promise._a || promise._c).length === 0;
 };
-let onHandleUnhandled = function (promise) {
+var onHandleUnhandled = function (promise) {
   task.call(global, function () {
-    let handler;
+    var handler;
     if (isNode) {
       process.emit('rejectionHandled', promise);
     } else if (handler = global.onrejectionhandled) {
@@ -2873,8 +2873,8 @@ let onHandleUnhandled = function (promise) {
     }
   });
 };
-let $reject = function (value) {
-  let promise = this;
+var $reject = function (value) {
+  var promise = this;
   if (promise._d) return;
   promise._d = true;
   promise = promise._w || promise; // unwrap
@@ -2883,9 +2883,9 @@ let $reject = function (value) {
   if (!promise._a) promise._a = promise._c.slice();
   notify(promise, true);
 };
-let $resolve = function (value) {
-  let promise = this;
-  let then;
+var $resolve = function (value) {
+  var promise = this;
+  var then;
   if (promise._d) return;
   promise._d = true;
   promise = promise._w || promise; // unwrap
@@ -2893,7 +2893,7 @@ let $resolve = function (value) {
     if (promise === value) throw TypeError("Promise can't be resolved itself");
     if (then = isThenable(value)) {
       microtask(function () {
-        let wrapper = { _w: promise, _d: false }; // wrap
+        var wrapper = { _w: promise, _d: false }; // wrap
         try {
           then.call(value, ctx($resolve, wrapper, 1), ctx($reject, wrapper, 1));
         } catch (e) {
@@ -2923,7 +2923,7 @@ if (!USE_NATIVE) {
       $reject.call(this, err);
     }
   };
-  // eslint-disable-next-line no-unused-lets
+  // eslint-disable-next-line no-unused-vars
   Internal = function Promise(executor) {
     this._c = [];             // <- awaiting reactions
     this._a = undefined;      // <- checked in isUnhandled reactions
@@ -2936,7 +2936,7 @@ if (!USE_NATIVE) {
   Internal.prototype = require('./_redefine-all')($Promise.prototype, {
     // 25.4.5.3 Promise.prototype.then(onFulfilled, onRejected)
     then: function then(onFulfilled, onRejected) {
-      let reaction = newPromiseCapability(speciesConstructor(this, $Promise));
+      var reaction = newPromiseCapability(speciesConstructor(this, $Promise));
       reaction.ok = typeof onFulfilled == 'function' ? onFulfilled : true;
       reaction.fail = typeof onRejected == 'function' && onRejected;
       reaction.domain = isNode ? process.domain : undefined;
@@ -2951,7 +2951,7 @@ if (!USE_NATIVE) {
     }
   });
   OwnPromiseCapability = function () {
-    let promise = new Internal();
+    var promise = new Internal();
     this.promise = promise;
     this.resolve = ctx($resolve, promise, 1);
     this.reject = ctx($reject, promise, 1);
@@ -2972,8 +2972,8 @@ Wrapper = require('./_core')[PROMISE];
 $export($export.S + $export.F * !USE_NATIVE, PROMISE, {
   // 25.4.4.5 Promise.reject(r)
   reject: function reject(r) {
-    let capability = newPromiseCapability(this);
-    let $$reject = capability.reject;
+    var capability = newPromiseCapability(this);
+    var $$reject = capability.reject;
     $$reject(r);
     return capability.promise;
   }
@@ -2989,17 +2989,17 @@ $export($export.S + $export.F * !(USE_NATIVE && require('./_iter-detect')(functi
 })), PROMISE, {
   // 25.4.4.1 Promise.all(iterable)
   all: function all(iterable) {
-    let C = this;
-    let capability = newPromiseCapability(C);
-    let resolve = capability.resolve;
-    let reject = capability.reject;
-    let result = perform(function () {
-      let values = [];
-      let index = 0;
-      let remaining = 1;
+    var C = this;
+    var capability = newPromiseCapability(C);
+    var resolve = capability.resolve;
+    var reject = capability.reject;
+    var result = perform(function () {
+      var values = [];
+      var index = 0;
+      var remaining = 1;
       forOf(iterable, false, function (promise) {
-        let $index = index++;
-        let alreadyCalled = false;
+        var $index = index++;
+        var alreadyCalled = false;
         values.push(undefined);
         remaining++;
         C.resolve(promise).then(function (value) {
@@ -3016,10 +3016,10 @@ $export($export.S + $export.F * !(USE_NATIVE && require('./_iter-detect')(functi
   },
   // 25.4.4.4 Promise.race(iterable)
   race: function race(iterable) {
-    let C = this;
-    let capability = newPromiseCapability(C);
-    let reject = capability.reject;
-    let result = perform(function () {
+    var C = this;
+    var capability = newPromiseCapability(C);
+    var reject = capability.reject;
+    var result = perform(function () {
       forOf(iterable, false, function (promise) {
         C.resolve(promise).then(capability.resolve, reject);
       });
@@ -3033,15 +3033,15 @@ $export($export.S + $export.F * !(USE_NATIVE && require('./_iter-detect')(functi
 
 // https://github.com/tc39/proposal-promise-finally
 'use strict';
-let $export = require('./_export');
-let core = require('./_core');
-let global = require('./_global');
-let speciesConstructor = require('./_species-constructor');
-let promiseResolve = require('./_promise-resolve');
+var $export = require('./_export');
+var core = require('./_core');
+var global = require('./_global');
+var speciesConstructor = require('./_species-constructor');
+var promiseResolve = require('./_promise-resolve');
 
 $export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
-  let C = speciesConstructor(this, core.Promise || global.Promise);
-  let isFunction = typeof onFinally == 'function';
+  var C = speciesConstructor(this, core.Promise || global.Promise);
+  var isFunction = typeof onFinally == 'function';
   return this.then(
     isFunction ? function (x) {
       return promiseResolve(C, onFinally()).then(function () { return x; });
@@ -3054,43 +3054,43 @@ $export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_core":"../../node_modules/core-js/modules/_core.js","./_global":"../../node_modules/core-js/modules/_global.js","./_species-constructor":"../../node_modules/core-js/modules/_species-constructor.js","./_promise-resolve":"../../node_modules/core-js/modules/_promise-resolve.js"}],"../../node_modules/core-js/modules/es6.reflect.apply.js":[function(require,module,exports) {
 // 26.1.1 Reflect.apply(target, thisArgument, argumentsList)
-let $export = require('./_export');
-let aFunction = require('./_a-function');
-let anObject = require('./_an-object');
-let rApply = (require('./_global').Reflect || {}).apply;
-let fApply = Function.apply;
+var $export = require('./_export');
+var aFunction = require('./_a-function');
+var anObject = require('./_an-object');
+var rApply = (require('./_global').Reflect || {}).apply;
+var fApply = Function.apply;
 // MS Edge argumentsList argument is optional
 $export($export.S + $export.F * !require('./_fails')(function () {
   rApply(function () { /* empty */ });
 }), 'Reflect', {
   apply: function apply(target, thisArgument, argumentsList) {
-    let T = aFunction(target);
-    let L = anObject(argumentsList);
+    var T = aFunction(target);
+    var L = anObject(argumentsList);
     return rApply ? rApply(T, thisArgument, L) : fApply.call(T, thisArgument, L);
   }
 });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_a-function":"../../node_modules/core-js/modules/_a-function.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_global":"../../node_modules/core-js/modules/_global.js","./_fails":"../../node_modules/core-js/modules/_fails.js"}],"../../node_modules/core-js/modules/_bind.js":[function(require,module,exports) {
 'use strict';
-let aFunction = require('./_a-function');
-let isObject = require('./_is-object');
-let invoke = require('./_invoke');
-let arraySlice = [].slice;
-let factories = {};
+var aFunction = require('./_a-function');
+var isObject = require('./_is-object');
+var invoke = require('./_invoke');
+var arraySlice = [].slice;
+var factories = {};
 
-let construct = function (F, len, args) {
+var construct = function (F, len, args) {
   if (!(len in factories)) {
-    for (let n = [], i = 0; i < len; i++) n[i] = 'a[' + i + ']';
+    for (var n = [], i = 0; i < len; i++) n[i] = 'a[' + i + ']';
     // eslint-disable-next-line no-new-func
     factories[len] = Function('F,a', 'return new F(' + n.join(',') + ')');
   } return factories[len](F, args);
 };
 
 module.exports = Function.bind || function bind(that /* , ...args */) {
-  let fn = aFunction(this);
-  let partArgs = arraySlice.call(arguments, 1);
-  let bound = function (/* args... */) {
-    let args = partArgs.concat(arraySlice.call(arguments));
+  var fn = aFunction(this);
+  var partArgs = arraySlice.call(arguments, 1);
+  var bound = function (/* args... */) {
+    var args = partArgs.concat(arraySlice.call(arguments));
     return this instanceof bound ? construct(fn, args.length, args) : invoke(fn, args, that);
   };
   if (isObject(fn.prototype)) bound.prototype = fn.prototype;
@@ -3099,22 +3099,22 @@ module.exports = Function.bind || function bind(that /* , ...args */) {
 
 },{"./_a-function":"../../node_modules/core-js/modules/_a-function.js","./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_invoke":"../../node_modules/core-js/modules/_invoke.js"}],"../../node_modules/core-js/modules/es6.reflect.construct.js":[function(require,module,exports) {
 // 26.1.2 Reflect.construct(target, argumentsList [, newTarget])
-let $export = require('./_export');
-let create = require('./_object-create');
-let aFunction = require('./_a-function');
-let anObject = require('./_an-object');
-let isObject = require('./_is-object');
-let fails = require('./_fails');
-let bind = require('./_bind');
-let rConstruct = (require('./_global').Reflect || {}).construct;
+var $export = require('./_export');
+var create = require('./_object-create');
+var aFunction = require('./_a-function');
+var anObject = require('./_an-object');
+var isObject = require('./_is-object');
+var fails = require('./_fails');
+var bind = require('./_bind');
+var rConstruct = (require('./_global').Reflect || {}).construct;
 
 // MS Edge supports only 2 arguments and argumentsList argument is optional
 // FF Nightly sets third argument as `new.target`, but does not create `this` from it
-let NEW_TARGET_BUG = fails(function () {
+var NEW_TARGET_BUG = fails(function () {
   function F() { /* empty */ }
   return !(rConstruct(function () { /* empty */ }, [], F) instanceof F);
 });
-let ARGS_BUG = !fails(function () {
+var ARGS_BUG = !fails(function () {
   rConstruct(function () { /* empty */ });
 });
 
@@ -3122,7 +3122,7 @@ $export($export.S + $export.F * (NEW_TARGET_BUG || ARGS_BUG), 'Reflect', {
   construct: function construct(Target, args /* , newTarget */) {
     aFunction(Target);
     anObject(args);
-    let newTarget = arguments.length < 3 ? Target : aFunction(arguments[2]);
+    var newTarget = arguments.length < 3 ? Target : aFunction(arguments[2]);
     if (ARGS_BUG && !NEW_TARGET_BUG) return rConstruct(Target, args, newTarget);
     if (Target == newTarget) {
       // w/o altered newTarget, optimization for 0-4 arguments
@@ -3134,24 +3134,24 @@ $export($export.S + $export.F * (NEW_TARGET_BUG || ARGS_BUG), 'Reflect', {
         case 4: return new Target(args[0], args[1], args[2], args[3]);
       }
       // w/o altered newTarget, lot of arguments case
-      let $args = [null];
+      var $args = [null];
       $args.push.apply($args, args);
       return new (bind.apply(Target, $args))();
     }
     // with altered newTarget, not support built-in constructors
-    let proto = newTarget.prototype;
-    let instance = create(isObject(proto) ? proto : Object.prototype);
-    let result = Function.apply.call(Target, instance, args);
+    var proto = newTarget.prototype;
+    var instance = create(isObject(proto) ? proto : Object.prototype);
+    var result = Function.apply.call(Target, instance, args);
     return isObject(result) ? result : instance;
   }
 });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_object-create":"../../node_modules/core-js/modules/_object-create.js","./_a-function":"../../node_modules/core-js/modules/_a-function.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_fails":"../../node_modules/core-js/modules/_fails.js","./_bind":"../../node_modules/core-js/modules/_bind.js","./_global":"../../node_modules/core-js/modules/_global.js"}],"../../node_modules/core-js/modules/es6.reflect.define-property.js":[function(require,module,exports) {
 // 26.1.3 Reflect.defineProperty(target, propertyKey, attributes)
-let dP = require('./_object-dp');
-let $export = require('./_export');
-let anObject = require('./_an-object');
-let toPrimitive = require('./_to-primitive');
+var dP = require('./_object-dp');
+var $export = require('./_export');
+var anObject = require('./_an-object');
+var toPrimitive = require('./_to-primitive');
 
 // MS Edge has broken Reflect.defineProperty - throwing instead of returning false
 $export($export.S + $export.F * require('./_fails')(function () {
@@ -3173,29 +3173,29 @@ $export($export.S + $export.F * require('./_fails')(function () {
 
 },{"./_object-dp":"../../node_modules/core-js/modules/_object-dp.js","./_export":"../../node_modules/core-js/modules/_export.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_to-primitive":"../../node_modules/core-js/modules/_to-primitive.js","./_fails":"../../node_modules/core-js/modules/_fails.js"}],"../../node_modules/core-js/modules/es6.reflect.delete-property.js":[function(require,module,exports) {
 // 26.1.4 Reflect.deleteProperty(target, propertyKey)
-let $export = require('./_export');
-let gOPD = require('./_object-gopd').f;
-let anObject = require('./_an-object');
+var $export = require('./_export');
+var gOPD = require('./_object-gopd').f;
+var anObject = require('./_an-object');
 
 $export($export.S, 'Reflect', {
   deleteProperty: function deleteProperty(target, propertyKey) {
-    let desc = gOPD(anObject(target), propertyKey);
+    var desc = gOPD(anObject(target), propertyKey);
     return desc && !desc.configurable ? false : delete target[propertyKey];
   }
 });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_object-gopd":"../../node_modules/core-js/modules/_object-gopd.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js"}],"../../node_modules/core-js/modules/es6.reflect.get.js":[function(require,module,exports) {
 // 26.1.6 Reflect.get(target, propertyKey [, receiver])
-let gOPD = require('./_object-gopd');
-let getPrototypeOf = require('./_object-gpo');
-let has = require('./_has');
-let $export = require('./_export');
-let isObject = require('./_is-object');
-let anObject = require('./_an-object');
+var gOPD = require('./_object-gopd');
+var getPrototypeOf = require('./_object-gpo');
+var has = require('./_has');
+var $export = require('./_export');
+var isObject = require('./_is-object');
+var anObject = require('./_an-object');
 
 function get(target, propertyKey /* , receiver */) {
-  let receiver = arguments.length < 3 ? target : arguments[2];
-  let desc, proto;
+  var receiver = arguments.length < 3 ? target : arguments[2];
+  var desc, proto;
   if (anObject(target) === receiver) return target[propertyKey];
   if (desc = gOPD.f(target, propertyKey)) return has(desc, 'value')
     ? desc.value
@@ -3209,9 +3209,9 @@ $export($export.S, 'Reflect', { get: get });
 
 },{"./_object-gopd":"../../node_modules/core-js/modules/_object-gopd.js","./_object-gpo":"../../node_modules/core-js/modules/_object-gpo.js","./_has":"../../node_modules/core-js/modules/_has.js","./_export":"../../node_modules/core-js/modules/_export.js","./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js"}],"../../node_modules/core-js/modules/es6.reflect.get-own-property-descriptor.js":[function(require,module,exports) {
 // 26.1.7 Reflect.getOwnPropertyDescriptor(target, propertyKey)
-let gOPD = require('./_object-gopd');
-let $export = require('./_export');
-let anObject = require('./_an-object');
+var gOPD = require('./_object-gopd');
+var $export = require('./_export');
+var anObject = require('./_an-object');
 
 $export($export.S, 'Reflect', {
   getOwnPropertyDescriptor: function getOwnPropertyDescriptor(target, propertyKey) {
@@ -3221,9 +3221,9 @@ $export($export.S, 'Reflect', {
 
 },{"./_object-gopd":"../../node_modules/core-js/modules/_object-gopd.js","./_export":"../../node_modules/core-js/modules/_export.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js"}],"../../node_modules/core-js/modules/es6.reflect.get-prototype-of.js":[function(require,module,exports) {
 // 26.1.8 Reflect.getPrototypeOf(target)
-let $export = require('./_export');
-let getProto = require('./_object-gpo');
-let anObject = require('./_an-object');
+var $export = require('./_export');
+var getProto = require('./_object-gpo');
+var anObject = require('./_an-object');
 
 $export($export.S, 'Reflect', {
   getPrototypeOf: function getPrototypeOf(target) {
@@ -3233,7 +3233,7 @@ $export($export.S, 'Reflect', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_object-gpo":"../../node_modules/core-js/modules/_object-gpo.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js"}],"../../node_modules/core-js/modules/es6.reflect.has.js":[function(require,module,exports) {
 // 26.1.9 Reflect.has(target, propertyKey)
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.S, 'Reflect', {
   has: function has(target, propertyKey) {
@@ -3243,9 +3243,9 @@ $export($export.S, 'Reflect', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js"}],"../../node_modules/core-js/modules/es6.reflect.is-extensible.js":[function(require,module,exports) {
 // 26.1.10 Reflect.isExtensible(target)
-let $export = require('./_export');
-let anObject = require('./_an-object');
-let $isExtensible = Object.isExtensible;
+var $export = require('./_export');
+var anObject = require('./_an-object');
+var $isExtensible = Object.isExtensible;
 
 $export($export.S, 'Reflect', {
   isExtensible: function isExtensible(target) {
@@ -3256,15 +3256,15 @@ $export($export.S, 'Reflect', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js"}],"../../node_modules/core-js/modules/es6.reflect.own-keys.js":[function(require,module,exports) {
 // 26.1.11 Reflect.ownKeys(target)
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.S, 'Reflect', { ownKeys: require('./_own-keys') });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_own-keys":"../../node_modules/core-js/modules/_own-keys.js"}],"../../node_modules/core-js/modules/es6.reflect.prevent-extensions.js":[function(require,module,exports) {
 // 26.1.12 Reflect.preventExtensions(target)
-let $export = require('./_export');
-let anObject = require('./_an-object');
-let $preventExtensions = Object.preventExtensions;
+var $export = require('./_export');
+var anObject = require('./_an-object');
+var $preventExtensions = Object.preventExtensions;
 
 $export($export.S, 'Reflect', {
   preventExtensions: function preventExtensions(target) {
@@ -3280,19 +3280,19 @@ $export($export.S, 'Reflect', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js"}],"../../node_modules/core-js/modules/es6.reflect.set.js":[function(require,module,exports) {
 // 26.1.13 Reflect.set(target, propertyKey, V [, receiver])
-let dP = require('./_object-dp');
-let gOPD = require('./_object-gopd');
-let getPrototypeOf = require('./_object-gpo');
-let has = require('./_has');
-let $export = require('./_export');
-let createDesc = require('./_property-desc');
-let anObject = require('./_an-object');
-let isObject = require('./_is-object');
+var dP = require('./_object-dp');
+var gOPD = require('./_object-gopd');
+var getPrototypeOf = require('./_object-gpo');
+var has = require('./_has');
+var $export = require('./_export');
+var createDesc = require('./_property-desc');
+var anObject = require('./_an-object');
+var isObject = require('./_is-object');
 
 function set(target, propertyKey, V /* , receiver */) {
-  let receiver = arguments.length < 4 ? target : arguments[3];
-  let ownDesc = gOPD.f(anObject(target), propertyKey);
-  let existingDescriptor, proto;
+  var receiver = arguments.length < 4 ? target : arguments[3];
+  var ownDesc = gOPD.f(anObject(target), propertyKey);
+  var existingDescriptor, proto;
   if (!ownDesc) {
     if (isObject(proto = getPrototypeOf(target))) {
       return set(proto, propertyKey, V, receiver);
@@ -3315,8 +3315,8 @@ $export($export.S, 'Reflect', { set: set });
 
 },{"./_object-dp":"../../node_modules/core-js/modules/_object-dp.js","./_object-gopd":"../../node_modules/core-js/modules/_object-gopd.js","./_object-gpo":"../../node_modules/core-js/modules/_object-gpo.js","./_has":"../../node_modules/core-js/modules/_has.js","./_export":"../../node_modules/core-js/modules/_export.js","./_property-desc":"../../node_modules/core-js/modules/_property-desc.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_is-object":"../../node_modules/core-js/modules/_is-object.js"}],"../../node_modules/core-js/modules/es6.reflect.set-prototype-of.js":[function(require,module,exports) {
 // 26.1.14 Reflect.setPrototypeOf(target, proto)
-let $export = require('./_export');
-let setProto = require('./_set-proto');
+var $export = require('./_export');
+var setProto = require('./_set-proto');
 
 if (setProto) $export($export.S, 'Reflect', {
   setPrototypeOf: function setPrototypeOf(target, proto) {
@@ -3332,21 +3332,21 @@ if (setProto) $export($export.S, 'Reflect', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_set-proto":"../../node_modules/core-js/modules/_set-proto.js"}],"../../node_modules/core-js/modules/_is-regexp.js":[function(require,module,exports) {
 // 7.2.8 IsRegExp(argument)
-let isObject = require('./_is-object');
-let cof = require('./_cof');
-let MATCH = require('./_wks')('match');
+var isObject = require('./_is-object');
+var cof = require('./_cof');
+var MATCH = require('./_wks')('match');
 module.exports = function (it) {
-  let isRegExp;
+  var isRegExp;
   return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : cof(it) == 'RegExp');
 };
 
 },{"./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_cof":"../../node_modules/core-js/modules/_cof.js","./_wks":"../../node_modules/core-js/modules/_wks.js"}],"../../node_modules/core-js/modules/_flags.js":[function(require,module,exports) {
 'use strict';
 // 21.2.5.3 get RegExp.prototype.flags
-let anObject = require('./_an-object');
+var anObject = require('./_an-object');
 module.exports = function () {
-  let that = anObject(this);
-  let result = '';
+  var that = anObject(this);
+  var result = '';
   if (that.global) result += 'g';
   if (that.ignoreCase) result += 'i';
   if (that.multiline) result += 'm';
@@ -3357,19 +3357,19 @@ module.exports = function () {
 
 },{"./_an-object":"../../node_modules/core-js/modules/_an-object.js"}],"../../node_modules/core-js/modules/es6.regexp.constructor.js":[function(require,module,exports) {
 
-let global = require('./_global');
-let inheritIfRequired = require('./_inherit-if-required');
-let dP = require('./_object-dp').f;
-let gOPN = require('./_object-gopn').f;
-let isRegExp = require('./_is-regexp');
-let $flags = require('./_flags');
-let $RegExp = global.RegExp;
-let Base = $RegExp;
-let proto = $RegExp.prototype;
-let re1 = /a/g;
-let re2 = /a/g;
+var global = require('./_global');
+var inheritIfRequired = require('./_inherit-if-required');
+var dP = require('./_object-dp').f;
+var gOPN = require('./_object-gopn').f;
+var isRegExp = require('./_is-regexp');
+var $flags = require('./_flags');
+var $RegExp = global.RegExp;
+var Base = $RegExp;
+var proto = $RegExp.prototype;
+var re1 = /a/g;
+var re2 = /a/g;
 // "new" creates a new object, old webkit buggy here
-let CORRECT_NEW = new $RegExp(re1) !== re1;
+var CORRECT_NEW = new $RegExp(re1) !== re1;
 
 if (require('./_descriptors') && (!CORRECT_NEW || require('./_fails')(function () {
   re2[require('./_wks')('match')] = false;
@@ -3377,23 +3377,23 @@ if (require('./_descriptors') && (!CORRECT_NEW || require('./_fails')(function (
   return $RegExp(re1) != re1 || $RegExp(re2) == re2 || $RegExp(re1, 'i') != '/a/i';
 }))) {
   $RegExp = function RegExp(p, f) {
-    let tiRE = this instanceof $RegExp;
-    let piRE = isRegExp(p);
-    let fiU = f === undefined;
+    var tiRE = this instanceof $RegExp;
+    var piRE = isRegExp(p);
+    var fiU = f === undefined;
     return !tiRE && piRE && p.constructor === $RegExp && fiU ? p
       : inheritIfRequired(CORRECT_NEW
         ? new Base(piRE && !fiU ? p.source : p, f)
         : Base((piRE = p instanceof $RegExp) ? p.source : p, piRE && fiU ? $flags.call(p) : f)
       , tiRE ? this : proto, $RegExp);
   };
-  let proxy = function (key) {
+  var proxy = function (key) {
     key in $RegExp || dP($RegExp, key, {
       configurable: true,
       get: function () { return Base[key]; },
       set: function (it) { Base[key] = it; }
     });
   };
-  for (let keys = gOPN(Base), i = 0; keys.length > i;) proxy(keys[i++]);
+  for (var keys = gOPN(Base), i = 0; keys.length > i;) proxy(keys[i++]);
   proto.constructor = $RegExp;
   $RegExp.prototype = proto;
   require('./_redefine')(global, 'RegExp', $RegExp);
@@ -3409,16 +3409,16 @@ if (require('./_descriptors') && /./g.flags != 'g') require('./_object-dp').f(Re
 });
 
 },{"./_descriptors":"../../node_modules/core-js/modules/_descriptors.js","./_object-dp":"../../node_modules/core-js/modules/_object-dp.js","./_flags":"../../node_modules/core-js/modules/_flags.js"}],"../../node_modules/core-js/modules/_string-at.js":[function(require,module,exports) {
-let toInteger = require('./_to-integer');
-let defined = require('./_defined');
+var toInteger = require('./_to-integer');
+var defined = require('./_defined');
 // true  -> String#at
 // false -> String#codePointAt
 module.exports = function (TO_STRING) {
   return function (that, pos) {
-    let s = String(defined(that));
-    let i = toInteger(pos);
-    let l = s.length;
-    let a, b;
+    var s = String(defined(that));
+    var i = toInteger(pos);
+    var l = s.length;
+    var a, b;
     if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
     a = s.charCodeAt(i);
     return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
@@ -3429,7 +3429,7 @@ module.exports = function (TO_STRING) {
 
 },{"./_to-integer":"../../node_modules/core-js/modules/_to-integer.js","./_defined":"../../node_modules/core-js/modules/_defined.js"}],"../../node_modules/core-js/modules/_advance-string-index.js":[function(require,module,exports) {
 'use strict';
-let at = require('./_string-at')(true);
+var at = require('./_string-at')(true);
 
  // `AdvanceStringIndex` abstract operation
 // https://tc39.github.io/ecma262/#sec-advancestringindex
@@ -3440,15 +3440,15 @@ module.exports = function (S, index, unicode) {
 },{"./_string-at":"../../node_modules/core-js/modules/_string-at.js"}],"../../node_modules/core-js/modules/_regexp-exec-abstract.js":[function(require,module,exports) {
 'use strict';
 
-let classof = require('./_classof');
-let builtinExec = RegExp.prototype.exec;
+var classof = require('./_classof');
+var builtinExec = RegExp.prototype.exec;
 
  // `RegExpExec` abstract operation
 // https://tc39.github.io/ecma262/#sec-regexpexec
 module.exports = function (R, S) {
-  let exec = R.exec;
+  var exec = R.exec;
   if (typeof exec === 'function') {
-    let result = exec.call(R, S);
+    var result = exec.call(R, S);
     if (typeof result !== 'object') {
       throw new TypeError('RegExp exec method returned something other than an Object or null');
     }
@@ -3463,20 +3463,20 @@ module.exports = function (R, S) {
 },{"./_classof":"../../node_modules/core-js/modules/_classof.js"}],"../../node_modules/core-js/modules/_regexp-exec.js":[function(require,module,exports) {
 'use strict';
 
-let regexpFlags = require('./_flags');
+var regexpFlags = require('./_flags');
 
-let nativeExec = RegExp.prototype.exec;
+var nativeExec = RegExp.prototype.exec;
 // This always refers to the native implementation, because the
 // String#replace polyfill uses ./fix-regexp-well-known-symbol-logic.js,
 // which loads this file before patching the method.
-let nativeReplace = String.prototype.replace;
+var nativeReplace = String.prototype.replace;
 
-let patchedExec = nativeExec;
+var patchedExec = nativeExec;
 
-let LAST_INDEX = 'lastIndex';
+var LAST_INDEX = 'lastIndex';
 
-let UPDATES_LAST_INDEX_WRONG = (function () {
-  let re1 = /a/,
+var UPDATES_LAST_INDEX_WRONG = (function () {
+  var re1 = /a/,
       re2 = /b*/g;
   nativeExec.call(re1, 'a');
   nativeExec.call(re2, 'a');
@@ -3484,14 +3484,14 @@ let UPDATES_LAST_INDEX_WRONG = (function () {
 })();
 
 // nonparticipating capturing group, copied from es5-shim's String#split patch.
-let NPCG_INCLUDED = /()??/.exec('')[1] !== undefined;
+var NPCG_INCLUDED = /()??/.exec('')[1] !== undefined;
 
-let PATCH = UPDATES_LAST_INDEX_WRONG || NPCG_INCLUDED;
+var PATCH = UPDATES_LAST_INDEX_WRONG || NPCG_INCLUDED;
 
 if (PATCH) {
   patchedExec = function exec(str) {
-    let re = this;
-    let lastIndex, reCopy, match, i;
+    var re = this;
+    var lastIndex, reCopy, match, i;
 
     if (NPCG_INCLUDED) {
       reCopy = new RegExp('^' + re.source + '$(?!\\s)', regexpFlags.call(re));
@@ -3522,7 +3522,7 @@ module.exports = patchedExec;
 
 },{"./_flags":"../../node_modules/core-js/modules/_flags.js"}],"../../node_modules/core-js/modules/es6.regexp.exec.js":[function(require,module,exports) {
 'use strict';
-let regexpExec = require('./_regexp-exec');
+var regexpExec = require('./_regexp-exec');
 require('./_export')({
   target: 'RegExp',
   proto: true,
@@ -3534,51 +3534,51 @@ require('./_export')({
 },{"./_regexp-exec":"../../node_modules/core-js/modules/_regexp-exec.js","./_export":"../../node_modules/core-js/modules/_export.js"}],"../../node_modules/core-js/modules/_fix-re-wks.js":[function(require,module,exports) {
 'use strict';
 require('./es6.regexp.exec');
-let redefine = require('./_redefine');
-let hide = require('./_hide');
-let fails = require('./_fails');
-let defined = require('./_defined');
-let wks = require('./_wks');
-let regexpExec = require('./_regexp-exec');
+var redefine = require('./_redefine');
+var hide = require('./_hide');
+var fails = require('./_fails');
+var defined = require('./_defined');
+var wks = require('./_wks');
+var regexpExec = require('./_regexp-exec');
 
-let SPECIES = wks('species');
+var SPECIES = wks('species');
 
-let REPLACE_SUPPORTS_NAMED_GROUPS = !fails(function () {
+var REPLACE_SUPPORTS_NAMED_GROUPS = !fails(function () {
   // #replace needs built-in support for named groups.
   // #match works fine because it just return the exec results, even if it has
   // a "grops" property.
-  let re = /./;
+  var re = /./;
   re.exec = function () {
-    let result = [];
+    var result = [];
     result.groups = { a: '7' };
     return result;
   };
   return ''.replace(re, '$<a>') !== '7';
 });
 
-let SPLIT_WORKS_WITH_OVERWRITTEN_EXEC = (function () {
+var SPLIT_WORKS_WITH_OVERWRITTEN_EXEC = (function () {
   // Chrome 51 has a buggy "split" implementation when RegExp#exec !== nativeExec
-  let re = /(?:)/;
-  let originalExec = re.exec;
+  var re = /(?:)/;
+  var originalExec = re.exec;
   re.exec = function () { return originalExec.apply(this, arguments); };
-  let result = 'ab'.split(re);
+  var result = 'ab'.split(re);
   return result.length === 2 && result[0] === 'a' && result[1] === 'b';
 })();
 
 module.exports = function (KEY, length, exec) {
-  let SYMBOL = wks(KEY);
+  var SYMBOL = wks(KEY);
 
-  let DELEGATES_TO_SYMBOL = !fails(function () {
+  var DELEGATES_TO_SYMBOL = !fails(function () {
     // String methods call symbol-named RegEp methods
-    let O = {};
+    var O = {};
     O[SYMBOL] = function () { return 7; };
     return ''[KEY](O) != 7;
   });
 
-  let DELEGATES_TO_EXEC = DELEGATES_TO_SYMBOL ? !fails(function () {
+  var DELEGATES_TO_EXEC = DELEGATES_TO_SYMBOL ? !fails(function () {
     // Symbol-named RegExp methods call .exec
-    let execCalled = false;
-    let re = /a/;
+    var execCalled = false;
+    var re = /a/;
     re.exec = function () { execCalled = true; return null; };
     if (KEY === 'split') {
       // RegExp[@@split] doesn't call the regex's exec method, but first creates
@@ -3596,8 +3596,8 @@ module.exports = function (KEY, length, exec) {
     (KEY === 'replace' && !REPLACE_SUPPORTS_NAMED_GROUPS) ||
     (KEY === 'split' && !SPLIT_WORKS_WITH_OVERWRITTEN_EXEC)
   ) {
-    let nativeRegExpMethod = /./[SYMBOL];
-    let fns = exec(
+    var nativeRegExpMethod = /./[SYMBOL];
+    var fns = exec(
       defined,
       SYMBOL,
       ''[KEY],
@@ -3614,8 +3614,8 @@ module.exports = function (KEY, length, exec) {
         return { done: false };
       }
     );
-    let strfn = fns[0];
-    let rxfn = fns[1];
+    var strfn = fns[0];
+    var rxfn = fns[1];
 
     redefine(String.prototype, KEY, strfn);
     hide(RegExp.prototype, SYMBOL, length == 2
@@ -3632,10 +3632,10 @@ module.exports = function (KEY, length, exec) {
 },{"./es6.regexp.exec":"../../node_modules/core-js/modules/es6.regexp.exec.js","./_redefine":"../../node_modules/core-js/modules/_redefine.js","./_hide":"../../node_modules/core-js/modules/_hide.js","./_fails":"../../node_modules/core-js/modules/_fails.js","./_defined":"../../node_modules/core-js/modules/_defined.js","./_wks":"../../node_modules/core-js/modules/_wks.js","./_regexp-exec":"../../node_modules/core-js/modules/_regexp-exec.js"}],"../../node_modules/core-js/modules/es6.regexp.match.js":[function(require,module,exports) {
 'use strict';
 
-let anObject = require('./_an-object');
-let toLength = require('./_to-length');
-let advanceStringIndex = require('./_advance-string-index');
-let regExpExec = require('./_regexp-exec-abstract');
+var anObject = require('./_an-object');
+var toLength = require('./_to-length');
+var advanceStringIndex = require('./_advance-string-index');
+var regExpExec = require('./_regexp-exec-abstract');
 
 // @@match logic
 require('./_fix-re-wks')('match', 1, function (defined, MATCH, $match, maybeCallNative) {
@@ -3643,25 +3643,25 @@ require('./_fix-re-wks')('match', 1, function (defined, MATCH, $match, maybeCall
     // `String.prototype.match` method
     // https://tc39.github.io/ecma262/#sec-string.prototype.match
     function match(regexp) {
-      let O = defined(this);
-      let fn = regexp == undefined ? undefined : regexp[MATCH];
+      var O = defined(this);
+      var fn = regexp == undefined ? undefined : regexp[MATCH];
       return fn !== undefined ? fn.call(regexp, O) : new RegExp(regexp)[MATCH](String(O));
     },
     // `RegExp.prototype[@@match]` method
     // https://tc39.github.io/ecma262/#sec-regexp.prototype-@@match
     function (regexp) {
-      let res = maybeCallNative($match, regexp, this);
+      var res = maybeCallNative($match, regexp, this);
       if (res.done) return res.value;
-      let rx = anObject(regexp);
-      let S = String(this);
+      var rx = anObject(regexp);
+      var S = String(this);
       if (!rx.global) return regExpExec(rx, S);
-      let fullUnicode = rx.unicode;
+      var fullUnicode = rx.unicode;
       rx.lastIndex = 0;
-      let A = [];
-      let n = 0;
-      let result;
+      var A = [];
+      var n = 0;
+      var result;
       while ((result = regExpExec(rx, S)) !== null) {
-        let matchStr = String(result[0]);
+        var matchStr = String(result[0]);
         A[n] = matchStr;
         if (matchStr === '') rx.lastIndex = advanceStringIndex(S, toLength(rx.lastIndex), fullUnicode);
         n++;
@@ -3672,22 +3672,22 @@ require('./_fix-re-wks')('match', 1, function (defined, MATCH, $match, maybeCall
 });
 
 },{"./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_to-length":"../../node_modules/core-js/modules/_to-length.js","./_advance-string-index":"../../node_modules/core-js/modules/_advance-string-index.js","./_regexp-exec-abstract":"../../node_modules/core-js/modules/_regexp-exec-abstract.js","./_fix-re-wks":"../../node_modules/core-js/modules/_fix-re-wks.js"}],"../../node_modules/core-js/modules/es6.regexp.replace.js":[function(require,module,exports) {
-let global = arguments[3];
+var global = arguments[3];
 'use strict';
 
-let anObject = require('./_an-object');
-let toObject = require('./_to-object');
-let toLength = require('./_to-length');
-let toInteger = require('./_to-integer');
-let advanceStringIndex = require('./_advance-string-index');
-let regExpExec = require('./_regexp-exec-abstract');
-let max = Math.max;
-let min = Math.min;
-let floor = Math.floor;
-let SUBSTITUTION_SYMBOLS = /\$([$&`']|\d\d?|<[^>]*>)/g;
-let SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&`']|\d\d?)/g;
+var anObject = require('./_an-object');
+var toObject = require('./_to-object');
+var toLength = require('./_to-length');
+var toInteger = require('./_to-integer');
+var advanceStringIndex = require('./_advance-string-index');
+var regExpExec = require('./_regexp-exec-abstract');
+var max = Math.max;
+var min = Math.min;
+var floor = Math.floor;
+var SUBSTITUTION_SYMBOLS = /\$([$&`']|\d\d?|<[^>]*>)/g;
+var SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&`']|\d\d?)/g;
 
-let maybeToString = function (it) {
+var maybeToString = function (it) {
   return it === undefined ? it : String(it);
 };
 
@@ -3697,8 +3697,8 @@ require('./_fix-re-wks')('replace', 2, function (defined, REPLACE, $replace, may
     // `String.prototype.replace` method
     // https://tc39.github.io/ecma262/#sec-string.prototype.replace
     function replace(searchValue, replaceValue) {
-      let O = defined(this);
-      let fn = searchValue == undefined ? undefined : searchValue[REPLACE];
+      var O = defined(this);
+      var fn = searchValue == undefined ? undefined : searchValue[REPLACE];
       return fn !== undefined
         ? fn.call(searchValue, O, replaceValue)
         : $replace.call(String(O), searchValue, replaceValue);
@@ -3706,45 +3706,45 @@ require('./_fix-re-wks')('replace', 2, function (defined, REPLACE, $replace, may
     // `RegExp.prototype[@@replace]` method
     // https://tc39.github.io/ecma262/#sec-regexp.prototype-@@replace
     function (regexp, replaceValue) {
-      let res = maybeCallNative($replace, regexp, this, replaceValue);
+      var res = maybeCallNative($replace, regexp, this, replaceValue);
       if (res.done) return res.value;
 
-      let rx = anObject(regexp);
-      let S = String(this);
-      let functionalReplace = typeof replaceValue === 'function';
+      var rx = anObject(regexp);
+      var S = String(this);
+      var functionalReplace = typeof replaceValue === 'function';
       if (!functionalReplace) replaceValue = String(replaceValue);
-      let global = rx.global;
+      var global = rx.global;
       if (global) {
-        let fullUnicode = rx.unicode;
+        var fullUnicode = rx.unicode;
         rx.lastIndex = 0;
       }
-      let results = [];
+      var results = [];
       while (true) {
-        let result = regExpExec(rx, S);
+        var result = regExpExec(rx, S);
         if (result === null) break;
         results.push(result);
         if (!global) break;
-        let matchStr = String(result[0]);
+        var matchStr = String(result[0]);
         if (matchStr === '') rx.lastIndex = advanceStringIndex(S, toLength(rx.lastIndex), fullUnicode);
       }
-      let accumulatedResult = '';
-      let nextSourcePosition = 0;
-      for (let i = 0; i < results.length; i++) {
+      var accumulatedResult = '';
+      var nextSourcePosition = 0;
+      for (var i = 0; i < results.length; i++) {
         result = results[i];
-        let matched = String(result[0]);
-        let position = max(min(toInteger(result.index), S.length), 0);
-        let captures = [];
+        var matched = String(result[0]);
+        var position = max(min(toInteger(result.index), S.length), 0);
+        var captures = [];
         // NOTE: This is equivalent to
         //   captures = result.slice(1).map(maybeToString)
         // but for some reason `nativeSlice.call(result, 1, result.length)` (called in
         // the slice polyfill when slicing native arrays) "doesn't work" in safari 9 and
         // causes a crash (https://pastebin.com/N21QzeQA) when trying to debug it.
-        for (let j = 1; j < result.length; j++) captures.push(maybeToString(result[j]));
-        let namedCaptures = result.groups;
+        for (var j = 1; j < result.length; j++) captures.push(maybeToString(result[j]));
+        var namedCaptures = result.groups;
         if (functionalReplace) {
-          let replacerArgs = [matched].concat(captures, position, S);
+          var replacerArgs = [matched].concat(captures, position, S);
           if (namedCaptures !== undefined) replacerArgs.push(namedCaptures);
-          let replacement = String(replaceValue.apply(undefined, replacerArgs));
+          var replacement = String(replaceValue.apply(undefined, replacerArgs));
         } else {
           replacement = getSubstitution(matched, S, position, captures, namedCaptures, replaceValue);
         }
@@ -3759,15 +3759,15 @@ require('./_fix-re-wks')('replace', 2, function (defined, REPLACE, $replace, may
 
     // https://tc39.github.io/ecma262/#sec-getsubstitution
   function getSubstitution(matched, str, position, captures, namedCaptures, replacement) {
-    let tailPos = position + matched.length;
-    let m = captures.length;
-    let symbols = SUBSTITUTION_SYMBOLS_NO_NAMED;
+    var tailPos = position + matched.length;
+    var m = captures.length;
+    var symbols = SUBSTITUTION_SYMBOLS_NO_NAMED;
     if (namedCaptures !== undefined) {
       namedCaptures = toObject(namedCaptures);
       symbols = SUBSTITUTION_SYMBOLS;
     }
     return $replace.call(replacement, symbols, function (match, ch) {
-      let capture;
+      var capture;
       switch (ch.charAt(0)) {
         case '$': return '$';
         case '&': return matched;
@@ -3777,10 +3777,10 @@ require('./_fix-re-wks')('replace', 2, function (defined, REPLACE, $replace, may
           capture = namedCaptures[ch.slice(1, -1)];
           break;
         default: // \d\d?
-          let n = +ch;
+          var n = +ch;
           if (n === 0) return match;
           if (n > m) {
-            let f = floor(n / 10);
+            var f = floor(n / 10);
             if (f === 0) return match;
             if (f <= m) return captures[f - 1] === undefined ? ch.charAt(1) : captures[f - 1] + ch.charAt(1);
             return match;
@@ -3795,27 +3795,27 @@ require('./_fix-re-wks')('replace', 2, function (defined, REPLACE, $replace, may
 },{"./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_to-object":"../../node_modules/core-js/modules/_to-object.js","./_to-length":"../../node_modules/core-js/modules/_to-length.js","./_to-integer":"../../node_modules/core-js/modules/_to-integer.js","./_advance-string-index":"../../node_modules/core-js/modules/_advance-string-index.js","./_regexp-exec-abstract":"../../node_modules/core-js/modules/_regexp-exec-abstract.js","./_fix-re-wks":"../../node_modules/core-js/modules/_fix-re-wks.js"}],"../../node_modules/core-js/modules/es6.regexp.split.js":[function(require,module,exports) {
 'use strict';
 
-let isRegExp = require('./_is-regexp');
-let anObject = require('./_an-object');
-let speciesConstructor = require('./_species-constructor');
-let advanceStringIndex = require('./_advance-string-index');
-let toLength = require('./_to-length');
-let callRegExpExec = require('./_regexp-exec-abstract');
-let regexpExec = require('./_regexp-exec');
-let fails = require('./_fails');
-let $min = Math.min;
-let $push = [].push;
-let $SPLIT = 'split';
-let LENGTH = 'length';
-let LAST_INDEX = 'lastIndex';
-let MAX_UINT32 = 0xffffffff;
+var isRegExp = require('./_is-regexp');
+var anObject = require('./_an-object');
+var speciesConstructor = require('./_species-constructor');
+var advanceStringIndex = require('./_advance-string-index');
+var toLength = require('./_to-length');
+var callRegExpExec = require('./_regexp-exec-abstract');
+var regexpExec = require('./_regexp-exec');
+var fails = require('./_fails');
+var $min = Math.min;
+var $push = [].push;
+var $SPLIT = 'split';
+var LENGTH = 'length';
+var LAST_INDEX = 'lastIndex';
+var MAX_UINT32 = 0xffffffff;
 
 // babel-minify transpiles RegExp('x', 'y') -> /x/y and it causes SyntaxError
-let SUPPORTS_Y = !fails(function () { RegExp(MAX_UINT32, 'y'); });
+var SUPPORTS_Y = !fails(function () { RegExp(MAX_UINT32, 'y'); });
 
 // @@split logic
 require('./_fix-re-wks')('split', 2, function (defined, SPLIT, $split, maybeCallNative) {
-  let internalSplit;
+  var internalSplit;
   if (
     'abbc'[$SPLIT](/(b)*/)[1] == 'c' ||
     'test'[$SPLIT](/(?:)/, -1)[LENGTH] != 4 ||
@@ -3826,20 +3826,20 @@ require('./_fix-re-wks')('split', 2, function (defined, SPLIT, $split, maybeCall
   ) {
     // based on es5-shim implementation, need to rework it
     internalSplit = function (separator, limit) {
-      let string = String(this);
+      var string = String(this);
       if (separator === undefined && limit === 0) return [];
       // If `separator` is not a regex, use native split
       if (!isRegExp(separator)) return $split.call(string, separator, limit);
-      let output = [];
-      let flags = (separator.ignoreCase ? 'i' : '') +
+      var output = [];
+      var flags = (separator.ignoreCase ? 'i' : '') +
                   (separator.multiline ? 'm' : '') +
                   (separator.unicode ? 'u' : '') +
                   (separator.sticky ? 'y' : '');
-      let lastLastIndex = 0;
-      let splitLimit = limit === undefined ? MAX_UINT32 : limit >>> 0;
+      var lastLastIndex = 0;
+      var splitLimit = limit === undefined ? MAX_UINT32 : limit >>> 0;
       // Make `global` and avoid `lastIndex` issues by working with a copy
-      let separatorCopy = new RegExp(separator.source, flags + 'g');
-      let match, lastIndex, lastLength;
+      var separatorCopy = new RegExp(separator.source, flags + 'g');
+      var match, lastIndex, lastLength;
       while (match = regexpExec.call(separatorCopy, string)) {
         lastIndex = separatorCopy[LAST_INDEX];
         if (lastIndex > lastLastIndex) {
@@ -3869,8 +3869,8 @@ require('./_fix-re-wks')('split', 2, function (defined, SPLIT, $split, maybeCall
     // `String.prototype.split` method
     // https://tc39.github.io/ecma262/#sec-string.prototype.split
     function split(separator, limit) {
-      let O = defined(this);
-      let splitter = separator == undefined ? undefined : separator[SPLIT];
+      var O = defined(this);
+      var splitter = separator == undefined ? undefined : separator[SPLIT];
       return splitter !== undefined
         ? splitter.call(separator, O, limit)
         : internalSplit.call(String(O), separator, limit);
@@ -3881,32 +3881,32 @@ require('./_fix-re-wks')('split', 2, function (defined, SPLIT, $split, maybeCall
     // NOTE: This cannot be properly polyfilled in engines that don't support
     // the 'y' flag.
     function (regexp, limit) {
-      let res = maybeCallNative(internalSplit, regexp, this, limit, internalSplit !== $split);
+      var res = maybeCallNative(internalSplit, regexp, this, limit, internalSplit !== $split);
       if (res.done) return res.value;
 
-      let rx = anObject(regexp);
-      let S = String(this);
-      let C = speciesConstructor(rx, RegExp);
+      var rx = anObject(regexp);
+      var S = String(this);
+      var C = speciesConstructor(rx, RegExp);
 
-      let unicodeMatching = rx.unicode;
-      let flags = (rx.ignoreCase ? 'i' : '') +
+      var unicodeMatching = rx.unicode;
+      var flags = (rx.ignoreCase ? 'i' : '') +
                   (rx.multiline ? 'm' : '') +
                   (rx.unicode ? 'u' : '') +
                   (SUPPORTS_Y ? 'y' : 'g');
 
       // ^(? + rx + ) is needed, in combination with some S slicing, to
       // simulate the 'y' flag.
-      let splitter = new C(SUPPORTS_Y ? rx : '^(?:' + rx.source + ')', flags);
-      let lim = limit === undefined ? MAX_UINT32 : limit >>> 0;
+      var splitter = new C(SUPPORTS_Y ? rx : '^(?:' + rx.source + ')', flags);
+      var lim = limit === undefined ? MAX_UINT32 : limit >>> 0;
       if (lim === 0) return [];
       if (S.length === 0) return callRegExpExec(splitter, S) === null ? [S] : [];
-      let p = 0;
-      let q = 0;
-      let A = [];
+      var p = 0;
+      var q = 0;
+      var A = [];
       while (q < S.length) {
         splitter.lastIndex = SUPPORTS_Y ? q : 0;
-        let z = callRegExpExec(splitter, SUPPORTS_Y ? S : S.slice(q));
-        let e;
+        var z = callRegExpExec(splitter, SUPPORTS_Y ? S : S.slice(q));
+        var e;
         if (
           z === null ||
           (e = $min(toLength(splitter.lastIndex + (SUPPORTS_Y ? 0 : q)), S.length)) === p
@@ -3915,7 +3915,7 @@ require('./_fix-re-wks')('split', 2, function (defined, SPLIT, $split, maybeCall
         } else {
           A.push(S.slice(p, q));
           if (A.length === lim) return A;
-          for (let i = 1; i <= z.length - 1; i++) {
+          for (var i = 1; i <= z.length - 1; i++) {
             A.push(z[i]);
             if (A.length === lim) return A;
           }
@@ -3931,9 +3931,9 @@ require('./_fix-re-wks')('split', 2, function (defined, SPLIT, $split, maybeCall
 },{"./_is-regexp":"../../node_modules/core-js/modules/_is-regexp.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_species-constructor":"../../node_modules/core-js/modules/_species-constructor.js","./_advance-string-index":"../../node_modules/core-js/modules/_advance-string-index.js","./_to-length":"../../node_modules/core-js/modules/_to-length.js","./_regexp-exec-abstract":"../../node_modules/core-js/modules/_regexp-exec-abstract.js","./_regexp-exec":"../../node_modules/core-js/modules/_regexp-exec.js","./_fails":"../../node_modules/core-js/modules/_fails.js","./_fix-re-wks":"../../node_modules/core-js/modules/_fix-re-wks.js"}],"../../node_modules/core-js/modules/es6.regexp.search.js":[function(require,module,exports) {
 'use strict';
 
-let anObject = require('./_an-object');
-let sameValue = require('./_same-value');
-let regExpExec = require('./_regexp-exec-abstract');
+var anObject = require('./_an-object');
+var sameValue = require('./_same-value');
+var regExpExec = require('./_regexp-exec-abstract');
 
 // @@search logic
 require('./_fix-re-wks')('search', 1, function (defined, SEARCH, $search, maybeCallNative) {
@@ -3941,20 +3941,20 @@ require('./_fix-re-wks')('search', 1, function (defined, SEARCH, $search, maybeC
     // `String.prototype.search` method
     // https://tc39.github.io/ecma262/#sec-string.prototype.search
     function search(regexp) {
-      let O = defined(this);
-      let fn = regexp == undefined ? undefined : regexp[SEARCH];
+      var O = defined(this);
+      var fn = regexp == undefined ? undefined : regexp[SEARCH];
       return fn !== undefined ? fn.call(regexp, O) : new RegExp(regexp)[SEARCH](String(O));
     },
     // `RegExp.prototype[@@search]` method
     // https://tc39.github.io/ecma262/#sec-regexp.prototype-@@search
     function (regexp) {
-      let res = maybeCallNative($search, regexp, this);
+      var res = maybeCallNative($search, regexp, this);
       if (res.done) return res.value;
-      let rx = anObject(regexp);
-      let S = String(this);
-      let previousLastIndex = rx.lastIndex;
+      var rx = anObject(regexp);
+      var S = String(this);
+      var previousLastIndex = rx.lastIndex;
       if (!sameValue(previousLastIndex, 0)) rx.lastIndex = 0;
-      let result = regExpExec(rx, S);
+      var result = regExpExec(rx, S);
       if (!sameValue(rx.lastIndex, previousLastIndex)) rx.lastIndex = previousLastIndex;
       return result === null ? -1 : result.index;
     }
@@ -3965,20 +3965,20 @@ require('./_fix-re-wks')('search', 1, function (defined, SEARCH, $search, maybeC
 
 'use strict';
 require('./es6.regexp.flags');
-let anObject = require('./_an-object');
-let $flags = require('./_flags');
-let DESCRIPTORS = require('./_descriptors');
-let TO_STRING = 'toString';
-let $toString = /./[TO_STRING];
+var anObject = require('./_an-object');
+var $flags = require('./_flags');
+var DESCRIPTORS = require('./_descriptors');
+var TO_STRING = 'toString';
+var $toString = /./[TO_STRING];
 
-let define = function (fn) {
+var define = function (fn) {
   require('./_redefine')(RegExp.prototype, TO_STRING, fn, true);
 };
 
 // 21.2.5.14 RegExp.prototype.toString()
 if (require('./_fails')(function () { return $toString.call({ source: 'a', flags: 'b' }) != '/a/b'; })) {
   define(function toString() {
-    let R = anObject(this);
+    var R = anObject(this);
     return '/'.concat(R.source, '/',
       'flags' in R ? R.flags : !DESCRIPTORS && R instanceof RegExp ? $flags.call(R) : undefined);
   });
@@ -3991,9 +3991,9 @@ if (require('./_fails')(function () { return $toString.call({ source: 'a', flags
 
 },{"./es6.regexp.flags":"../../node_modules/core-js/modules/es6.regexp.flags.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_flags":"../../node_modules/core-js/modules/_flags.js","./_descriptors":"../../node_modules/core-js/modules/_descriptors.js","./_redefine":"../../node_modules/core-js/modules/_redefine.js","./_fails":"../../node_modules/core-js/modules/_fails.js"}],"../../node_modules/core-js/modules/es6.set.js":[function(require,module,exports) {
 'use strict';
-let strong = require('./_collection-strong');
-let validate = require('./_validate-collection');
-let SET = 'Set';
+var strong = require('./_collection-strong');
+var validate = require('./_validate-collection');
+var SET = 'Set';
 
 // 23.2 Set Objects
 module.exports = require('./_collection')(SET, function (get) {
@@ -4010,29 +4010,29 @@ exports.f = require('./_wks');
 
 },{"./_wks":"../../node_modules/core-js/modules/_wks.js"}],"../../node_modules/core-js/modules/_wks-define.js":[function(require,module,exports) {
 
-let global = require('./_global');
-let core = require('./_core');
-let LIBRARY = require('./_library');
-let wksExt = require('./_wks-ext');
-let defineProperty = require('./_object-dp').f;
+var global = require('./_global');
+var core = require('./_core');
+var LIBRARY = require('./_library');
+var wksExt = require('./_wks-ext');
+var defineProperty = require('./_object-dp').f;
 module.exports = function (name) {
-  let $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
+  var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
   if (name.charAt(0) != '_' && !(name in $Symbol)) defineProperty($Symbol, name, { value: wksExt.f(name) });
 };
 
 },{"./_global":"../../node_modules/core-js/modules/_global.js","./_core":"../../node_modules/core-js/modules/_core.js","./_library":"../../node_modules/core-js/modules/_library.js","./_wks-ext":"../../node_modules/core-js/modules/_wks-ext.js","./_object-dp":"../../node_modules/core-js/modules/_object-dp.js"}],"../../node_modules/core-js/modules/_enum-keys.js":[function(require,module,exports) {
 // all enumerable object keys, includes symbols
-let getKeys = require('./_object-keys');
-let gOPS = require('./_object-gops');
-let pIE = require('./_object-pie');
+var getKeys = require('./_object-keys');
+var gOPS = require('./_object-gops');
+var pIE = require('./_object-pie');
 module.exports = function (it) {
-  let result = getKeys(it);
-  let getSymbols = gOPS.f;
+  var result = getKeys(it);
+  var getSymbols = gOPS.f;
   if (getSymbols) {
-    let symbols = getSymbols(it);
-    let isEnum = pIE.f;
-    let i = 0;
-    let key;
+    var symbols = getSymbols(it);
+    var isEnum = pIE.f;
+    var i = 0;
+    var key;
     while (symbols.length > i) if (isEnum.call(it, key = symbols[i++])) result.push(key);
   } return result;
 };
@@ -4041,77 +4041,77 @@ module.exports = function (it) {
 
 'use strict';
 // ECMAScript 6 symbols shim
-let global = require('./_global');
-let has = require('./_has');
-let DESCRIPTORS = require('./_descriptors');
-let $export = require('./_export');
-let redefine = require('./_redefine');
-let META = require('./_meta').KEY;
-let $fails = require('./_fails');
-let shared = require('./_shared');
-let setToStringTag = require('./_set-to-string-tag');
-let uid = require('./_uid');
-let wks = require('./_wks');
-let wksExt = require('./_wks-ext');
-let wksDefine = require('./_wks-define');
-let enumKeys = require('./_enum-keys');
-let isArray = require('./_is-array');
-let anObject = require('./_an-object');
-let isObject = require('./_is-object');
-let toObject = require('./_to-object');
-let toIObject = require('./_to-iobject');
-let toPrimitive = require('./_to-primitive');
-let createDesc = require('./_property-desc');
-let _create = require('./_object-create');
-let gOPNExt = require('./_object-gopn-ext');
-let $GOPD = require('./_object-gopd');
-let $GOPS = require('./_object-gops');
-let $DP = require('./_object-dp');
-let $keys = require('./_object-keys');
-let gOPD = $GOPD.f;
-let dP = $DP.f;
-let gOPN = gOPNExt.f;
-let $Symbol = global.Symbol;
-let $JSON = global.JSON;
-let _stringify = $JSON && $JSON.stringify;
-let PROTOTYPE = 'prototype';
-let HIDDEN = wks('_hidden');
-let TO_PRIMITIVE = wks('toPrimitive');
-let isEnum = {}.propertyIsEnumerable;
-let SymbolRegistry = shared('symbol-registry');
-let AllSymbols = shared('symbols');
-let OPSymbols = shared('op-symbols');
-let ObjectProto = Object[PROTOTYPE];
-let USE_NATIVE = typeof $Symbol == 'function' && !!$GOPS.f;
-let QObject = global.QObject;
+var global = require('./_global');
+var has = require('./_has');
+var DESCRIPTORS = require('./_descriptors');
+var $export = require('./_export');
+var redefine = require('./_redefine');
+var META = require('./_meta').KEY;
+var $fails = require('./_fails');
+var shared = require('./_shared');
+var setToStringTag = require('./_set-to-string-tag');
+var uid = require('./_uid');
+var wks = require('./_wks');
+var wksExt = require('./_wks-ext');
+var wksDefine = require('./_wks-define');
+var enumKeys = require('./_enum-keys');
+var isArray = require('./_is-array');
+var anObject = require('./_an-object');
+var isObject = require('./_is-object');
+var toObject = require('./_to-object');
+var toIObject = require('./_to-iobject');
+var toPrimitive = require('./_to-primitive');
+var createDesc = require('./_property-desc');
+var _create = require('./_object-create');
+var gOPNExt = require('./_object-gopn-ext');
+var $GOPD = require('./_object-gopd');
+var $GOPS = require('./_object-gops');
+var $DP = require('./_object-dp');
+var $keys = require('./_object-keys');
+var gOPD = $GOPD.f;
+var dP = $DP.f;
+var gOPN = gOPNExt.f;
+var $Symbol = global.Symbol;
+var $JSON = global.JSON;
+var _stringify = $JSON && $JSON.stringify;
+var PROTOTYPE = 'prototype';
+var HIDDEN = wks('_hidden');
+var TO_PRIMITIVE = wks('toPrimitive');
+var isEnum = {}.propertyIsEnumerable;
+var SymbolRegistry = shared('symbol-registry');
+var AllSymbols = shared('symbols');
+var OPSymbols = shared('op-symbols');
+var ObjectProto = Object[PROTOTYPE];
+var USE_NATIVE = typeof $Symbol == 'function' && !!$GOPS.f;
+var QObject = global.QObject;
 // Don't use setters in Qt Script, https://github.com/zloirock/core-js/issues/173
-let setter = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
+var setter = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
 
 // fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
-let setSymbolDesc = DESCRIPTORS && $fails(function () {
+var setSymbolDesc = DESCRIPTORS && $fails(function () {
   return _create(dP({}, 'a', {
     get: function () { return dP(this, 'a', { value: 7 }).a; }
   })).a != 7;
 }) ? function (it, key, D) {
-  let protoDesc = gOPD(ObjectProto, key);
+  var protoDesc = gOPD(ObjectProto, key);
   if (protoDesc) delete ObjectProto[key];
   dP(it, key, D);
   if (protoDesc && it !== ObjectProto) dP(ObjectProto, key, protoDesc);
 } : dP;
 
-let wrap = function (tag) {
-  let sym = AllSymbols[tag] = _create($Symbol[PROTOTYPE]);
+var wrap = function (tag) {
+  var sym = AllSymbols[tag] = _create($Symbol[PROTOTYPE]);
   sym._k = tag;
   return sym;
 };
 
-let isSymbol = USE_NATIVE && typeof $Symbol.iterator == 'symbol' ? function (it) {
+var isSymbol = USE_NATIVE && typeof $Symbol.iterator == 'symbol' ? function (it) {
   return typeof it == 'symbol';
 } : function (it) {
   return it instanceof $Symbol;
 };
 
-let $defineProperty = function defineProperty(it, key, D) {
+var $defineProperty = function defineProperty(it, key, D) {
   if (it === ObjectProto) $defineProperty(OPSymbols, key, D);
   anObject(it);
   key = toPrimitive(key, true);
@@ -4126,46 +4126,46 @@ let $defineProperty = function defineProperty(it, key, D) {
     } return setSymbolDesc(it, key, D);
   } return dP(it, key, D);
 };
-let $defineProperties = function defineProperties(it, P) {
+var $defineProperties = function defineProperties(it, P) {
   anObject(it);
-  let keys = enumKeys(P = toIObject(P));
-  let i = 0;
-  let l = keys.length;
-  let key;
+  var keys = enumKeys(P = toIObject(P));
+  var i = 0;
+  var l = keys.length;
+  var key;
   while (l > i) $defineProperty(it, key = keys[i++], P[key]);
   return it;
 };
-let $create = function create(it, P) {
+var $create = function create(it, P) {
   return P === undefined ? _create(it) : $defineProperties(_create(it), P);
 };
-let $propertyIsEnumerable = function propertyIsEnumerable(key) {
-  let E = isEnum.call(this, key = toPrimitive(key, true));
+var $propertyIsEnumerable = function propertyIsEnumerable(key) {
+  var E = isEnum.call(this, key = toPrimitive(key, true));
   if (this === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key)) return false;
   return E || !has(this, key) || !has(AllSymbols, key) || has(this, HIDDEN) && this[HIDDEN][key] ? E : true;
 };
-let $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key) {
+var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key) {
   it = toIObject(it);
   key = toPrimitive(key, true);
   if (it === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key)) return;
-  let D = gOPD(it, key);
+  var D = gOPD(it, key);
   if (D && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key])) D.enumerable = true;
   return D;
 };
-let $getOwnPropertyNames = function getOwnPropertyNames(it) {
-  let names = gOPN(toIObject(it));
-  let result = [];
-  let i = 0;
-  let key;
+var $getOwnPropertyNames = function getOwnPropertyNames(it) {
+  var names = gOPN(toIObject(it));
+  var result = [];
+  var i = 0;
+  var key;
   while (names.length > i) {
     if (!has(AllSymbols, key = names[i++]) && key != HIDDEN && key != META) result.push(key);
   } return result;
 };
-let $getOwnPropertySymbols = function getOwnPropertySymbols(it) {
-  let IS_OP = it === ObjectProto;
-  let names = gOPN(IS_OP ? OPSymbols : toIObject(it));
-  let result = [];
-  let i = 0;
-  let key;
+var $getOwnPropertySymbols = function getOwnPropertySymbols(it) {
+  var IS_OP = it === ObjectProto;
+  var names = gOPN(IS_OP ? OPSymbols : toIObject(it));
+  var result = [];
+  var i = 0;
+  var key;
   while (names.length > i) {
     if (has(AllSymbols, key = names[i++]) && (IS_OP ? has(ObjectProto, key) : true)) result.push(AllSymbols[key]);
   } return result;
@@ -4175,8 +4175,8 @@ let $getOwnPropertySymbols = function getOwnPropertySymbols(it) {
 if (!USE_NATIVE) {
   $Symbol = function Symbol() {
     if (this instanceof $Symbol) throw TypeError('Symbol is not a constructor!');
-    let tag = uid(arguments.length > 0 ? arguments[0] : undefined);
-    let $set = function (value) {
+    var tag = uid(arguments.length > 0 ? arguments[0] : undefined);
+    var $set = function (value) {
       if (this === ObjectProto) $set.call(OPSymbols, value);
       if (has(this, HIDDEN) && has(this[HIDDEN], tag)) this[HIDDEN][tag] = false;
       setSymbolDesc(this, tag, createDesc(1, value));
@@ -4205,12 +4205,12 @@ if (!USE_NATIVE) {
 
 $export($export.G + $export.W + $export.F * !USE_NATIVE, { Symbol: $Symbol });
 
-for (let es6Symbols = (
+for (var es6Symbols = (
   // 19.4.2.2, 19.4.2.3, 19.4.2.4, 19.4.2.6, 19.4.2.8, 19.4.2.9, 19.4.2.10, 19.4.2.11, 19.4.2.12, 19.4.2.13, 19.4.2.14
   'hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables'
 ).split(','), j = 0; es6Symbols.length > j;)wks(es6Symbols[j++]);
 
-for (let wellKnownSymbols = $keys(wks.store), k = 0; wellKnownSymbols.length > k;) wksDefine(wellKnownSymbols[k++]);
+for (var wellKnownSymbols = $keys(wks.store), k = 0; wellKnownSymbols.length > k;) wksDefine(wellKnownSymbols[k++]);
 
 $export($export.S + $export.F * !USE_NATIVE, 'Symbol', {
   // 19.4.2.1 Symbol.for(key)
@@ -4222,7 +4222,7 @@ $export($export.S + $export.F * !USE_NATIVE, 'Symbol', {
   // 19.4.2.5 Symbol.keyFor(sym)
   keyFor: function keyFor(sym) {
     if (!isSymbol(sym)) throw TypeError(sym + ' is not a symbol!');
-    for (let key in SymbolRegistry) if (SymbolRegistry[key] === sym) return key;
+    for (var key in SymbolRegistry) if (SymbolRegistry[key] === sym) return key;
   },
   useSetter: function () { setter = true; },
   useSimple: function () { setter = false; }
@@ -4245,7 +4245,7 @@ $export($export.S + $export.F * !USE_NATIVE, 'Object', {
 
 // Chrome 38 and 39 `Object.getOwnPropertySymbols` fails on primitives
 // https://bugs.chromium.org/p/v8/issues/detail?id=3443
-let FAILS_ON_PRIMITIVES = $fails(function () { $GOPS.f(1); });
+var FAILS_ON_PRIMITIVES = $fails(function () { $GOPS.f(1); });
 
 $export($export.S + $export.F * FAILS_ON_PRIMITIVES, 'Object', {
   getOwnPropertySymbols: function getOwnPropertySymbols(it) {
@@ -4255,16 +4255,16 @@ $export($export.S + $export.F * FAILS_ON_PRIMITIVES, 'Object', {
 
 // 24.3.2 JSON.stringify(value [, replacer [, space]])
 $JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function () {
-  let S = $Symbol();
+  var S = $Symbol();
   // MS Edge converts symbol values to JSON as {}
   // WebKit converts symbol values to JSON as null
   // V8 throws on boxed symbols
   return _stringify([S]) != '[null]' || _stringify({ a: S }) != '{}' || _stringify(Object(S)) != '{}';
 })), 'JSON', {
   stringify: function stringify(it) {
-    let args = [it];
-    let i = 1;
-    let replacer, $replacer;
+    var args = [it];
+    var i = 1;
+    var replacer, $replacer;
     while (arguments.length > i) args.push(arguments[i++]);
     $replacer = replacer = args[1];
     if (!isObject(replacer) && it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
@@ -4290,22 +4290,22 @@ setToStringTag(global.JSON, 'JSON', true);
 require('./_wks-define')('asyncIterator');
 
 },{"./_wks-define":"../../node_modules/core-js/modules/_wks-define.js"}],"../../node_modules/core-js/modules/_string-html.js":[function(require,module,exports) {
-let $export = require('./_export');
-let fails = require('./_fails');
-let defined = require('./_defined');
-let quot = /"/g;
+var $export = require('./_export');
+var fails = require('./_fails');
+var defined = require('./_defined');
+var quot = /"/g;
 // B.2.3.2.1 CreateHTML(string, tag, attribute, value)
-let createHTML = function (string, tag, attribute, value) {
-  let S = String(defined(string));
-  let p1 = '<' + tag;
+var createHTML = function (string, tag, attribute, value) {
+  var S = String(defined(string));
+  var p1 = '<' + tag;
   if (attribute !== '') p1 += ' ' + attribute + '="' + String(value).replace(quot, '&quot;') + '"';
   return p1 + '>' + S + '</' + tag + '>';
 };
 module.exports = function (NAME, exec) {
-  let O = {};
+  var O = {};
   O[NAME] = exec(createHTML);
   $export($export.P + $export.F * fails(function () {
-    let test = ''[NAME]('"');
+    var test = ''[NAME]('"');
     return test !== test.toLowerCase() || test.split('"').length > 3;
   }), 'String', O);
 };
@@ -4348,8 +4348,8 @@ require('./_string-html')('bold', function (createHTML) {
 
 },{"./_string-html":"../../node_modules/core-js/modules/_string-html.js"}],"../../node_modules/core-js/modules/es6.string.code-point-at.js":[function(require,module,exports) {
 'use strict';
-let $export = require('./_export');
-let $at = require('./_string-at')(false);
+var $export = require('./_export');
+var $at = require('./_string-at')(false);
 $export($export.P, 'String', {
   // 21.1.3.3 String.prototype.codePointAt(pos)
   codePointAt: function codePointAt(pos) {
@@ -4359,8 +4359,8 @@ $export($export.P, 'String', {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_string-at":"../../node_modules/core-js/modules/_string-at.js"}],"../../node_modules/core-js/modules/_string-context.js":[function(require,module,exports) {
 // helper for String#{startsWith, endsWith, includes}
-let isRegExp = require('./_is-regexp');
-let defined = require('./_defined');
+var isRegExp = require('./_is-regexp');
+var defined = require('./_defined');
 
 module.exports = function (that, searchString, NAME) {
   if (isRegExp(searchString)) throw TypeError('String#' + NAME + " doesn't accept regex!");
@@ -4368,9 +4368,9 @@ module.exports = function (that, searchString, NAME) {
 };
 
 },{"./_is-regexp":"../../node_modules/core-js/modules/_is-regexp.js","./_defined":"../../node_modules/core-js/modules/_defined.js"}],"../../node_modules/core-js/modules/_fails-is-regexp.js":[function(require,module,exports) {
-let MATCH = require('./_wks')('match');
+var MATCH = require('./_wks')('match');
 module.exports = function (KEY) {
-  let re = /./;
+  var re = /./;
   try {
     '/./'[KEY](re);
   } catch (e) {
@@ -4384,19 +4384,19 @@ module.exports = function (KEY) {
 },{"./_wks":"../../node_modules/core-js/modules/_wks.js"}],"../../node_modules/core-js/modules/es6.string.ends-with.js":[function(require,module,exports) {
 // 21.1.3.6 String.prototype.endsWith(searchString [, endPosition])
 'use strict';
-let $export = require('./_export');
-let toLength = require('./_to-length');
-let context = require('./_string-context');
-let ENDS_WITH = 'endsWith';
-let $endsWith = ''[ENDS_WITH];
+var $export = require('./_export');
+var toLength = require('./_to-length');
+var context = require('./_string-context');
+var ENDS_WITH = 'endsWith';
+var $endsWith = ''[ENDS_WITH];
 
 $export($export.P + $export.F * require('./_fails-is-regexp')(ENDS_WITH), 'String', {
   endsWith: function endsWith(searchString /* , endPosition = @length */) {
-    let that = context(this, searchString, ENDS_WITH);
-    let endPosition = arguments.length > 1 ? arguments[1] : undefined;
-    let len = toLength(that.length);
-    let end = endPosition === undefined ? len : Math.min(toLength(endPosition), len);
-    let search = String(searchString);
+    var that = context(this, searchString, ENDS_WITH);
+    var endPosition = arguments.length > 1 ? arguments[1] : undefined;
+    var len = toLength(that.length);
+    var end = endPosition === undefined ? len : Math.min(toLength(endPosition), len);
+    var search = String(searchString);
     return $endsWith
       ? $endsWith.call(that, search, end)
       : that.slice(end - search.length, end) === search;
@@ -4431,19 +4431,19 @@ require('./_string-html')('fontsize', function (createHTML) {
 });
 
 },{"./_string-html":"../../node_modules/core-js/modules/_string-html.js"}],"../../node_modules/core-js/modules/es6.string.from-code-point.js":[function(require,module,exports) {
-let $export = require('./_export');
-let toAbsoluteIndex = require('./_to-absolute-index');
-let fromCharCode = String.fromCharCode;
-let $fromCodePoint = String.fromCodePoint;
+var $export = require('./_export');
+var toAbsoluteIndex = require('./_to-absolute-index');
+var fromCharCode = String.fromCharCode;
+var $fromCodePoint = String.fromCodePoint;
 
 // length should be 1, old FF problem
 $export($export.S + $export.F * (!!$fromCodePoint && $fromCodePoint.length != 1), 'String', {
   // 21.1.2.2 String.fromCodePoint(...codePoints)
-  fromCodePoint: function fromCodePoint(x) { // eslint-disable-line no-unused-lets
-    let res = [];
-    let aLen = arguments.length;
-    let i = 0;
-    let code;
+  fromCodePoint: function fromCodePoint(x) { // eslint-disable-line no-unused-vars
+    var res = [];
+    var aLen = arguments.length;
+    var i = 0;
+    var code;
     while (aLen > i) {
       code = +arguments[i++];
       if (toAbsoluteIndex(code, 0x10ffff) !== code) throw RangeError(code + ' is not a valid code point');
@@ -4458,9 +4458,9 @@ $export($export.S + $export.F * (!!$fromCodePoint && $fromCodePoint.length != 1)
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_to-absolute-index":"../../node_modules/core-js/modules/_to-absolute-index.js"}],"../../node_modules/core-js/modules/es6.string.includes.js":[function(require,module,exports) {
 // 21.1.3.7 String.prototype.includes(searchString, position = 0)
 'use strict';
-let $export = require('./_export');
-let context = require('./_string-context');
-let INCLUDES = 'includes';
+var $export = require('./_export');
+var context = require('./_string-context');
+var INCLUDES = 'includes';
 
 $export($export.P + $export.F * require('./_fails-is-regexp')(INCLUDES), 'String', {
   includes: function includes(searchString /* , position = 0 */) {
@@ -4480,7 +4480,7 @@ require('./_string-html')('italics', function (createHTML) {
 
 },{"./_string-html":"../../node_modules/core-js/modules/_string-html.js"}],"../../node_modules/core-js/modules/es6.string.iterator.js":[function(require,module,exports) {
 'use strict';
-let $at = require('./_string-at')(true);
+var $at = require('./_string-at')(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
 require('./_iter-define')(String, 'String', function (iterated) {
@@ -4488,9 +4488,9 @@ require('./_iter-define')(String, 'String', function (iterated) {
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
 }, function () {
-  let O = this._t;
-  let index = this._i;
-  let point;
+  var O = this._t;
+  var index = this._i;
+  var point;
   if (index >= O.length) return { value: undefined, done: true };
   point = $at(O, index);
   this._i += point.length;
@@ -4508,13 +4508,13 @@ require('./_string-html')('link', function (createHTML) {
 
 },{"./_string-html":"../../node_modules/core-js/modules/_string-html.js"}],"../../node_modules/core-js/modules/_string-repeat.js":[function(require,module,exports) {
 'use strict';
-let toInteger = require('./_to-integer');
-let defined = require('./_defined');
+var toInteger = require('./_to-integer');
+var defined = require('./_defined');
 
 module.exports = function repeat(count) {
-  let str = String(defined(this));
-  let res = '';
-  let n = toInteger(count);
+  var str = String(defined(this));
+  var res = '';
+  var n = toInteger(count);
   if (n < 0 || n == Infinity) throw RangeError("Count can't be negative");
   for (;n > 0; (n >>>= 1) && (str += str)) if (n & 1) res += str;
   return res;
@@ -4522,18 +4522,18 @@ module.exports = function repeat(count) {
 
 },{"./_to-integer":"../../node_modules/core-js/modules/_to-integer.js","./_defined":"../../node_modules/core-js/modules/_defined.js"}],"../../node_modules/core-js/modules/_string-pad.js":[function(require,module,exports) {
 // https://github.com/tc39/proposal-string-pad-start-end
-let toLength = require('./_to-length');
-let repeat = require('./_string-repeat');
-let defined = require('./_defined');
+var toLength = require('./_to-length');
+var repeat = require('./_string-repeat');
+var defined = require('./_defined');
 
 module.exports = function (that, maxLength, fillString, left) {
-  let S = String(defined(that));
-  let stringLength = S.length;
-  let fillStr = fillString === undefined ? ' ' : String(fillString);
-  let intMaxLength = toLength(maxLength);
+  var S = String(defined(that));
+  var stringLength = S.length;
+  var fillStr = fillString === undefined ? ' ' : String(fillString);
+  var intMaxLength = toLength(maxLength);
   if (intMaxLength <= stringLength || fillStr == '') return S;
-  let fillLen = intMaxLength - stringLength;
-  let stringFiller = repeat.call(fillStr, Math.ceil(fillLen / fillStr.length));
+  var fillLen = intMaxLength - stringLength;
+  var stringFiller = repeat.call(fillStr, Math.ceil(fillLen / fillStr.length));
   if (stringFiller.length > fillLen) stringFiller = stringFiller.slice(0, fillLen);
   return left ? stringFiller + S : S + stringFiller;
 };
@@ -4541,12 +4541,12 @@ module.exports = function (that, maxLength, fillString, left) {
 },{"./_to-length":"../../node_modules/core-js/modules/_to-length.js","./_string-repeat":"../../node_modules/core-js/modules/_string-repeat.js","./_defined":"../../node_modules/core-js/modules/_defined.js"}],"../../node_modules/core-js/modules/es7.string.pad-start.js":[function(require,module,exports) {
 'use strict';
 // https://github.com/tc39/proposal-string-pad-start-end
-let $export = require('./_export');
-let $pad = require('./_string-pad');
-let userAgent = require('./_user-agent');
+var $export = require('./_export');
+var $pad = require('./_string-pad');
+var userAgent = require('./_user-agent');
 
 // https://github.com/zloirock/core-js/issues/280
-let WEBKIT_BUG = /Version\/10\.\d+(\.\d+)?( Mobile\/\w+)? Safari\//.test(userAgent);
+var WEBKIT_BUG = /Version\/10\.\d+(\.\d+)?( Mobile\/\w+)? Safari\//.test(userAgent);
 
 $export($export.P + $export.F * WEBKIT_BUG, 'String', {
   padStart: function padStart(maxLength /* , fillString = ' ' */) {
@@ -4557,12 +4557,12 @@ $export($export.P + $export.F * WEBKIT_BUG, 'String', {
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_string-pad":"../../node_modules/core-js/modules/_string-pad.js","./_user-agent":"../../node_modules/core-js/modules/_user-agent.js"}],"../../node_modules/core-js/modules/es7.string.pad-end.js":[function(require,module,exports) {
 'use strict';
 // https://github.com/tc39/proposal-string-pad-start-end
-let $export = require('./_export');
-let $pad = require('./_string-pad');
-let userAgent = require('./_user-agent');
+var $export = require('./_export');
+var $pad = require('./_string-pad');
+var userAgent = require('./_user-agent');
 
 // https://github.com/zloirock/core-js/issues/280
-let WEBKIT_BUG = /Version\/10\.\d+(\.\d+)?( Mobile\/\w+)? Safari\//.test(userAgent);
+var WEBKIT_BUG = /Version\/10\.\d+(\.\d+)?( Mobile\/\w+)? Safari\//.test(userAgent);
 
 $export($export.P + $export.F * WEBKIT_BUG, 'String', {
   padEnd: function padEnd(maxLength /* , fillString = ' ' */) {
@@ -4571,18 +4571,18 @@ $export($export.P + $export.F * WEBKIT_BUG, 'String', {
 });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_string-pad":"../../node_modules/core-js/modules/_string-pad.js","./_user-agent":"../../node_modules/core-js/modules/_user-agent.js"}],"../../node_modules/core-js/modules/es6.string.raw.js":[function(require,module,exports) {
-let $export = require('./_export');
-let toIObject = require('./_to-iobject');
-let toLength = require('./_to-length');
+var $export = require('./_export');
+var toIObject = require('./_to-iobject');
+var toLength = require('./_to-length');
 
 $export($export.S, 'String', {
   // 21.1.2.4 String.raw(callSite, ...substitutions)
   raw: function raw(callSite) {
-    let tpl = toIObject(callSite.raw);
-    let len = toLength(tpl.length);
-    let aLen = arguments.length;
-    let res = [];
-    let i = 0;
+    var tpl = toIObject(callSite.raw);
+    var len = toLength(tpl.length);
+    var aLen = arguments.length;
+    var res = [];
+    var i = 0;
     while (len > i) {
       res.push(String(tpl[i++]));
       if (i < aLen) res.push(String(arguments[i]));
@@ -4591,7 +4591,7 @@ $export($export.S, 'String', {
 });
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_to-iobject":"../../node_modules/core-js/modules/_to-iobject.js","./_to-length":"../../node_modules/core-js/modules/_to-length.js"}],"../../node_modules/core-js/modules/es6.string.repeat.js":[function(require,module,exports) {
-let $export = require('./_export');
+var $export = require('./_export');
 
 $export($export.P, 'String', {
   // 21.1.3.13 String.prototype.repeat(count)
@@ -4610,17 +4610,17 @@ require('./_string-html')('small', function (createHTML) {
 },{"./_string-html":"../../node_modules/core-js/modules/_string-html.js"}],"../../node_modules/core-js/modules/es6.string.starts-with.js":[function(require,module,exports) {
 // 21.1.3.18 String.prototype.startsWith(searchString [, position ])
 'use strict';
-let $export = require('./_export');
-let toLength = require('./_to-length');
-let context = require('./_string-context');
-let STARTS_WITH = 'startsWith';
-let $startsWith = ''[STARTS_WITH];
+var $export = require('./_export');
+var toLength = require('./_to-length');
+var context = require('./_string-context');
+var STARTS_WITH = 'startsWith';
+var $startsWith = ''[STARTS_WITH];
 
 $export($export.P + $export.F * require('./_fails-is-regexp')(STARTS_WITH), 'String', {
   startsWith: function startsWith(searchString /* , position = 0 */) {
-    let that = context(this, searchString, STARTS_WITH);
-    let index = toLength(Math.min(arguments.length > 1 ? arguments[1] : undefined, that.length));
-    let search = String(searchString);
+    var that = context(this, searchString, STARTS_WITH);
+    var index = toLength(Math.min(arguments.length > 1 ? arguments[1] : undefined, that.length));
+    var search = String(searchString);
     return $startsWith
       ? $startsWith.call(that, search, index)
       : that.slice(index, index + search.length) === search;
@@ -4674,18 +4674,18 @@ require('./_string-trim')('trimRight', function ($trim) {
 
 },{"./_string-trim":"../../node_modules/core-js/modules/_string-trim.js"}],"../../node_modules/core-js/modules/_typed.js":[function(require,module,exports) {
 
-let global = require('./_global');
-let hide = require('./_hide');
-let uid = require('./_uid');
-let TYPED = uid('typed_array');
-let VIEW = uid('view');
-let ABV = !!(global.ArrayBuffer && global.DataView);
-let CONSTR = ABV;
-let i = 0;
-let l = 9;
-let Typed;
+var global = require('./_global');
+var hide = require('./_hide');
+var uid = require('./_uid');
+var TYPED = uid('typed_array');
+var VIEW = uid('view');
+var ABV = !!(global.ArrayBuffer && global.DataView);
+var CONSTR = ABV;
+var i = 0;
+var l = 9;
+var Typed;
 
-let TypedArrayConstructors = (
+var TypedArrayConstructors = (
   'Int8Array,Uint8Array,Uint8ClampedArray,Int16Array,Uint16Array,Int32Array,Uint32Array,Float32Array,Float64Array'
 ).split(',');
 
@@ -4705,12 +4705,12 @@ module.exports = {
 
 },{"./_global":"../../node_modules/core-js/modules/_global.js","./_hide":"../../node_modules/core-js/modules/_hide.js","./_uid":"../../node_modules/core-js/modules/_uid.js"}],"../../node_modules/core-js/modules/_to-index.js":[function(require,module,exports) {
 // https://tc39.github.io/ecma262/#sec-toindex
-let toInteger = require('./_to-integer');
-let toLength = require('./_to-length');
+var toInteger = require('./_to-integer');
+var toLength = require('./_to-length');
 module.exports = function (it) {
   if (it === undefined) return 0;
-  let number = toInteger(it);
-  let length = toLength(number);
+  var number = toInteger(it);
+  var length = toLength(number);
   if (number !== length) throw RangeError('Wrong length!');
   return length;
 };
@@ -4718,55 +4718,55 @@ module.exports = function (it) {
 },{"./_to-integer":"../../node_modules/core-js/modules/_to-integer.js","./_to-length":"../../node_modules/core-js/modules/_to-length.js"}],"../../node_modules/core-js/modules/_typed-buffer.js":[function(require,module,exports) {
 
 'use strict';
-let global = require('./_global');
-let DESCRIPTORS = require('./_descriptors');
-let LIBRARY = require('./_library');
-let $typed = require('./_typed');
-let hide = require('./_hide');
-let redefineAll = require('./_redefine-all');
-let fails = require('./_fails');
-let anInstance = require('./_an-instance');
-let toInteger = require('./_to-integer');
-let toLength = require('./_to-length');
-let toIndex = require('./_to-index');
-let gOPN = require('./_object-gopn').f;
-let dP = require('./_object-dp').f;
-let arrayFill = require('./_array-fill');
-let setToStringTag = require('./_set-to-string-tag');
-let ARRAY_BUFFER = 'ArrayBuffer';
-let DATA_VIEW = 'DataView';
-let PROTOTYPE = 'prototype';
-let WRONG_LENGTH = 'Wrong length!';
-let WRONG_INDEX = 'Wrong index!';
-let $ArrayBuffer = global[ARRAY_BUFFER];
-let $DataView = global[DATA_VIEW];
-let Math = global.Math;
-let RangeError = global.RangeError;
+var global = require('./_global');
+var DESCRIPTORS = require('./_descriptors');
+var LIBRARY = require('./_library');
+var $typed = require('./_typed');
+var hide = require('./_hide');
+var redefineAll = require('./_redefine-all');
+var fails = require('./_fails');
+var anInstance = require('./_an-instance');
+var toInteger = require('./_to-integer');
+var toLength = require('./_to-length');
+var toIndex = require('./_to-index');
+var gOPN = require('./_object-gopn').f;
+var dP = require('./_object-dp').f;
+var arrayFill = require('./_array-fill');
+var setToStringTag = require('./_set-to-string-tag');
+var ARRAY_BUFFER = 'ArrayBuffer';
+var DATA_VIEW = 'DataView';
+var PROTOTYPE = 'prototype';
+var WRONG_LENGTH = 'Wrong length!';
+var WRONG_INDEX = 'Wrong index!';
+var $ArrayBuffer = global[ARRAY_BUFFER];
+var $DataView = global[DATA_VIEW];
+var Math = global.Math;
+var RangeError = global.RangeError;
 // eslint-disable-next-line no-shadow-restricted-names
-let Infinity = global.Infinity;
-let BaseBuffer = $ArrayBuffer;
-let abs = Math.abs;
-let pow = Math.pow;
-let floor = Math.floor;
-let log = Math.log;
-let LN2 = Math.LN2;
-let BUFFER = 'buffer';
-let BYTE_LENGTH = 'byteLength';
-let BYTE_OFFSET = 'byteOffset';
-let $BUFFER = DESCRIPTORS ? '_b' : BUFFER;
-let $LENGTH = DESCRIPTORS ? '_l' : BYTE_LENGTH;
-let $OFFSET = DESCRIPTORS ? '_o' : BYTE_OFFSET;
+var Infinity = global.Infinity;
+var BaseBuffer = $ArrayBuffer;
+var abs = Math.abs;
+var pow = Math.pow;
+var floor = Math.floor;
+var log = Math.log;
+var LN2 = Math.LN2;
+var BUFFER = 'buffer';
+var BYTE_LENGTH = 'byteLength';
+var BYTE_OFFSET = 'byteOffset';
+var $BUFFER = DESCRIPTORS ? '_b' : BUFFER;
+var $LENGTH = DESCRIPTORS ? '_l' : BYTE_LENGTH;
+var $OFFSET = DESCRIPTORS ? '_o' : BYTE_OFFSET;
 
 // IEEE754 conversions based on https://github.com/feross/ieee754
 function packIEEE754(value, mLen, nBytes) {
-  let buffer = new Array(nBytes);
-  let eLen = nBytes * 8 - mLen - 1;
-  let eMax = (1 << eLen) - 1;
-  let eBias = eMax >> 1;
-  let rt = mLen === 23 ? pow(2, -24) - pow(2, -77) : 0;
-  let i = 0;
-  let s = value < 0 || value === 0 && 1 / value < 0 ? 1 : 0;
-  let e, m, c;
+  var buffer = new Array(nBytes);
+  var eLen = nBytes * 8 - mLen - 1;
+  var eMax = (1 << eLen) - 1;
+  var eBias = eMax >> 1;
+  var rt = mLen === 23 ? pow(2, -24) - pow(2, -77) : 0;
+  var i = 0;
+  var s = value < 0 || value === 0 && 1 / value < 0 ? 1 : 0;
+  var e, m, c;
   value = abs(value);
   // eslint-disable-next-line no-self-compare
   if (value != value || value === Infinity) {
@@ -4807,14 +4807,14 @@ function packIEEE754(value, mLen, nBytes) {
   return buffer;
 }
 function unpackIEEE754(buffer, mLen, nBytes) {
-  let eLen = nBytes * 8 - mLen - 1;
-  let eMax = (1 << eLen) - 1;
-  let eBias = eMax >> 1;
-  let nBits = eLen - 7;
-  let i = nBytes - 1;
-  let s = buffer[i--];
-  let e = s & 127;
-  let m;
+  var eLen = nBytes * 8 - mLen - 1;
+  var eMax = (1 << eLen) - 1;
+  var eBias = eMax >> 1;
+  var nBits = eLen - 7;
+  var i = nBytes - 1;
+  var s = buffer[i--];
+  var e = s & 127;
+  var m;
   s >>= 7;
   for (; nBits > 0; e = e * 256 + buffer[i], i--, nBits -= 8);
   m = e & (1 << -nBits) - 1;
@@ -4855,28 +4855,28 @@ function addGetter(C, key, internal) {
 }
 
 function get(view, bytes, index, isLittleEndian) {
-  let numIndex = +index;
-  let intIndex = toIndex(numIndex);
+  var numIndex = +index;
+  var intIndex = toIndex(numIndex);
   if (intIndex + bytes > view[$LENGTH]) throw RangeError(WRONG_INDEX);
-  let store = view[$BUFFER]._b;
-  let start = intIndex + view[$OFFSET];
-  let pack = store.slice(start, start + bytes);
+  var store = view[$BUFFER]._b;
+  var start = intIndex + view[$OFFSET];
+  var pack = store.slice(start, start + bytes);
   return isLittleEndian ? pack : pack.reverse();
 }
 function set(view, bytes, index, conversion, value, isLittleEndian) {
-  let numIndex = +index;
-  let intIndex = toIndex(numIndex);
+  var numIndex = +index;
+  var intIndex = toIndex(numIndex);
   if (intIndex + bytes > view[$LENGTH]) throw RangeError(WRONG_INDEX);
-  let store = view[$BUFFER]._b;
-  let start = intIndex + view[$OFFSET];
-  let pack = conversion(+value);
-  for (let i = 0; i < bytes; i++) store[start + i] = pack[isLittleEndian ? i : bytes - i - 1];
+  var store = view[$BUFFER]._b;
+  var start = intIndex + view[$OFFSET];
+  var pack = conversion(+value);
+  for (var i = 0; i < bytes; i++) store[start + i] = pack[isLittleEndian ? i : bytes - i - 1];
 }
 
 if (!$typed.ABV) {
   $ArrayBuffer = function ArrayBuffer(length) {
     anInstance(this, $ArrayBuffer, ARRAY_BUFFER);
-    let byteLength = toIndex(length);
+    var byteLength = toIndex(length);
     this._b = arrayFill.call(new Array(byteLength), 0);
     this[$LENGTH] = byteLength;
   };
@@ -4884,8 +4884,8 @@ if (!$typed.ABV) {
   $DataView = function DataView(buffer, byteOffset, byteLength) {
     anInstance(this, $DataView, DATA_VIEW);
     anInstance(buffer, $ArrayBuffer, DATA_VIEW);
-    let bufferLength = buffer[$LENGTH];
-    let offset = toInteger(byteOffset);
+    var bufferLength = buffer[$LENGTH];
+    var offset = toInteger(byteOffset);
     if (offset < 0 || offset > bufferLength) throw RangeError('Wrong offset!');
     byteLength = byteLength === undefined ? bufferLength - offset : toLength(byteLength);
     if (offset + byteLength > bufferLength) throw RangeError(WRONG_LENGTH);
@@ -4909,11 +4909,11 @@ if (!$typed.ABV) {
       return get(this, 1, byteOffset)[0];
     },
     getInt16: function getInt16(byteOffset /* , littleEndian */) {
-      let bytes = get(this, 2, byteOffset, arguments[1]);
+      var bytes = get(this, 2, byteOffset, arguments[1]);
       return (bytes[1] << 8 | bytes[0]) << 16 >> 16;
     },
     getUint16: function getUint16(byteOffset /* , littleEndian */) {
-      let bytes = get(this, 2, byteOffset, arguments[1]);
+      var bytes = get(this, 2, byteOffset, arguments[1]);
       return bytes[1] << 8 | bytes[0];
     },
     getInt32: function getInt32(byteOffset /* , littleEndian */) {
@@ -4968,15 +4968,15 @@ if (!$typed.ABV) {
       anInstance(this, $ArrayBuffer);
       return new BaseBuffer(toIndex(length));
     };
-    let ArrayBufferProto = $ArrayBuffer[PROTOTYPE] = BaseBuffer[PROTOTYPE];
-    for (let keys = gOPN(BaseBuffer), j = 0, key; keys.length > j;) {
+    var ArrayBufferProto = $ArrayBuffer[PROTOTYPE] = BaseBuffer[PROTOTYPE];
+    for (var keys = gOPN(BaseBuffer), j = 0, key; keys.length > j;) {
       if (!((key = keys[j++]) in $ArrayBuffer)) hide($ArrayBuffer, key, BaseBuffer[key]);
     }
     if (!LIBRARY) ArrayBufferProto.constructor = $ArrayBuffer;
   }
   // iOS Safari 7.x bug
-  let view = new $DataView(new $ArrayBuffer(2));
-  let $setInt8 = $DataView[PROTOTYPE].setInt8;
+  var view = new $DataView(new $ArrayBuffer(2));
+  var $setInt8 = $DataView[PROTOTYPE].setInt8;
   view.setInt8(0, 2147483648);
   view.setInt8(1, 2147483649);
   if (view.getInt8(0) || !view.getInt8(1)) redefineAll($DataView[PROTOTYPE], {
@@ -4996,21 +4996,21 @@ exports[DATA_VIEW] = $DataView;
 
 },{"./_global":"../../node_modules/core-js/modules/_global.js","./_descriptors":"../../node_modules/core-js/modules/_descriptors.js","./_library":"../../node_modules/core-js/modules/_library.js","./_typed":"../../node_modules/core-js/modules/_typed.js","./_hide":"../../node_modules/core-js/modules/_hide.js","./_redefine-all":"../../node_modules/core-js/modules/_redefine-all.js","./_fails":"../../node_modules/core-js/modules/_fails.js","./_an-instance":"../../node_modules/core-js/modules/_an-instance.js","./_to-integer":"../../node_modules/core-js/modules/_to-integer.js","./_to-length":"../../node_modules/core-js/modules/_to-length.js","./_to-index":"../../node_modules/core-js/modules/_to-index.js","./_object-gopn":"../../node_modules/core-js/modules/_object-gopn.js","./_object-dp":"../../node_modules/core-js/modules/_object-dp.js","./_array-fill":"../../node_modules/core-js/modules/_array-fill.js","./_set-to-string-tag":"../../node_modules/core-js/modules/_set-to-string-tag.js"}],"../../node_modules/core-js/modules/es6.typed.array-buffer.js":[function(require,module,exports) {
 'use strict';
-let $export = require('./_export');
-let $typed = require('./_typed');
-let buffer = require('./_typed-buffer');
-let anObject = require('./_an-object');
-let toAbsoluteIndex = require('./_to-absolute-index');
-let toLength = require('./_to-length');
-let isObject = require('./_is-object');
-let ArrayBuffer = require('./_global').ArrayBuffer;
-let speciesConstructor = require('./_species-constructor');
-let $ArrayBuffer = buffer.ArrayBuffer;
-let $DataView = buffer.DataView;
-let $isView = $typed.ABV && ArrayBuffer.isView;
-let $slice = $ArrayBuffer.prototype.slice;
-let VIEW = $typed.VIEW;
-let ARRAY_BUFFER = 'ArrayBuffer';
+var $export = require('./_export');
+var $typed = require('./_typed');
+var buffer = require('./_typed-buffer');
+var anObject = require('./_an-object');
+var toAbsoluteIndex = require('./_to-absolute-index');
+var toLength = require('./_to-length');
+var isObject = require('./_is-object');
+var ArrayBuffer = require('./_global').ArrayBuffer;
+var speciesConstructor = require('./_species-constructor');
+var $ArrayBuffer = buffer.ArrayBuffer;
+var $DataView = buffer.DataView;
+var $isView = $typed.ABV && ArrayBuffer.isView;
+var $slice = $ArrayBuffer.prototype.slice;
+var VIEW = $typed.VIEW;
+var ARRAY_BUFFER = 'ArrayBuffer';
 
 $export($export.G + $export.W + $export.F * (ArrayBuffer !== $ArrayBuffer), { ArrayBuffer: $ArrayBuffer });
 
@@ -5027,13 +5027,13 @@ $export($export.P + $export.U + $export.F * require('./_fails')(function () {
   // 24.1.4.3 ArrayBuffer.prototype.slice(start, end)
   slice: function slice(start, end) {
     if ($slice !== undefined && end === undefined) return $slice.call(anObject(this), start); // FF fix
-    let len = anObject(this).byteLength;
-    let first = toAbsoluteIndex(start, len);
-    let fin = toAbsoluteIndex(end === undefined ? len : end, len);
-    let result = new (speciesConstructor(this, $ArrayBuffer))(toLength(fin - first));
-    let viewS = new $DataView(this);
-    let viewT = new $DataView(result);
-    let index = 0;
+    var len = anObject(this).byteLength;
+    var first = toAbsoluteIndex(start, len);
+    var fin = toAbsoluteIndex(end === undefined ? len : end, len);
+    var result = new (speciesConstructor(this, $ArrayBuffer))(toLength(fin - first));
+    var viewS = new $DataView(this);
+    var viewT = new $DataView(result);
+    var index = 0;
     while (first < fin) {
       viewT.setUint8(index++, viewS.getUint8(first++));
     } return result;
@@ -5043,140 +5043,140 @@ $export($export.P + $export.U + $export.F * require('./_fails')(function () {
 require('./_set-species')(ARRAY_BUFFER);
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_typed":"../../node_modules/core-js/modules/_typed.js","./_typed-buffer":"../../node_modules/core-js/modules/_typed-buffer.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_to-absolute-index":"../../node_modules/core-js/modules/_to-absolute-index.js","./_to-length":"../../node_modules/core-js/modules/_to-length.js","./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_global":"../../node_modules/core-js/modules/_global.js","./_species-constructor":"../../node_modules/core-js/modules/_species-constructor.js","./_fails":"../../node_modules/core-js/modules/_fails.js","./_set-species":"../../node_modules/core-js/modules/_set-species.js"}],"../../node_modules/core-js/modules/_typed-array.js":[function(require,module,exports) {
-let global = arguments[3];
+var global = arguments[3];
 'use strict';
 if (require('./_descriptors')) {
-  let LIBRARY = require('./_library');
-  let global = require('./_global');
-  let fails = require('./_fails');
-  let $export = require('./_export');
-  let $typed = require('./_typed');
-  let $buffer = require('./_typed-buffer');
-  let ctx = require('./_ctx');
-  let anInstance = require('./_an-instance');
-  let propertyDesc = require('./_property-desc');
-  let hide = require('./_hide');
-  let redefineAll = require('./_redefine-all');
-  let toInteger = require('./_to-integer');
-  let toLength = require('./_to-length');
-  let toIndex = require('./_to-index');
-  let toAbsoluteIndex = require('./_to-absolute-index');
-  let toPrimitive = require('./_to-primitive');
-  let has = require('./_has');
-  let classof = require('./_classof');
-  let isObject = require('./_is-object');
-  let toObject = require('./_to-object');
-  let isArrayIter = require('./_is-array-iter');
-  let create = require('./_object-create');
-  let getPrototypeOf = require('./_object-gpo');
-  let gOPN = require('./_object-gopn').f;
-  let getIterFn = require('./core.get-iterator-method');
-  let uid = require('./_uid');
-  let wks = require('./_wks');
-  let createArrayMethod = require('./_array-methods');
-  let createArrayIncludes = require('./_array-includes');
-  let speciesConstructor = require('./_species-constructor');
-  let ArrayIterators = require('./es6.array.iterator');
-  let Iterators = require('./_iterators');
-  let $iterDetect = require('./_iter-detect');
-  let setSpecies = require('./_set-species');
-  let arrayFill = require('./_array-fill');
-  let arrayCopyWithin = require('./_array-copy-within');
-  let $DP = require('./_object-dp');
-  let $GOPD = require('./_object-gopd');
-  let dP = $DP.f;
-  let gOPD = $GOPD.f;
-  let RangeError = global.RangeError;
-  let TypeError = global.TypeError;
-  let Uint8Array = global.Uint8Array;
-  let ARRAY_BUFFER = 'ArrayBuffer';
-  let SHARED_BUFFER = 'Shared' + ARRAY_BUFFER;
-  let BYTES_PER_ELEMENT = 'BYTES_PER_ELEMENT';
-  let PROTOTYPE = 'prototype';
-  let ArrayProto = Array[PROTOTYPE];
-  let $ArrayBuffer = $buffer.ArrayBuffer;
-  let $DataView = $buffer.DataView;
-  let arrayForEach = createArrayMethod(0);
-  let arrayFilter = createArrayMethod(2);
-  let arraySome = createArrayMethod(3);
-  let arrayEvery = createArrayMethod(4);
-  let arrayFind = createArrayMethod(5);
-  let arrayFindIndex = createArrayMethod(6);
-  let arrayIncludes = createArrayIncludes(true);
-  let arrayIndexOf = createArrayIncludes(false);
-  let arrayValues = ArrayIterators.values;
-  let arrayKeys = ArrayIterators.keys;
-  let arrayEntries = ArrayIterators.entries;
-  let arrayLastIndexOf = ArrayProto.lastIndexOf;
-  let arrayReduce = ArrayProto.reduce;
-  let arrayReduceRight = ArrayProto.reduceRight;
-  let arrayJoin = ArrayProto.join;
-  let arraySort = ArrayProto.sort;
-  let arraySlice = ArrayProto.slice;
-  let arrayToString = ArrayProto.toString;
-  let arrayToLocaleString = ArrayProto.toLocaleString;
-  let ITERATOR = wks('iterator');
-  let TAG = wks('toStringTag');
-  let TYPED_CONSTRUCTOR = uid('typed_constructor');
-  let DEF_CONSTRUCTOR = uid('def_constructor');
-  let ALL_CONSTRUCTORS = $typed.CONSTR;
-  let TYPED_ARRAY = $typed.TYPED;
-  let VIEW = $typed.VIEW;
-  let WRONG_LENGTH = 'Wrong length!';
+  var LIBRARY = require('./_library');
+  var global = require('./_global');
+  var fails = require('./_fails');
+  var $export = require('./_export');
+  var $typed = require('./_typed');
+  var $buffer = require('./_typed-buffer');
+  var ctx = require('./_ctx');
+  var anInstance = require('./_an-instance');
+  var propertyDesc = require('./_property-desc');
+  var hide = require('./_hide');
+  var redefineAll = require('./_redefine-all');
+  var toInteger = require('./_to-integer');
+  var toLength = require('./_to-length');
+  var toIndex = require('./_to-index');
+  var toAbsoluteIndex = require('./_to-absolute-index');
+  var toPrimitive = require('./_to-primitive');
+  var has = require('./_has');
+  var classof = require('./_classof');
+  var isObject = require('./_is-object');
+  var toObject = require('./_to-object');
+  var isArrayIter = require('./_is-array-iter');
+  var create = require('./_object-create');
+  var getPrototypeOf = require('./_object-gpo');
+  var gOPN = require('./_object-gopn').f;
+  var getIterFn = require('./core.get-iterator-method');
+  var uid = require('./_uid');
+  var wks = require('./_wks');
+  var createArrayMethod = require('./_array-methods');
+  var createArrayIncludes = require('./_array-includes');
+  var speciesConstructor = require('./_species-constructor');
+  var ArrayIterators = require('./es6.array.iterator');
+  var Iterators = require('./_iterators');
+  var $iterDetect = require('./_iter-detect');
+  var setSpecies = require('./_set-species');
+  var arrayFill = require('./_array-fill');
+  var arrayCopyWithin = require('./_array-copy-within');
+  var $DP = require('./_object-dp');
+  var $GOPD = require('./_object-gopd');
+  var dP = $DP.f;
+  var gOPD = $GOPD.f;
+  var RangeError = global.RangeError;
+  var TypeError = global.TypeError;
+  var Uint8Array = global.Uint8Array;
+  var ARRAY_BUFFER = 'ArrayBuffer';
+  var SHARED_BUFFER = 'Shared' + ARRAY_BUFFER;
+  var BYTES_PER_ELEMENT = 'BYTES_PER_ELEMENT';
+  var PROTOTYPE = 'prototype';
+  var ArrayProto = Array[PROTOTYPE];
+  var $ArrayBuffer = $buffer.ArrayBuffer;
+  var $DataView = $buffer.DataView;
+  var arrayForEach = createArrayMethod(0);
+  var arrayFilter = createArrayMethod(2);
+  var arraySome = createArrayMethod(3);
+  var arrayEvery = createArrayMethod(4);
+  var arrayFind = createArrayMethod(5);
+  var arrayFindIndex = createArrayMethod(6);
+  var arrayIncludes = createArrayIncludes(true);
+  var arrayIndexOf = createArrayIncludes(false);
+  var arrayValues = ArrayIterators.values;
+  var arrayKeys = ArrayIterators.keys;
+  var arrayEntries = ArrayIterators.entries;
+  var arrayLastIndexOf = ArrayProto.lastIndexOf;
+  var arrayReduce = ArrayProto.reduce;
+  var arrayReduceRight = ArrayProto.reduceRight;
+  var arrayJoin = ArrayProto.join;
+  var arraySort = ArrayProto.sort;
+  var arraySlice = ArrayProto.slice;
+  var arrayToString = ArrayProto.toString;
+  var arrayToLocaleString = ArrayProto.toLocaleString;
+  var ITERATOR = wks('iterator');
+  var TAG = wks('toStringTag');
+  var TYPED_CONSTRUCTOR = uid('typed_constructor');
+  var DEF_CONSTRUCTOR = uid('def_constructor');
+  var ALL_CONSTRUCTORS = $typed.CONSTR;
+  var TYPED_ARRAY = $typed.TYPED;
+  var VIEW = $typed.VIEW;
+  var WRONG_LENGTH = 'Wrong length!';
 
-  let $map = createArrayMethod(1, function (O, length) {
+  var $map = createArrayMethod(1, function (O, length) {
     return allocate(speciesConstructor(O, O[DEF_CONSTRUCTOR]), length);
   });
 
-  let LITTLE_ENDIAN = fails(function () {
+  var LITTLE_ENDIAN = fails(function () {
     // eslint-disable-next-line no-undef
     return new Uint8Array(new Uint16Array([1]).buffer)[0] === 1;
   });
 
-  let FORCED_SET = !!Uint8Array && !!Uint8Array[PROTOTYPE].set && fails(function () {
+  var FORCED_SET = !!Uint8Array && !!Uint8Array[PROTOTYPE].set && fails(function () {
     new Uint8Array(1).set({});
   });
 
-  let toOffset = function (it, BYTES) {
-    let offset = toInteger(it);
+  var toOffset = function (it, BYTES) {
+    var offset = toInteger(it);
     if (offset < 0 || offset % BYTES) throw RangeError('Wrong offset!');
     return offset;
   };
 
-  let validate = function (it) {
+  var validate = function (it) {
     if (isObject(it) && TYPED_ARRAY in it) return it;
     throw TypeError(it + ' is not a typed array!');
   };
 
-  let allocate = function (C, length) {
+  var allocate = function (C, length) {
     if (!(isObject(C) && TYPED_CONSTRUCTOR in C)) {
       throw TypeError('It is not a typed array constructor!');
     } return new C(length);
   };
 
-  let speciesFromList = function (O, list) {
+  var speciesFromList = function (O, list) {
     return fromList(speciesConstructor(O, O[DEF_CONSTRUCTOR]), list);
   };
 
-  let fromList = function (C, list) {
-    let index = 0;
-    let length = list.length;
-    let result = allocate(C, length);
+  var fromList = function (C, list) {
+    var index = 0;
+    var length = list.length;
+    var result = allocate(C, length);
     while (length > index) result[index] = list[index++];
     return result;
   };
 
-  let addGetter = function (it, key, internal) {
+  var addGetter = function (it, key, internal) {
     dP(it, key, { get: function () { return this._d[internal]; } });
   };
 
-  let $from = function from(source /* , mapfn, thisArg */) {
-    let O = toObject(source);
-    let aLen = arguments.length;
-    let mapfn = aLen > 1 ? arguments[1] : undefined;
-    let mapping = mapfn !== undefined;
-    let iterFn = getIterFn(O);
-    let i, length, values, result, step, iterator;
+  var $from = function from(source /* , mapfn, thisArg */) {
+    var O = toObject(source);
+    var aLen = arguments.length;
+    var mapfn = aLen > 1 ? arguments[1] : undefined;
+    var mapping = mapfn !== undefined;
+    var iterFn = getIterFn(O);
+    var i, length, values, result, step, iterator;
     if (iterFn != undefined && !isArrayIter(iterFn)) {
       for (iterator = iterFn.call(O), values = [], i = 0; !(step = iterator.next()).done; i++) {
         values.push(step.value);
@@ -5189,29 +5189,29 @@ if (require('./_descriptors')) {
     return result;
   };
 
-  let $of = function of(/* ...items */) {
-    let index = 0;
-    let length = arguments.length;
-    let result = allocate(this, length);
+  var $of = function of(/* ...items */) {
+    var index = 0;
+    var length = arguments.length;
+    var result = allocate(this, length);
     while (length > index) result[index] = arguments[index++];
     return result;
   };
 
   // iOS Safari 6.x fails here
-  let TO_LOCALE_BUG = !!Uint8Array && fails(function () { arrayToLocaleString.call(new Uint8Array(1)); });
+  var TO_LOCALE_BUG = !!Uint8Array && fails(function () { arrayToLocaleString.call(new Uint8Array(1)); });
 
-  let $toLocaleString = function toLocaleString() {
+  var $toLocaleString = function toLocaleString() {
     return arrayToLocaleString.apply(TO_LOCALE_BUG ? arraySlice.call(validate(this)) : validate(this), arguments);
   };
 
-  let proto = {
+  var proto = {
     copyWithin: function copyWithin(target, start /* , end */) {
       return arrayCopyWithin.call(validate(this), target, start, arguments.length > 2 ? arguments[2] : undefined);
     },
     every: function every(callbackfn /* , thisArg */) {
       return arrayEvery(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
     },
-    fill: function fill(value /* , start, end */) { // eslint-disable-line no-unused-lets
+    fill: function fill(value /* , start, end */) { // eslint-disable-line no-unused-vars
       return arrayFill.apply(validate(this), arguments);
     },
     filter: function filter(callbackfn /* , thisArg */) {
@@ -5233,27 +5233,27 @@ if (require('./_descriptors')) {
     includes: function includes(searchElement /* , fromIndex */) {
       return arrayIncludes(validate(this), searchElement, arguments.length > 1 ? arguments[1] : undefined);
     },
-    join: function join(separator) { // eslint-disable-line no-unused-lets
+    join: function join(separator) { // eslint-disable-line no-unused-vars
       return arrayJoin.apply(validate(this), arguments);
     },
-    lastIndexOf: function lastIndexOf(searchElement /* , fromIndex */) { // eslint-disable-line no-unused-lets
+    lastIndexOf: function lastIndexOf(searchElement /* , fromIndex */) { // eslint-disable-line no-unused-vars
       return arrayLastIndexOf.apply(validate(this), arguments);
     },
     map: function map(mapfn /* , thisArg */) {
       return $map(validate(this), mapfn, arguments.length > 1 ? arguments[1] : undefined);
     },
-    reduce: function reduce(callbackfn /* , initialValue */) { // eslint-disable-line no-unused-lets
+    reduce: function reduce(callbackfn /* , initialValue */) { // eslint-disable-line no-unused-vars
       return arrayReduce.apply(validate(this), arguments);
     },
-    reduceRight: function reduceRight(callbackfn /* , initialValue */) { // eslint-disable-line no-unused-lets
+    reduceRight: function reduceRight(callbackfn /* , initialValue */) { // eslint-disable-line no-unused-vars
       return arrayReduceRight.apply(validate(this), arguments);
     },
     reverse: function reverse() {
-      let that = this;
-      let length = validate(that).length;
-      let middle = Math.floor(length / 2);
-      let index = 0;
-      let value;
+      var that = this;
+      var length = validate(that).length;
+      var middle = Math.floor(length / 2);
+      var index = 0;
+      var value;
       while (index < middle) {
         value = that[index];
         that[index++] = that[--length];
@@ -5267,9 +5267,9 @@ if (require('./_descriptors')) {
       return arraySort.call(validate(this), comparefn);
     },
     subarray: function subarray(begin, end) {
-      let O = validate(this);
-      let length = O.length;
-      let $begin = toAbsoluteIndex(begin, length);
+      var O = validate(this);
+      var length = O.length;
+      var $begin = toAbsoluteIndex(begin, length);
       return new (speciesConstructor(O, O[DEF_CONSTRUCTOR]))(
         O.buffer,
         O.byteOffset + $begin * O.BYTES_PER_ELEMENT,
@@ -5278,22 +5278,22 @@ if (require('./_descriptors')) {
     }
   };
 
-  let $slice = function slice(start, end) {
+  var $slice = function slice(start, end) {
     return speciesFromList(this, arraySlice.call(validate(this), start, end));
   };
 
-  let $set = function set(arrayLike /* , offset */) {
+  var $set = function set(arrayLike /* , offset */) {
     validate(this);
-    let offset = toOffset(arguments[1], 1);
-    let length = this.length;
-    let src = toObject(arrayLike);
-    let len = toLength(src.length);
-    let index = 0;
+    var offset = toOffset(arguments[1], 1);
+    var length = this.length;
+    var src = toObject(arrayLike);
+    var len = toLength(src.length);
+    var index = 0;
     if (len + offset > length) throw RangeError(WRONG_LENGTH);
     while (index < len) this[offset + index] = src[index++];
   };
 
-  let $iterators = {
+  var $iterators = {
     entries: function entries() {
       return arrayEntries.call(validate(this));
     },
@@ -5305,19 +5305,19 @@ if (require('./_descriptors')) {
     }
   };
 
-  let isTAIndex = function (target, key) {
+  var isTAIndex = function (target, key) {
     return isObject(target)
       && target[TYPED_ARRAY]
       && typeof key != 'symbol'
       && key in target
       && String(+key) == String(key);
   };
-  let $getDesc = function getOwnPropertyDescriptor(target, key) {
+  var $getDesc = function getOwnPropertyDescriptor(target, key) {
     return isTAIndex(target, key = toPrimitive(key, true))
       ? propertyDesc(2, target[key])
       : gOPD(target, key);
   };
-  let $setDesc = function defineProperty(target, key, desc) {
+  var $setDesc = function defineProperty(target, key, desc) {
     if (isTAIndex(target, key = toPrimitive(key, true))
       && isObject(desc)
       && has(desc, 'value')
@@ -5349,7 +5349,7 @@ if (require('./_descriptors')) {
     };
   }
 
-  let $TypedArrayPrototype$ = redefineAll({}, proto);
+  var $TypedArrayPrototype$ = redefineAll({}, proto);
   redefineAll($TypedArrayPrototype$, $iterators);
   hide($TypedArrayPrototype$, ITERATOR, $iterators.values);
   redefineAll($TypedArrayPrototype$, {
@@ -5370,25 +5370,25 @@ if (require('./_descriptors')) {
   // eslint-disable-next-line max-statements
   module.exports = function (KEY, BYTES, wrapper, CLAMPED) {
     CLAMPED = !!CLAMPED;
-    let NAME = KEY + (CLAMPED ? 'Clamped' : '') + 'Array';
-    let GETTER = 'get' + KEY;
-    let SETTER = 'set' + KEY;
-    let TypedArray = global[NAME];
-    let Base = TypedArray || {};
-    let TAC = TypedArray && getPrototypeOf(TypedArray);
-    let FORCED = !TypedArray || !$typed.ABV;
-    let O = {};
-    let TypedArrayPrototype = TypedArray && TypedArray[PROTOTYPE];
-    let getter = function (that, index) {
-      let data = that._d;
+    var NAME = KEY + (CLAMPED ? 'Clamped' : '') + 'Array';
+    var GETTER = 'get' + KEY;
+    var SETTER = 'set' + KEY;
+    var TypedArray = global[NAME];
+    var Base = TypedArray || {};
+    var TAC = TypedArray && getPrototypeOf(TypedArray);
+    var FORCED = !TypedArray || !$typed.ABV;
+    var O = {};
+    var TypedArrayPrototype = TypedArray && TypedArray[PROTOTYPE];
+    var getter = function (that, index) {
+      var data = that._d;
       return data.v[GETTER](index * BYTES + data.o, LITTLE_ENDIAN);
     };
-    let setter = function (that, index, value) {
-      let data = that._d;
+    var setter = function (that, index, value) {
+      var data = that._d;
       if (CLAMPED) value = (value = Math.round(value)) < 0 ? 0 : value > 0xff ? 0xff : value & 0xff;
       data.v[SETTER](index * BYTES + data.o, value, LITTLE_ENDIAN);
     };
-    let addElement = function (that, index) {
+    var addElement = function (that, index) {
       dP(that, index, {
         get: function () {
           return getter(this, index);
@@ -5402,9 +5402,9 @@ if (require('./_descriptors')) {
     if (FORCED) {
       TypedArray = wrapper(function (that, data, $offset, $length) {
         anInstance(that, TypedArray, NAME, '_d');
-        let index = 0;
-        let offset = 0;
-        let buffer, byteLength, length, klass;
+        var index = 0;
+        var offset = 0;
+        var buffer, byteLength, length, klass;
         if (!isObject(data)) {
           length = toIndex(data);
           byteLength = length * BYTES;
@@ -5412,7 +5412,7 @@ if (require('./_descriptors')) {
         } else if (data instanceof $ArrayBuffer || (klass = classof(data)) == ARRAY_BUFFER || klass == SHARED_BUFFER) {
           buffer = data;
           offset = toOffset($offset, BYTES);
-          let $len = data.byteLength;
+          var $len = data.byteLength;
           if ($length === undefined) {
             if ($len % BYTES) throw RangeError(WRONG_LENGTH);
             byteLength = $len - offset;
@@ -5450,7 +5450,7 @@ if (require('./_descriptors')) {
     }, true)) {
       TypedArray = wrapper(function (that, data, $offset, $length) {
         anInstance(that, TypedArray, NAME);
-        let klass;
+        var klass;
         // `ws` module bug, temporarily remove validation length for Uint8Array
         // https://github.com/websockets/ws/pull/645
         if (!isObject(data)) return new Base(toIndex(data));
@@ -5470,10 +5470,10 @@ if (require('./_descriptors')) {
       TypedArray[PROTOTYPE] = TypedArrayPrototype;
       if (!LIBRARY) TypedArrayPrototype.constructor = TypedArray;
     }
-    let $nativeIterator = TypedArrayPrototype[ITERATOR];
-    let CORRECT_ITER_NAME = !!$nativeIterator
+    var $nativeIterator = TypedArrayPrototype[ITERATOR];
+    var CORRECT_ITER_NAME = !!$nativeIterator
       && ($nativeIterator.name == 'values' || $nativeIterator.name == undefined);
-    let $iterator = $iterators.values;
+    var $iterator = $iterators.values;
     hide(TypedArray, TYPED_CONSTRUCTOR, true);
     hide(TypedArrayPrototype, TYPED_ARRAY, NAME);
     hide(TypedArrayPrototype, VIEW, true);
@@ -5590,46 +5590,46 @@ require('./_typed-array')('Float64', 8, function (init) {
 
 },{"./_typed-array":"../../node_modules/core-js/modules/_typed-array.js"}],"../../node_modules/core-js/modules/_collection-weak.js":[function(require,module,exports) {
 'use strict';
-let redefineAll = require('./_redefine-all');
-let getWeak = require('./_meta').getWeak;
-let anObject = require('./_an-object');
-let isObject = require('./_is-object');
-let anInstance = require('./_an-instance');
-let forOf = require('./_for-of');
-let createArrayMethod = require('./_array-methods');
-let $has = require('./_has');
-let validate = require('./_validate-collection');
-let arrayFind = createArrayMethod(5);
-let arrayFindIndex = createArrayMethod(6);
-let id = 0;
+var redefineAll = require('./_redefine-all');
+var getWeak = require('./_meta').getWeak;
+var anObject = require('./_an-object');
+var isObject = require('./_is-object');
+var anInstance = require('./_an-instance');
+var forOf = require('./_for-of');
+var createArrayMethod = require('./_array-methods');
+var $has = require('./_has');
+var validate = require('./_validate-collection');
+var arrayFind = createArrayMethod(5);
+var arrayFindIndex = createArrayMethod(6);
+var id = 0;
 
 // fallback for uncaught frozen keys
-let uncaughtFrozenStore = function (that) {
+var uncaughtFrozenStore = function (that) {
   return that._l || (that._l = new UncaughtFrozenStore());
 };
-let UncaughtFrozenStore = function () {
+var UncaughtFrozenStore = function () {
   this.a = [];
 };
-let findUncaughtFrozen = function (store, key) {
+var findUncaughtFrozen = function (store, key) {
   return arrayFind(store.a, function (it) {
     return it[0] === key;
   });
 };
 UncaughtFrozenStore.prototype = {
   get: function (key) {
-    let entry = findUncaughtFrozen(this, key);
+    var entry = findUncaughtFrozen(this, key);
     if (entry) return entry[1];
   },
   has: function (key) {
     return !!findUncaughtFrozen(this, key);
   },
   set: function (key, value) {
-    let entry = findUncaughtFrozen(this, key);
+    var entry = findUncaughtFrozen(this, key);
     if (entry) entry[1] = value;
     else this.a.push([key, value]);
   },
   'delete': function (key) {
-    let index = arrayFindIndex(this.a, function (it) {
+    var index = arrayFindIndex(this.a, function (it) {
       return it[0] === key;
     });
     if (~index) this.a.splice(index, 1);
@@ -5639,7 +5639,7 @@ UncaughtFrozenStore.prototype = {
 
 module.exports = {
   getConstructor: function (wrapper, NAME, IS_MAP, ADDER) {
-    let C = wrapper(function (that, iterable) {
+    var C = wrapper(function (that, iterable) {
       anInstance(that, C, NAME, '_i');
       that._t = NAME;      // collection type
       that._i = id++;      // collection id
@@ -5651,7 +5651,7 @@ module.exports = {
       // 23.4.3.3 WeakSet.prototype.delete(value)
       'delete': function (key) {
         if (!isObject(key)) return false;
-        let data = getWeak(key);
+        var data = getWeak(key);
         if (data === true) return uncaughtFrozenStore(validate(this, NAME))['delete'](key);
         return data && $has(data, this._i) && delete data[this._i];
       },
@@ -5659,7 +5659,7 @@ module.exports = {
       // 23.4.3.4 WeakSet.prototype.has(value)
       has: function has(key) {
         if (!isObject(key)) return false;
-        let data = getWeak(key);
+        var data = getWeak(key);
         if (data === true) return uncaughtFrozenStore(validate(this, NAME)).has(key);
         return data && $has(data, this._i);
       }
@@ -5667,7 +5667,7 @@ module.exports = {
     return C;
   },
   def: function (that, key, value) {
-    let data = getWeak(anObject(key), true);
+    var data = getWeak(anObject(key), true);
     if (data === true) uncaughtFrozenStore(that).set(key, value);
     else data[that._i] = value;
     return that;
@@ -5678,33 +5678,33 @@ module.exports = {
 },{"./_redefine-all":"../../node_modules/core-js/modules/_redefine-all.js","./_meta":"../../node_modules/core-js/modules/_meta.js","./_an-object":"../../node_modules/core-js/modules/_an-object.js","./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_an-instance":"../../node_modules/core-js/modules/_an-instance.js","./_for-of":"../../node_modules/core-js/modules/_for-of.js","./_array-methods":"../../node_modules/core-js/modules/_array-methods.js","./_has":"../../node_modules/core-js/modules/_has.js","./_validate-collection":"../../node_modules/core-js/modules/_validate-collection.js"}],"../../node_modules/core-js/modules/es6.weak-map.js":[function(require,module,exports) {
 
 'use strict';
-let global = require('./_global');
-let each = require('./_array-methods')(0);
-let redefine = require('./_redefine');
-let meta = require('./_meta');
-let assign = require('./_object-assign');
-let weak = require('./_collection-weak');
-let isObject = require('./_is-object');
-let validate = require('./_validate-collection');
-let NATIVE_WEAK_MAP = require('./_validate-collection');
-let IS_IE11 = !global.ActiveXObject && 'ActiveXObject' in global;
-let WEAK_MAP = 'WeakMap';
-let getWeak = meta.getWeak;
-let isExtensible = Object.isExtensible;
-let uncaughtFrozenStore = weak.ufstore;
-let InternalMap;
+var global = require('./_global');
+var each = require('./_array-methods')(0);
+var redefine = require('./_redefine');
+var meta = require('./_meta');
+var assign = require('./_object-assign');
+var weak = require('./_collection-weak');
+var isObject = require('./_is-object');
+var validate = require('./_validate-collection');
+var NATIVE_WEAK_MAP = require('./_validate-collection');
+var IS_IE11 = !global.ActiveXObject && 'ActiveXObject' in global;
+var WEAK_MAP = 'WeakMap';
+var getWeak = meta.getWeak;
+var isExtensible = Object.isExtensible;
+var uncaughtFrozenStore = weak.ufstore;
+var InternalMap;
 
-let wrapper = function (get) {
+var wrapper = function (get) {
   return function WeakMap() {
     return get(this, arguments.length > 0 ? arguments[0] : undefined);
   };
 };
 
-let methods = {
+var methods = {
   // 23.3.3.3 WeakMap.prototype.get(key)
   get: function get(key) {
     if (isObject(key)) {
-      let data = getWeak(key);
+      var data = getWeak(key);
       if (data === true) return uncaughtFrozenStore(validate(this, WEAK_MAP)).get(key);
       return data ? data[this._i] : undefined;
     }
@@ -5716,7 +5716,7 @@ let methods = {
 };
 
 // 23.3 WeakMap Objects
-let $WeakMap = module.exports = require('./_collection')(WEAK_MAP, wrapper, methods, weak, true, true);
+var $WeakMap = module.exports = require('./_collection')(WEAK_MAP, wrapper, methods, weak, true, true);
 
 // IE11 WeakMap frozen keys fix
 if (NATIVE_WEAK_MAP && IS_IE11) {
@@ -5724,13 +5724,13 @@ if (NATIVE_WEAK_MAP && IS_IE11) {
   assign(InternalMap.prototype, methods);
   meta.NEED = true;
   each(['delete', 'has', 'get', 'set'], function (key) {
-    let proto = $WeakMap.prototype;
-    let method = proto[key];
+    var proto = $WeakMap.prototype;
+    var method = proto[key];
     redefine(proto, key, function (a, b) {
       // store frozen objects on internal weakmap shim
       if (isObject(a) && !isExtensible(a)) {
         if (!this._f) this._f = new InternalMap();
-        let result = this._f[key](a, b);
+        var result = this._f[key](a, b);
         return key == 'set' ? this : result;
       // store all the rest on native weakmap
       } return method.call(this, a, b);
@@ -5740,9 +5740,9 @@ if (NATIVE_WEAK_MAP && IS_IE11) {
 
 },{"./_global":"../../node_modules/core-js/modules/_global.js","./_array-methods":"../../node_modules/core-js/modules/_array-methods.js","./_redefine":"../../node_modules/core-js/modules/_redefine.js","./_meta":"../../node_modules/core-js/modules/_meta.js","./_object-assign":"../../node_modules/core-js/modules/_object-assign.js","./_collection-weak":"../../node_modules/core-js/modules/_collection-weak.js","./_is-object":"../../node_modules/core-js/modules/_is-object.js","./_validate-collection":"../../node_modules/core-js/modules/_validate-collection.js","./_collection":"../../node_modules/core-js/modules/_collection.js"}],"../../node_modules/core-js/modules/es6.weak-set.js":[function(require,module,exports) {
 'use strict';
-let weak = require('./_collection-weak');
-let validate = require('./_validate-collection');
-let WEAK_SET = 'WeakSet';
+var weak = require('./_collection-weak');
+var validate = require('./_validate-collection');
+var WEAK_SET = 'WeakSet';
 
 // 23.4 WeakSet Objects
 require('./_collection')(WEAK_SET, function (get) {
@@ -5757,15 +5757,15 @@ require('./_collection')(WEAK_SET, function (get) {
 },{"./_collection-weak":"../../node_modules/core-js/modules/_collection-weak.js","./_validate-collection":"../../node_modules/core-js/modules/_validate-collection.js","./_collection":"../../node_modules/core-js/modules/_collection.js"}],"../../node_modules/core-js/modules/web.timers.js":[function(require,module,exports) {
 
 // ie9- setTimeout & setInterval additional parameters fix
-let global = require('./_global');
-let $export = require('./_export');
-let userAgent = require('./_user-agent');
-let slice = [].slice;
-let MSIE = /MSIE .\./.test(userAgent); // <- dirty ie9- check
-let wrap = function (set) {
+var global = require('./_global');
+var $export = require('./_export');
+var userAgent = require('./_user-agent');
+var slice = [].slice;
+var MSIE = /MSIE .\./.test(userAgent); // <- dirty ie9- check
+var wrap = function (set) {
   return function (fn, time /* , ...args */) {
-    let boundArgs = arguments.length > 2;
-    let args = boundArgs ? slice.call(arguments, 2) : false;
+    var boundArgs = arguments.length > 2;
+    var args = boundArgs ? slice.call(arguments, 2) : false;
     return set(boundArgs ? function () {
       // eslint-disable-next-line no-new-func
       (typeof fn == 'function' ? fn : Function(fn)).apply(this, args);
@@ -5778,8 +5778,8 @@ $export($export.G + $export.B + $export.F * MSIE, {
 });
 
 },{"./_global":"../../node_modules/core-js/modules/_global.js","./_export":"../../node_modules/core-js/modules/_export.js","./_user-agent":"../../node_modules/core-js/modules/_user-agent.js"}],"../../node_modules/core-js/modules/web.immediate.js":[function(require,module,exports) {
-let $export = require('./_export');
-let $task = require('./_task');
+var $export = require('./_export');
+var $task = require('./_task');
 $export($export.G + $export.B, {
   setImmediate: $task.set,
   clearImmediate: $task.clear
@@ -5787,18 +5787,18 @@ $export($export.G + $export.B, {
 
 },{"./_export":"../../node_modules/core-js/modules/_export.js","./_task":"../../node_modules/core-js/modules/_task.js"}],"../../node_modules/core-js/modules/web.dom.iterable.js":[function(require,module,exports) {
 
-let $iterators = require('./es6.array.iterator');
-let getKeys = require('./_object-keys');
-let redefine = require('./_redefine');
-let global = require('./_global');
-let hide = require('./_hide');
-let Iterators = require('./_iterators');
-let wks = require('./_wks');
-let ITERATOR = wks('iterator');
-let TO_STRING_TAG = wks('toStringTag');
-let ArrayValues = Iterators.Array;
+var $iterators = require('./es6.array.iterator');
+var getKeys = require('./_object-keys');
+var redefine = require('./_redefine');
+var global = require('./_global');
+var hide = require('./_hide');
+var Iterators = require('./_iterators');
+var wks = require('./_wks');
+var ITERATOR = wks('iterator');
+var TO_STRING_TAG = wks('toStringTag');
+var ArrayValues = Iterators.Array;
 
-let DOMIterables = {
+var DOMIterables = {
   CSSRuleList: true, // TODO: Not spec compliant, should be false.
   CSSStyleDeclaration: false,
   CSSValueList: false,
@@ -5832,12 +5832,12 @@ let DOMIterables = {
   TouchList: false
 };
 
-for (let collections = getKeys(DOMIterables), i = 0; i < collections.length; i++) {
-  let NAME = collections[i];
-  let explicit = DOMIterables[NAME];
-  let Collection = global[NAME];
-  let proto = Collection && Collection.prototype;
-  let key;
+for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++) {
+  var NAME = collections[i];
+  var explicit = DOMIterables[NAME];
+  var Collection = global[NAME];
+  var proto = Collection && Collection.prototype;
+  var key;
   if (proto) {
     if (!proto[ITERATOR]) hide(proto, ITERATOR, ArrayValues);
     if (!proto[TO_STRING_TAG]) hide(proto, TO_STRING_TAG, NAME);
@@ -5854,22 +5854,22 @@ for (let collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
  * LICENSE file in the root directory of this source tree.
  */
 
-let runtime = (function (exports) {
+var runtime = (function (exports) {
   "use strict";
 
-  let Op = Object.prototype;
-  let hasOwn = Op.hasOwnProperty;
-  let undefined; // More compressible than void 0.
-  let $Symbol = typeof Symbol === "function" ? Symbol : {};
-  let iteratorSymbol = $Symbol.iterator || "@@iterator";
-  let asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
-  let toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
 
   function wrap(innerFn, outerFn, self, tryLocsList) {
     // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
-    let protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
-    let generator = Object.create(protoGenerator.prototype);
-    let context = new Context(tryLocsList || []);
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
 
     // The ._invoke method unifies the implementations of the .next,
     // .throw, and .return methods.
@@ -5897,14 +5897,14 @@ let runtime = (function (exports) {
     }
   }
 
-  let GenStateSuspendedStart = "suspendedStart";
-  let GenStateSuspendedYield = "suspendedYield";
-  let GenStateExecuting = "executing";
-  let GenStateCompleted = "completed";
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
 
   // Returning this object from the innerFn has the same effect as
   // breaking out of the dispatch switch statement.
-  let ContinueSentinel = {};
+  var ContinueSentinel = {};
 
   // Dummy constructor functions that we use as the .constructor and
   // .constructor.prototype properties for functions that return Generator
@@ -5916,13 +5916,13 @@ let runtime = (function (exports) {
 
   // This is a polyfill for %IteratorPrototype% for environments that
   // don't natively support it.
-  let IteratorPrototype = {};
+  var IteratorPrototype = {};
   IteratorPrototype[iteratorSymbol] = function () {
     return this;
   };
 
-  let getProto = Object.getPrototypeOf;
-  let NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
   if (NativeIteratorPrototype &&
       NativeIteratorPrototype !== Op &&
       hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
@@ -5931,7 +5931,7 @@ let runtime = (function (exports) {
     IteratorPrototype = NativeIteratorPrototype;
   }
 
-  let Gp = GeneratorFunctionPrototype.prototype =
+  var Gp = GeneratorFunctionPrototype.prototype =
     Generator.prototype = Object.create(IteratorPrototype);
   GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
   GeneratorFunctionPrototype.constructor = GeneratorFunction;
@@ -5949,7 +5949,7 @@ let runtime = (function (exports) {
   }
 
   exports.isGeneratorFunction = function(genFun) {
-    let ctor = typeof genFun === "function" && genFun.constructor;
+    var ctor = typeof genFun === "function" && genFun.constructor;
     return ctor
       ? ctor === GeneratorFunction ||
         // For the native GeneratorFunction constructor, the best we can
@@ -5981,12 +5981,12 @@ let runtime = (function (exports) {
 
   function AsyncIterator(generator) {
     function invoke(method, arg, resolve, reject) {
-      let record = tryCatch(generator[method], generator, arg);
+      var record = tryCatch(generator[method], generator, arg);
       if (record.type === "throw") {
         reject(record.arg);
       } else {
-        let result = record.arg;
-        let value = result.value;
+        var result = record.arg;
+        var value = result.value;
         if (value &&
             typeof value === "object" &&
             hasOwn.call(value, "__await")) {
@@ -6011,7 +6011,7 @@ let runtime = (function (exports) {
       }
     }
 
-    let previousPromise;
+    var previousPromise;
 
     function enqueue(method, arg) {
       function callInvokeWithMethodAndArg() {
@@ -6056,7 +6056,7 @@ let runtime = (function (exports) {
   // AsyncIterator objects; they just return a Promise for the value of
   // the final result produced by the iterator.
   exports.async = function(innerFn, outerFn, self, tryLocsList) {
-    let iter = new AsyncIterator(
+    var iter = new AsyncIterator(
       wrap(innerFn, outerFn, self, tryLocsList)
     );
 
@@ -6068,7 +6068,7 @@ let runtime = (function (exports) {
   };
 
   function makeInvokeMethod(innerFn, self, context) {
-    let state = GenStateSuspendedStart;
+    var state = GenStateSuspendedStart;
 
     return function invoke(method, arg) {
       if (state === GenStateExecuting) {
@@ -6089,9 +6089,9 @@ let runtime = (function (exports) {
       context.arg = arg;
 
       while (true) {
-        let delegate = context.delegate;
+        var delegate = context.delegate;
         if (delegate) {
-          let delegateResult = maybeInvokeDelegate(delegate, context);
+          var delegateResult = maybeInvokeDelegate(delegate, context);
           if (delegateResult) {
             if (delegateResult === ContinueSentinel) continue;
             return delegateResult;
@@ -6117,7 +6117,7 @@ let runtime = (function (exports) {
 
         state = GenStateExecuting;
 
-        let record = tryCatch(innerFn, self, context);
+        var record = tryCatch(innerFn, self, context);
         if (record.type === "normal") {
           // If an exception is thrown from innerFn, we leave state ===
           // GenStateExecuting and loop back for another invocation.
@@ -6150,7 +6150,7 @@ let runtime = (function (exports) {
   // delegate iterator, or by modifying context.method and context.arg,
   // setting context.delegate to null, and returning the ContinueSentinel.
   function maybeInvokeDelegate(delegate, context) {
-    let method = delegate.iterator[context.method];
+    var method = delegate.iterator[context.method];
     if (method === undefined) {
       // A .throw or .return when the delegate iterator has no .throw
       // method always terminates the yield* loop.
@@ -6180,7 +6180,7 @@ let runtime = (function (exports) {
       return ContinueSentinel;
     }
 
-    let record = tryCatch(method, delegate.iterator, context.arg);
+    var record = tryCatch(method, delegate.iterator, context.arg);
 
     if (record.type === "throw") {
       context.method = "throw";
@@ -6189,7 +6189,7 @@ let runtime = (function (exports) {
       return ContinueSentinel;
     }
 
-    let info = record.arg;
+    var info = record.arg;
 
     if (! info) {
       context.method = "throw";
@@ -6200,7 +6200,7 @@ let runtime = (function (exports) {
 
     if (info.done) {
       // Assign the result of the finished delegate to the temporary
-      // letiable specified by delegate.resultName (see delegateYield).
+      // variable specified by delegate.resultName (see delegateYield).
       context[delegate.resultName] = info.value;
 
       // Resume execution at the desired location (see delegateYield).
@@ -6248,7 +6248,7 @@ let runtime = (function (exports) {
   };
 
   function pushTryEntry(locs) {
-    let entry = { tryLoc: locs[0] };
+    var entry = { tryLoc: locs[0] };
 
     if (1 in locs) {
       entry.catchLoc = locs[1];
@@ -6263,7 +6263,7 @@ let runtime = (function (exports) {
   }
 
   function resetTryEntry(entry) {
-    let record = entry.completion || {};
+    var record = entry.completion || {};
     record.type = "normal";
     delete record.arg;
     entry.completion = record;
@@ -6279,8 +6279,8 @@ let runtime = (function (exports) {
   }
 
   exports.keys = function(object) {
-    let keys = [];
-    for (let key in object) {
+    var keys = [];
+    for (var key in object) {
       keys.push(key);
     }
     keys.reverse();
@@ -6289,7 +6289,7 @@ let runtime = (function (exports) {
     // things simple and return the next function itself.
     return function next() {
       while (keys.length) {
-        let key = keys.pop();
+        var key = keys.pop();
         if (key in object) {
           next.value = key;
           next.done = false;
@@ -6307,7 +6307,7 @@ let runtime = (function (exports) {
 
   function values(iterable) {
     if (iterable) {
-      let iteratorMethod = iterable[iteratorSymbol];
+      var iteratorMethod = iterable[iteratorSymbol];
       if (iteratorMethod) {
         return iteratorMethod.call(iterable);
       }
@@ -6317,7 +6317,7 @@ let runtime = (function (exports) {
       }
 
       if (!isNaN(iterable.length)) {
-        let i = -1, next = function next() {
+        var i = -1, next = function next() {
           while (++i < iterable.length) {
             if (hasOwn.call(iterable, i)) {
               next.value = iterable[i];
@@ -6363,7 +6363,7 @@ let runtime = (function (exports) {
       this.tryEntries.forEach(resetTryEntry);
 
       if (!skipTempReset) {
-        for (let name in this) {
+        for (var name in this) {
           // Not sure about the optimal order of these conditions:
           if (name.charAt(0) === "t" &&
               hasOwn.call(this, name) &&
@@ -6377,8 +6377,8 @@ let runtime = (function (exports) {
     stop: function() {
       this.done = true;
 
-      let rootEntry = this.tryEntries[0];
-      let rootRecord = rootEntry.completion;
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
       if (rootRecord.type === "throw") {
         throw rootRecord.arg;
       }
@@ -6391,7 +6391,7 @@ let runtime = (function (exports) {
         throw exception;
       }
 
-      let context = this;
+      var context = this;
       function handle(loc, caught) {
         record.type = "throw";
         record.arg = exception;
@@ -6407,9 +6407,9 @@ let runtime = (function (exports) {
         return !! caught;
       }
 
-      for (let i = this.tryEntries.length - 1; i >= 0; --i) {
-        let entry = this.tryEntries[i];
-        let record = entry.completion;
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
 
         if (entry.tryLoc === "root") {
           // Exception thrown outside of any try block that could handle
@@ -6419,8 +6419,8 @@ let runtime = (function (exports) {
         }
 
         if (entry.tryLoc <= this.prev) {
-          let hasCatch = hasOwn.call(entry, "catchLoc");
-          let hasFinally = hasOwn.call(entry, "finallyLoc");
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
 
           if (hasCatch && hasFinally) {
             if (this.prev < entry.catchLoc) {
@@ -6447,12 +6447,12 @@ let runtime = (function (exports) {
     },
 
     abrupt: function(type, arg) {
-      for (let i = this.tryEntries.length - 1; i >= 0; --i) {
-        let entry = this.tryEntries[i];
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
         if (entry.tryLoc <= this.prev &&
             hasOwn.call(entry, "finallyLoc") &&
             this.prev < entry.finallyLoc) {
-          let finallyEntry = entry;
+          var finallyEntry = entry;
           break;
         }
       }
@@ -6467,7 +6467,7 @@ let runtime = (function (exports) {
         finallyEntry = null;
       }
 
-      let record = finallyEntry ? finallyEntry.completion : {};
+      var record = finallyEntry ? finallyEntry.completion : {};
       record.type = type;
       record.arg = arg;
 
@@ -6500,8 +6500,8 @@ let runtime = (function (exports) {
     },
 
     finish: function(finallyLoc) {
-      for (let i = this.tryEntries.length - 1; i >= 0; --i) {
-        let entry = this.tryEntries[i];
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
         if (entry.finallyLoc === finallyLoc) {
           this.complete(entry.completion, entry.afterLoc);
           resetTryEntry(entry);
@@ -6511,12 +6511,12 @@ let runtime = (function (exports) {
     },
 
     "catch": function(tryLoc) {
-      for (let i = this.tryEntries.length - 1; i >= 0; --i) {
-        let entry = this.tryEntries[i];
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
         if (entry.tryLoc === tryLoc) {
-          let record = entry.completion;
+          var record = entry.completion;
           if (record.type === "throw") {
-            let thrown = record.arg;
+            var thrown = record.arg;
             resetTryEntry(entry);
           }
           return thrown;
@@ -6546,7 +6546,7 @@ let runtime = (function (exports) {
   };
 
   // Regardless of whether this script is executing as a CommonJS module
-  // or not, return the runtime object so that we can declare the letiable
+  // or not, return the runtime object so that we can declare the variable
   // regeneratorRuntime in the outer scope, which allows this module to be
   // injected easily by `bin/regenerator --include-runtime script.js`.
   return exports;
@@ -6555,7 +6555,7 @@ let runtime = (function (exports) {
   // If this script is executing as a CommonJS module, use module.exports
   // as the regeneratorRuntime namespace. Otherwise create a new empty
   // object. Either way, the resulting object will be used to initialize
-  // the regeneratorRuntime letiable at the top of this file.
+  // the regeneratorRuntime variable at the top of this file.
   typeof module === "object" ? module.exports : {}
 ));
 
@@ -6583,9 +6583,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.displayMap = void 0;
 
 /* eslint-disable */
-let displayMap = function displayMap(locations) {
+var displayMap = function displayMap(locations) {
   mapboxgl.accessToken = 'pk.eyJ1IjoibHV5ZXpoYW4iLCJhIjoiY2thcXJzdHdhMDJ0ZTJycXR3NHY4Zng0aCJ9.AdNaSneeHeJOplTpqGHO6w';
-  let map = new mapboxgl.Map({
+  var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/luyezhan/ckaqs4zuv0bim1ioy8msvkdfj',
     scrollZoom: false //   center: [-118.113491, 34.111745],
@@ -6593,10 +6593,10 @@ let displayMap = function displayMap(locations) {
     // interactive: false (disable user actions, will be like a static photo)
 
   });
-  let bounds = new mapboxgl.LngLatBounds();
+  var bounds = new mapboxgl.LngLatBounds();
   locations.forEach(function (loc) {
     // create marker
-    let el = document.createElement('div');
+    var el = document.createElement('div');
     el.className = 'marker'; // Add marker
 
     new mapboxgl.Marker({
@@ -6626,8 +6626,8 @@ exports.displayMap = displayMap;
 
 module.exports = function bind(fn, thisArg) {
   return function wrap() {
-    let args = new Array(arguments.length);
-    for (let i = 0; i < args.length; i++) {
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
       args[i] = arguments[i];
     }
     return fn.apply(thisArg, args);
@@ -6637,13 +6637,13 @@ module.exports = function bind(fn, thisArg) {
 },{}],"../../node_modules/axios/lib/utils.js":[function(require,module,exports) {
 'use strict';
 
-let bind = require('./helpers/bind');
+var bind = require('./helpers/bind');
 
 /*global toString:true*/
 
 // utils is a library of generic helper functions non-specific to axios
 
-let toString = Object.prototype.toString;
+var toString = Object.prototype.toString;
 
 /**
  * Determine if a value is an Array
@@ -6703,7 +6703,7 @@ function isFormData(val) {
  * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
  */
 function isArrayBufferView(val) {
-  let result;
+  var result;
   if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
     result = ArrayBuffer.isView(val);
   } else {
@@ -6865,12 +6865,12 @@ function forEach(obj, fn) {
 
   if (isArray(obj)) {
     // Iterate over array values
-    for (let i = 0, l = obj.length; i < l; i++) {
+    for (var i = 0, l = obj.length; i < l; i++) {
       fn.call(null, obj[i], i, obj);
     }
   } else {
     // Iterate over object keys
-    for (let key in obj) {
+    for (var key in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, key)) {
         fn.call(null, obj[key], key, obj);
       }
@@ -6879,7 +6879,7 @@ function forEach(obj, fn) {
 }
 
 /**
- * Accepts letargs expecting each argument to be an object, then
+ * Accepts varargs expecting each argument to be an object, then
  * immutably merges the properties of each object and returns result.
  *
  * When multiple objects contain the same key the later object in
@@ -6888,7 +6888,7 @@ function forEach(obj, fn) {
  * Example:
  *
  * ```js
- * let result = merge({foo: 123}, {foo: 456});
+ * var result = merge({foo: 123}, {foo: 456});
  * console.log(result.foo); // outputs 456
  * ```
  *
@@ -6896,7 +6896,7 @@ function forEach(obj, fn) {
  * @returns {Object} Result of all merge properties
  */
 function merge(/* obj1, obj2, obj3, ... */) {
-  let result = {};
+  var result = {};
   function assignValue(val, key) {
     if (typeof result[key] === 'object' && typeof val === 'object') {
       result[key] = merge(result[key], val);
@@ -6905,7 +6905,7 @@ function merge(/* obj1, obj2, obj3, ... */) {
     }
   }
 
-  for (let i = 0, l = arguments.length; i < l; i++) {
+  for (var i = 0, l = arguments.length; i < l; i++) {
     forEach(arguments[i], assignValue);
   }
   return result;
@@ -6920,7 +6920,7 @@ function merge(/* obj1, obj2, obj3, ... */) {
  * @returns {Object} Result of all merge properties
  */
 function deepMerge(/* obj1, obj2, obj3, ... */) {
-  let result = {};
+  var result = {};
   function assignValue(val, key) {
     if (typeof result[key] === 'object' && typeof val === 'object') {
       result[key] = deepMerge(result[key], val);
@@ -6931,7 +6931,7 @@ function deepMerge(/* obj1, obj2, obj3, ... */) {
     }
   }
 
-  for (let i = 0, l = arguments.length; i < l; i++) {
+  for (var i = 0, l = arguments.length; i < l; i++) {
     forEach(arguments[i], assignValue);
   }
   return result;
@@ -6983,7 +6983,7 @@ module.exports = {
 },{"./helpers/bind":"../../node_modules/axios/lib/helpers/bind.js"}],"../../node_modules/axios/lib/helpers/buildURL.js":[function(require,module,exports) {
 'use strict';
 
-let utils = require('./../utils');
+var utils = require('./../utils');
 
 function encode(val) {
   return encodeURIComponent(val).
@@ -7009,13 +7009,13 @@ module.exports = function buildURL(url, params, paramsSerializer) {
     return url;
   }
 
-  let serializedParams;
+  var serializedParams;
   if (paramsSerializer) {
     serializedParams = paramsSerializer(params);
   } else if (utils.isURLSearchParams(params)) {
     serializedParams = params.toString();
   } else {
-    let parts = [];
+    var parts = [];
 
     utils.forEach(params, function serialize(val, key) {
       if (val === null || typeof val === 'undefined') {
@@ -7042,7 +7042,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
   }
 
   if (serializedParams) {
-    let hashmarkIndex = url.indexOf('#');
+    var hashmarkIndex = url.indexOf('#');
     if (hashmarkIndex !== -1) {
       url = url.slice(0, hashmarkIndex);
     }
@@ -7056,7 +7056,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 },{"./../utils":"../../node_modules/axios/lib/utils.js"}],"../../node_modules/axios/lib/core/InterceptorManager.js":[function(require,module,exports) {
 'use strict';
 
-let utils = require('./../utils');
+var utils = require('./../utils');
 
 function InterceptorManager() {
   this.handlers = [];
@@ -7110,7 +7110,7 @@ module.exports = InterceptorManager;
 },{"./../utils":"../../node_modules/axios/lib/utils.js"}],"../../node_modules/axios/lib/core/transformData.js":[function(require,module,exports) {
 'use strict';
 
-let utils = require('./../utils');
+var utils = require('./../utils');
 
 /**
  * Transform the data for a request or a response
@@ -7139,7 +7139,7 @@ module.exports = function isCancel(value) {
 },{}],"../../node_modules/axios/lib/helpers/normalizeHeaderName.js":[function(require,module,exports) {
 'use strict';
 
-let utils = require('../utils');
+var utils = require('../utils');
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -7197,7 +7197,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 },{}],"../../node_modules/axios/lib/core/createError.js":[function(require,module,exports) {
 'use strict';
 
-let enhanceError = require('./enhanceError');
+var enhanceError = require('./enhanceError');
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -7210,14 +7210,14 @@ let enhanceError = require('./enhanceError');
  * @returns {Error} The created error.
  */
 module.exports = function createError(message, config, code, request, response) {
-  let error = new Error(message);
+  var error = new Error(message);
   return enhanceError(error, config, code, request, response);
 };
 
 },{"./enhanceError":"../../node_modules/axios/lib/core/enhanceError.js"}],"../../node_modules/axios/lib/core/settle.js":[function(require,module,exports) {
 'use strict';
 
-let createError = require('./createError');
+var createError = require('./createError');
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -7227,7 +7227,7 @@ let createError = require('./createError');
  * @param {object} response The response.
  */
 module.exports = function settle(resolve, reject, response) {
-  let validateStatus = response.config.validateStatus;
+  var validateStatus = response.config.validateStatus;
   if (!validateStatus || validateStatus(response.status)) {
     resolve(response);
   } else {
@@ -7276,8 +7276,8 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 },{}],"../../node_modules/axios/lib/core/buildFullPath.js":[function(require,module,exports) {
 'use strict';
 
-let isAbsoluteURL = require('../helpers/isAbsoluteURL');
-let combineURLs = require('../helpers/combineURLs');
+var isAbsoluteURL = require('../helpers/isAbsoluteURL');
+var combineURLs = require('../helpers/combineURLs');
 
 /**
  * Creates a new URL by combining the baseURL with the requestedURL,
@@ -7298,11 +7298,11 @@ module.exports = function buildFullPath(baseURL, requestedURL) {
 },{"../helpers/isAbsoluteURL":"../../node_modules/axios/lib/helpers/isAbsoluteURL.js","../helpers/combineURLs":"../../node_modules/axios/lib/helpers/combineURLs.js"}],"../../node_modules/axios/lib/helpers/parseHeaders.js":[function(require,module,exports) {
 'use strict';
 
-let utils = require('./../utils');
+var utils = require('./../utils');
 
 // Headers whose duplicates are ignored by node
 // c.f. https://nodejs.org/api/http.html#http_message_headers
-let ignoreDuplicateOf = [
+var ignoreDuplicateOf = [
   'age', 'authorization', 'content-length', 'content-type', 'etag',
   'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
   'last-modified', 'location', 'max-forwards', 'proxy-authorization',
@@ -7323,10 +7323,10 @@ let ignoreDuplicateOf = [
  * @returns {Object} Headers parsed into an object
  */
 module.exports = function parseHeaders(headers) {
-  let parsed = {};
-  let key;
-  let val;
-  let i;
+  var parsed = {};
+  var key;
+  var val;
+  var i;
 
   if (!headers) { return parsed; }
 
@@ -7353,7 +7353,7 @@ module.exports = function parseHeaders(headers) {
 },{"./../utils":"../../node_modules/axios/lib/utils.js"}],"../../node_modules/axios/lib/helpers/isURLSameOrigin.js":[function(require,module,exports) {
 'use strict';
 
-let utils = require('./../utils');
+var utils = require('./../utils');
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -7361,9 +7361,9 @@ module.exports = (
   // Standard browser envs have full support of the APIs needed to test
   // whether the request URL is of the same origin as current location.
     (function standardBrowserEnv() {
-      let msie = /(msie|trident)/i.test(navigator.userAgent);
-      let urlParsingNode = document.createElement('a');
-      let originURL;
+      var msie = /(msie|trident)/i.test(navigator.userAgent);
+      var urlParsingNode = document.createElement('a');
+      var originURL;
 
       /**
     * Parse a URL to discover it's components
@@ -7372,7 +7372,7 @@ module.exports = (
     * @returns {Object}
     */
       function resolveURL(url) {
-        let href = url;
+        var href = url;
 
         if (msie) {
         // IE needs attribute set twice to normalize properties
@@ -7406,7 +7406,7 @@ module.exports = (
     * @returns {boolean} True if URL shares the same origin, otherwise false
     */
       return function isURLSameOrigin(requestURL) {
-        let parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+        var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
         return (parsed.protocol === originURL.protocol &&
             parsed.host === originURL.host);
       };
@@ -7423,7 +7423,7 @@ module.exports = (
 },{"./../utils":"../../node_modules/axios/lib/utils.js"}],"../../node_modules/axios/lib/helpers/cookies.js":[function(require,module,exports) {
 'use strict';
 
-let utils = require('./../utils');
+var utils = require('./../utils');
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -7432,7 +7432,7 @@ module.exports = (
     (function standardBrowserEnv() {
       return {
         write: function write(name, value, expires, path, domain, secure) {
-          let cookie = [];
+          var cookie = [];
           cookie.push(name + '=' + encodeURIComponent(value));
 
           if (utils.isNumber(expires)) {
@@ -7455,7 +7455,7 @@ module.exports = (
         },
 
         read: function read(name) {
-          let match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+          var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
           return (match ? decodeURIComponent(match[3]) : null);
         },
 
@@ -7478,33 +7478,33 @@ module.exports = (
 },{"./../utils":"../../node_modules/axios/lib/utils.js"}],"../../node_modules/axios/lib/adapters/xhr.js":[function(require,module,exports) {
 'use strict';
 
-let utils = require('./../utils');
-let settle = require('./../core/settle');
-let buildURL = require('./../helpers/buildURL');
-let buildFullPath = require('../core/buildFullPath');
-let parseHeaders = require('./../helpers/parseHeaders');
-let isURLSameOrigin = require('./../helpers/isURLSameOrigin');
-let createError = require('../core/createError');
+var utils = require('./../utils');
+var settle = require('./../core/settle');
+var buildURL = require('./../helpers/buildURL');
+var buildFullPath = require('../core/buildFullPath');
+var parseHeaders = require('./../helpers/parseHeaders');
+var isURLSameOrigin = require('./../helpers/isURLSameOrigin');
+var createError = require('../core/createError');
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
-    let requestData = config.data;
-    let requestHeaders = config.headers;
+    var requestData = config.data;
+    var requestHeaders = config.headers;
 
     if (utils.isFormData(requestData)) {
       delete requestHeaders['Content-Type']; // Let the browser set it
     }
 
-    let request = new XMLHttpRequest();
+    var request = new XMLHttpRequest();
 
     // HTTP basic authentication
     if (config.auth) {
-      let username = config.auth.username || '';
-      let password = config.auth.password || '';
+      var username = config.auth.username || '';
+      var password = config.auth.password || '';
       requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
     }
 
-    let fullPath = buildFullPath(config.baseURL, config.url);
+    var fullPath = buildFullPath(config.baseURL, config.url);
     request.open(config.method.toUpperCase(), buildURL(fullPath, config.params, config.paramsSerializer), true);
 
     // Set the request timeout in MS
@@ -7525,9 +7525,9 @@ module.exports = function xhrAdapter(config) {
       }
 
       // Prepare the response
-      let responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
-      let responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
-      let response = {
+      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+      var response = {
         data: responseData,
         status: request.status,
         statusText: request.statusText,
@@ -7566,7 +7566,7 @@ module.exports = function xhrAdapter(config) {
 
     // Handle timeout
     request.ontimeout = function handleTimeout() {
-      let timeoutErrorMessage = 'timeout of ' + config.timeout + 'ms exceeded';
+      var timeoutErrorMessage = 'timeout of ' + config.timeout + 'ms exceeded';
       if (config.timeoutErrorMessage) {
         timeoutErrorMessage = config.timeoutErrorMessage;
       }
@@ -7581,10 +7581,10 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      let cookies = require('./../helpers/cookies');
+      var cookies = require('./../helpers/cookies');
 
       // Add xsrf header
-      let xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ?
+      var xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ?
         cookies.read(config.xsrfCookieName) :
         undefined;
 
@@ -7660,13 +7660,13 @@ module.exports = function xhrAdapter(config) {
 },{"./../utils":"../../node_modules/axios/lib/utils.js","./../core/settle":"../../node_modules/axios/lib/core/settle.js","./../helpers/buildURL":"../../node_modules/axios/lib/helpers/buildURL.js","../core/buildFullPath":"../../node_modules/axios/lib/core/buildFullPath.js","./../helpers/parseHeaders":"../../node_modules/axios/lib/helpers/parseHeaders.js","./../helpers/isURLSameOrigin":"../../node_modules/axios/lib/helpers/isURLSameOrigin.js","../core/createError":"../../node_modules/axios/lib/core/createError.js","./../helpers/cookies":"../../node_modules/axios/lib/helpers/cookies.js"}],"../../node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
-let process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
+var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
 // don't break things.  But we need to wrap it in a try catch in case it is
 // wrapped in strict mode code which doesn't define any globals.  It's inside a
 // function because try/catches deoptimize in certain engines.
 
-let cachedSetTimeout;
-let cachedClearTimeout;
+var cachedSetTimeout;
+var cachedClearTimeout;
 
 function defaultSetTimout() {
   throw new Error('setTimeout has not been defined');
@@ -7751,10 +7751,10 @@ function runClearTimeout(marker) {
   }
 }
 
-let queue = [];
-let draining = false;
-let currentQueue;
-let queueIndex = -1;
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
 
 function cleanUpNextTick() {
   if (!draining || !currentQueue) {
@@ -7779,9 +7779,9 @@ function drainQueue() {
     return;
   }
 
-  let timeout = runTimeout(cleanUpNextTick);
+  var timeout = runTimeout(cleanUpNextTick);
   draining = true;
-  let len = queue.length;
+  var len = queue.length;
 
   while (len) {
     currentQueue = queue;
@@ -7803,10 +7803,10 @@ function drainQueue() {
 }
 
 process.nextTick = function (fun) {
-  let args = new Array(arguments.length - 1);
+  var args = new Array(arguments.length - 1);
 
   if (arguments.length > 1) {
-    for (let i = 1; i < arguments.length; i++) {
+    for (var i = 1; i < arguments.length; i++) {
       args[i - 1] = arguments[i];
     }
   }
@@ -7867,13 +7867,13 @@ process.umask = function () {
   return 0;
 };
 },{}],"../../node_modules/axios/lib/defaults.js":[function(require,module,exports) {
-let process = require("process");
+var process = require("process");
 'use strict';
 
-let utils = require('./utils');
-let normalizeHeaderName = require('./helpers/normalizeHeaderName');
+var utils = require('./utils');
+var normalizeHeaderName = require('./helpers/normalizeHeaderName');
 
-let DEFAULT_CONTENT_TYPE = {
+var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
 };
 
@@ -7884,7 +7884,7 @@ function setContentTypeIfUnset(headers, value) {
 }
 
 function getDefaultAdapter() {
-  let adapter;
+  var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
     adapter = require('./adapters/xhr');
@@ -7895,7 +7895,7 @@ function getDefaultAdapter() {
   return adapter;
 }
 
-let defaults = {
+var defaults = {
   adapter: getDefaultAdapter(),
 
   transformRequest: [function transformRequest(data, headers) {
@@ -7969,10 +7969,10 @@ module.exports = defaults;
 },{"./utils":"../../node_modules/axios/lib/utils.js","./helpers/normalizeHeaderName":"../../node_modules/axios/lib/helpers/normalizeHeaderName.js","./adapters/xhr":"../../node_modules/axios/lib/adapters/xhr.js","./adapters/http":"../../node_modules/axios/lib/adapters/xhr.js","process":"../../node_modules/process/browser.js"}],"../../node_modules/axios/lib/core/dispatchRequest.js":[function(require,module,exports) {
 'use strict';
 
-let utils = require('./../utils');
-let transformData = require('./transformData');
-let isCancel = require('../cancel/isCancel');
-let defaults = require('../defaults');
+var utils = require('./../utils');
+var transformData = require('./transformData');
+var isCancel = require('../cancel/isCancel');
+var defaults = require('../defaults');
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -8016,7 +8016,7 @@ module.exports = function dispatchRequest(config) {
     }
   );
 
-  let adapter = config.adapter || defaults.adapter;
+  var adapter = config.adapter || defaults.adapter;
 
   return adapter(config).then(function onAdapterResolution(response) {
     throwIfCancellationRequested(config);
@@ -8050,7 +8050,7 @@ module.exports = function dispatchRequest(config) {
 },{"./../utils":"../../node_modules/axios/lib/utils.js","./transformData":"../../node_modules/axios/lib/core/transformData.js","../cancel/isCancel":"../../node_modules/axios/lib/cancel/isCancel.js","../defaults":"../../node_modules/axios/lib/defaults.js"}],"../../node_modules/axios/lib/core/mergeConfig.js":[function(require,module,exports) {
 'use strict';
 
-let utils = require('../utils');
+var utils = require('../utils');
 
 /**
  * Config-specific merge-function which creates a new config-object
@@ -8063,11 +8063,11 @@ let utils = require('../utils');
 module.exports = function mergeConfig(config1, config2) {
   // eslint-disable-next-line no-param-reassign
   config2 = config2 || {};
-  let config = {};
+  var config = {};
 
-  let valueFromConfig2Keys = ['url', 'method', 'params', 'data'];
-  let mergeDeepPropertiesKeys = ['headers', 'auth', 'proxy'];
-  let defaultToConfig2Keys = [
+  var valueFromConfig2Keys = ['url', 'method', 'params', 'data'];
+  var mergeDeepPropertiesKeys = ['headers', 'auth', 'proxy'];
+  var defaultToConfig2Keys = [
     'baseURL', 'url', 'transformRequest', 'transformResponse', 'paramsSerializer',
     'timeout', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
     'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress',
@@ -8101,11 +8101,11 @@ module.exports = function mergeConfig(config1, config2) {
     }
   });
 
-  let axiosKeys = valueFromConfig2Keys
+  var axiosKeys = valueFromConfig2Keys
     .concat(mergeDeepPropertiesKeys)
     .concat(defaultToConfig2Keys);
 
-  let otherKeys = Object
+  var otherKeys = Object
     .keys(config2)
     .filter(function filterAxiosKeys(key) {
       return axiosKeys.indexOf(key) === -1;
@@ -8125,11 +8125,11 @@ module.exports = function mergeConfig(config1, config2) {
 },{"../utils":"../../node_modules/axios/lib/utils.js"}],"../../node_modules/axios/lib/core/Axios.js":[function(require,module,exports) {
 'use strict';
 
-let utils = require('./../utils');
-let buildURL = require('../helpers/buildURL');
-let InterceptorManager = require('./InterceptorManager');
-let dispatchRequest = require('./dispatchRequest');
-let mergeConfig = require('./mergeConfig');
+var utils = require('./../utils');
+var buildURL = require('../helpers/buildURL');
+var InterceptorManager = require('./InterceptorManager');
+var dispatchRequest = require('./dispatchRequest');
+var mergeConfig = require('./mergeConfig');
 
 /**
  * Create a new instance of Axios
@@ -8171,8 +8171,8 @@ Axios.prototype.request = function request(config) {
   }
 
   // Hook up interceptors middleware
-  let chain = [dispatchRequest, undefined];
-  let promise = Promise.resolve(config);
+  var chain = [dispatchRequest, undefined];
+  var promise = Promise.resolve(config);
 
   this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
     chain.unshift(interceptor.fulfilled, interceptor.rejected);
@@ -8242,7 +8242,7 @@ module.exports = Cancel;
 },{}],"../../node_modules/axios/lib/cancel/CancelToken.js":[function(require,module,exports) {
 'use strict';
 
-let Cancel = require('./Cancel');
+var Cancel = require('./Cancel');
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -8255,12 +8255,12 @@ function CancelToken(executor) {
     throw new TypeError('executor must be a function.');
   }
 
-  let resolvePromise;
+  var resolvePromise;
   this.promise = new Promise(function promiseExecutor(resolve) {
     resolvePromise = resolve;
   });
 
-  let token = this;
+  var token = this;
   executor(function cancel(message) {
     if (token.reason) {
       // Cancellation has already been requested
@@ -8286,8 +8286,8 @@ CancelToken.prototype.throwIfRequested = function throwIfRequested() {
  * cancels the `CancelToken`.
  */
 CancelToken.source = function source() {
-  let cancel;
-  let token = new CancelToken(function executor(c) {
+  var cancel;
+  var token = new CancelToken(function executor(c) {
     cancel = c;
   });
   return {
@@ -8308,7 +8308,7 @@ module.exports = CancelToken;
  *
  *  ```js
  *  function f(x, y, z) {}
- *  let args = [1, 2, 3];
+ *  var args = [1, 2, 3];
  *  f.apply(null, args);
  *  ```
  *
@@ -8330,11 +8330,11 @@ module.exports = function spread(callback) {
 },{}],"../../node_modules/axios/lib/axios.js":[function(require,module,exports) {
 'use strict';
 
-let utils = require('./utils');
-let bind = require('./helpers/bind');
-let Axios = require('./core/Axios');
-let mergeConfig = require('./core/mergeConfig');
-let defaults = require('./defaults');
+var utils = require('./utils');
+var bind = require('./helpers/bind');
+var Axios = require('./core/Axios');
+var mergeConfig = require('./core/mergeConfig');
+var defaults = require('./defaults');
 
 /**
  * Create an instance of Axios
@@ -8343,8 +8343,8 @@ let defaults = require('./defaults');
  * @return {Axios} A new instance of Axios
  */
 function createInstance(defaultConfig) {
-  let context = new Axios(defaultConfig);
-  let instance = bind(Axios.prototype.request, context);
+  var context = new Axios(defaultConfig);
+  var instance = bind(Axios.prototype.request, context);
 
   // Copy axios.prototype to instance
   utils.extend(instance, Axios.prototype, context);
@@ -8356,7 +8356,7 @@ function createInstance(defaultConfig) {
 }
 
 // Create the default instance to be exported
-let axios = createInstance(defaults);
+var axios = createInstance(defaults);
 
 // Expose Axios class to allow class inheritance
 axios.Axios = Axios;
@@ -8393,17 +8393,17 @@ Object.defineProperty(exports, "__esModule", {
 exports.showAlert = exports.hideAlert = void 0;
 
 /* eslint-disable */
-let hideAlert = function hideAlert() {
-  let el = document.querySelector('.alert');
+var hideAlert = function hideAlert() {
+  var el = document.querySelector('.alert');
   if (el) el.parentElement.removeChild(el);
 }; // type is 'success' or 'error'
 
 
 exports.hideAlert = hideAlert;
 
-let showAlert = function showAlert(type, msg) {
+var showAlert = function showAlert(type, msg) {
   hideAlert();
-  let markup = "<div class=\"alert alert--".concat(type, "\">").concat(msg, "</div>");
+  var markup = "<div class=\"alert alert--".concat(type, "\">").concat(msg, "</div>");
   document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
   window.setTimeout(hideAlert, 5000);
 };
@@ -8417,19 +8417,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.logout = exports.login = void 0;
 
-let _axios = _interopRequireDefault(require("axios"));
+var _axios = _interopRequireDefault(require("axios"));
 
-let _alerts = require("./alerts");
+var _alerts = require("./alerts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { let info = gen[key](arg); let value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-function _asyncToGenerator(fn) { return function () { let self = this, args = arguments; return new Promise(function (resolve, reject) { let gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-let login = /*#__PURE__*/function () {
-  let _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(email, password) {
-    let res;
+var login = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(email, password) {
+    var res;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -8479,9 +8479,9 @@ let login = /*#__PURE__*/function () {
 
 exports.login = login;
 
-let logout = /*#__PURE__*/function () {
-  let _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-    let res;
+var logout = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+    var res;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -8526,20 +8526,20 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.updateSettings = void 0;
 
-let _axios = _interopRequireDefault(require("axios"));
+var _axios = _interopRequireDefault(require("axios"));
 
-let _alerts = require("./alerts");
+var _alerts = require("./alerts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { let info = gen[key](arg); let value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-function _asyncToGenerator(fn) { return function () { let self = this, args = arguments; return new Promise(function (resolve, reject) { let gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 // type is either 'password' or 'data'
-let updateSettings = /*#__PURE__*/function () {
-  let _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(data, type) {
-    let url, res;
+var updateSettings = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(data, type) {
+    var url, res;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -8842,41 +8842,41 @@ require("core-js/modules/web.dom.iterable");
 
 require("regenerator-runtime/runtime");
 
-let _mapbox = require("./mapbox");
+var _mapbox = require("./mapbox");
 
-let _login = require("./login");
+var _login = require("./login");
 
-let _updateSettings = require("./updateSettings");
+var _updateSettings = require("./updateSettings");
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { let info = gen[key](arg); let value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-function _asyncToGenerator(fn) { return function () { let self = this, args = arguments; return new Promise(function (resolve, reject) { let gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 // DOM elements
-let mapBox = document.getElementById('map');
-let loginForm = document.querySelector('.form--login');
-let logOutBtn = document.querySelector('.nav__el--logout');
-let userDataForm = document.querySelector('.form-user-data');
-let userPasswordForm = document.querySelector('.form-user-password'); // Values
+var mapBox = document.getElementById('map');
+var loginForm = document.querySelector('.form--login');
+var logOutBtn = document.querySelector('.nav__el--logout');
+var userDataForm = document.querySelector('.form-user-data');
+var userPasswordForm = document.querySelector('.form-user-password'); // Values
 // delegation
 
 if (mapBox) {
   console.log(mapBox);
-  let locations = JSON.parse(mapBox.dataset.locations);
+  var locations = JSON.parse(mapBox.dataset.locations);
   (0, _mapbox.displayMap)(locations);
   console.log(locations);
 }
 
 if (loginForm) loginForm.addEventListener('submit', function (e) {
   e.preventDefault();
-  let email = document.getElementById('email').value;
-  let password = document.getElementById('password').value;
+  var email = document.getElementById('email').value;
+  var password = document.getElementById('password').value;
   (0, _login.login)(email, password);
 });
 if (logOutBtn) logOutBtn.addEventListener('click', _login.logout);
 if (userDataForm) userDataForm.addEventListener('submit', function (e) {
   e.preventDefault();
-  let form = new FormData();
+  var form = new FormData();
   form.append('name', document.getElementById('name').value);
   form.append('email', document.getElementById('email').value);
   form.append('photo', document.getElementById('photo').files[0]);
@@ -8884,8 +8884,8 @@ if (userDataForm) userDataForm.addEventListener('submit', function (e) {
   (0, _updateSettings.updateSettings)(form, 'data');
 });
 if (userPasswordForm) userPasswordForm.addEventListener('submit', /*#__PURE__*/function () {
-  let _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-    let passwordCurrent, password, passwordConfirm;
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+    var passwordCurrent, password, passwordConfirm;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -8921,9 +8921,9 @@ if (userPasswordForm) userPasswordForm.addEventListener('submit', /*#__PURE__*/f
   };
 }());
 },{"core-js/modules/es6.array.copy-within":"../../node_modules/core-js/modules/es6.array.copy-within.js","core-js/modules/es6.array.fill":"../../node_modules/core-js/modules/es6.array.fill.js","core-js/modules/es6.array.find":"../../node_modules/core-js/modules/es6.array.find.js","core-js/modules/es6.array.find-index":"../../node_modules/core-js/modules/es6.array.find-index.js","core-js/modules/es7.array.flat-map":"../../node_modules/core-js/modules/es7.array.flat-map.js","core-js/modules/es6.array.from":"../../node_modules/core-js/modules/es6.array.from.js","core-js/modules/es7.array.includes":"../../node_modules/core-js/modules/es7.array.includes.js","core-js/modules/es6.array.iterator":"../../node_modules/core-js/modules/es6.array.iterator.js","core-js/modules/es6.array.of":"../../node_modules/core-js/modules/es6.array.of.js","core-js/modules/es6.array.sort":"../../node_modules/core-js/modules/es6.array.sort.js","core-js/modules/es6.array.species":"../../node_modules/core-js/modules/es6.array.species.js","core-js/modules/es6.date.to-primitive":"../../node_modules/core-js/modules/es6.date.to-primitive.js","core-js/modules/es6.function.has-instance":"../../node_modules/core-js/modules/es6.function.has-instance.js","core-js/modules/es6.function.name":"../../node_modules/core-js/modules/es6.function.name.js","core-js/modules/es6.map":"../../node_modules/core-js/modules/es6.map.js","core-js/modules/es6.math.acosh":"../../node_modules/core-js/modules/es6.math.acosh.js","core-js/modules/es6.math.asinh":"../../node_modules/core-js/modules/es6.math.asinh.js","core-js/modules/es6.math.atanh":"../../node_modules/core-js/modules/es6.math.atanh.js","core-js/modules/es6.math.cbrt":"../../node_modules/core-js/modules/es6.math.cbrt.js","core-js/modules/es6.math.clz32":"../../node_modules/core-js/modules/es6.math.clz32.js","core-js/modules/es6.math.cosh":"../../node_modules/core-js/modules/es6.math.cosh.js","core-js/modules/es6.math.expm1":"../../node_modules/core-js/modules/es6.math.expm1.js","core-js/modules/es6.math.fround":"../../node_modules/core-js/modules/es6.math.fround.js","core-js/modules/es6.math.hypot":"../../node_modules/core-js/modules/es6.math.hypot.js","core-js/modules/es6.math.imul":"../../node_modules/core-js/modules/es6.math.imul.js","core-js/modules/es6.math.log1p":"../../node_modules/core-js/modules/es6.math.log1p.js","core-js/modules/es6.math.log10":"../../node_modules/core-js/modules/es6.math.log10.js","core-js/modules/es6.math.log2":"../../node_modules/core-js/modules/es6.math.log2.js","core-js/modules/es6.math.sign":"../../node_modules/core-js/modules/es6.math.sign.js","core-js/modules/es6.math.sinh":"../../node_modules/core-js/modules/es6.math.sinh.js","core-js/modules/es6.math.tanh":"../../node_modules/core-js/modules/es6.math.tanh.js","core-js/modules/es6.math.trunc":"../../node_modules/core-js/modules/es6.math.trunc.js","core-js/modules/es6.number.constructor":"../../node_modules/core-js/modules/es6.number.constructor.js","core-js/modules/es6.number.epsilon":"../../node_modules/core-js/modules/es6.number.epsilon.js","core-js/modules/es6.number.is-finite":"../../node_modules/core-js/modules/es6.number.is-finite.js","core-js/modules/es6.number.is-integer":"../../node_modules/core-js/modules/es6.number.is-integer.js","core-js/modules/es6.number.is-nan":"../../node_modules/core-js/modules/es6.number.is-nan.js","core-js/modules/es6.number.is-safe-integer":"../../node_modules/core-js/modules/es6.number.is-safe-integer.js","core-js/modules/es6.number.max-safe-integer":"../../node_modules/core-js/modules/es6.number.max-safe-integer.js","core-js/modules/es6.number.min-safe-integer":"../../node_modules/core-js/modules/es6.number.min-safe-integer.js","core-js/modules/es6.number.parse-float":"../../node_modules/core-js/modules/es6.number.parse-float.js","core-js/modules/es6.number.parse-int":"../../node_modules/core-js/modules/es6.number.parse-int.js","core-js/modules/es6.object.assign":"../../node_modules/core-js/modules/es6.object.assign.js","core-js/modules/es7.object.define-getter":"../../node_modules/core-js/modules/es7.object.define-getter.js","core-js/modules/es7.object.define-setter":"../../node_modules/core-js/modules/es7.object.define-setter.js","core-js/modules/es7.object.entries":"../../node_modules/core-js/modules/es7.object.entries.js","core-js/modules/es6.object.freeze":"../../node_modules/core-js/modules/es6.object.freeze.js","core-js/modules/es6.object.get-own-property-descriptor":"../../node_modules/core-js/modules/es6.object.get-own-property-descriptor.js","core-js/modules/es7.object.get-own-property-descriptors":"../../node_modules/core-js/modules/es7.object.get-own-property-descriptors.js","core-js/modules/es6.object.get-own-property-names":"../../node_modules/core-js/modules/es6.object.get-own-property-names.js","core-js/modules/es6.object.get-prototype-of":"../../node_modules/core-js/modules/es6.object.get-prototype-of.js","core-js/modules/es7.object.lookup-getter":"../../node_modules/core-js/modules/es7.object.lookup-getter.js","core-js/modules/es7.object.lookup-setter":"../../node_modules/core-js/modules/es7.object.lookup-setter.js","core-js/modules/es6.object.prevent-extensions":"../../node_modules/core-js/modules/es6.object.prevent-extensions.js","core-js/modules/es6.object.to-string":"../../node_modules/core-js/modules/es6.object.to-string.js","core-js/modules/es6.object.is":"../../node_modules/core-js/modules/es6.object.is.js","core-js/modules/es6.object.is-frozen":"../../node_modules/core-js/modules/es6.object.is-frozen.js","core-js/modules/es6.object.is-sealed":"../../node_modules/core-js/modules/es6.object.is-sealed.js","core-js/modules/es6.object.is-extensible":"../../node_modules/core-js/modules/es6.object.is-extensible.js","core-js/modules/es6.object.keys":"../../node_modules/core-js/modules/es6.object.keys.js","core-js/modules/es6.object.seal":"../../node_modules/core-js/modules/es6.object.seal.js","core-js/modules/es7.object.values":"../../node_modules/core-js/modules/es7.object.values.js","core-js/modules/es6.promise":"../../node_modules/core-js/modules/es6.promise.js","core-js/modules/es7.promise.finally":"../../node_modules/core-js/modules/es7.promise.finally.js","core-js/modules/es6.reflect.apply":"../../node_modules/core-js/modules/es6.reflect.apply.js","core-js/modules/es6.reflect.construct":"../../node_modules/core-js/modules/es6.reflect.construct.js","core-js/modules/es6.reflect.define-property":"../../node_modules/core-js/modules/es6.reflect.define-property.js","core-js/modules/es6.reflect.delete-property":"../../node_modules/core-js/modules/es6.reflect.delete-property.js","core-js/modules/es6.reflect.get":"../../node_modules/core-js/modules/es6.reflect.get.js","core-js/modules/es6.reflect.get-own-property-descriptor":"../../node_modules/core-js/modules/es6.reflect.get-own-property-descriptor.js","core-js/modules/es6.reflect.get-prototype-of":"../../node_modules/core-js/modules/es6.reflect.get-prototype-of.js","core-js/modules/es6.reflect.has":"../../node_modules/core-js/modules/es6.reflect.has.js","core-js/modules/es6.reflect.is-extensible":"../../node_modules/core-js/modules/es6.reflect.is-extensible.js","core-js/modules/es6.reflect.own-keys":"../../node_modules/core-js/modules/es6.reflect.own-keys.js","core-js/modules/es6.reflect.prevent-extensions":"../../node_modules/core-js/modules/es6.reflect.prevent-extensions.js","core-js/modules/es6.reflect.set":"../../node_modules/core-js/modules/es6.reflect.set.js","core-js/modules/es6.reflect.set-prototype-of":"../../node_modules/core-js/modules/es6.reflect.set-prototype-of.js","core-js/modules/es6.regexp.constructor":"../../node_modules/core-js/modules/es6.regexp.constructor.js","core-js/modules/es6.regexp.flags":"../../node_modules/core-js/modules/es6.regexp.flags.js","core-js/modules/es6.regexp.match":"../../node_modules/core-js/modules/es6.regexp.match.js","core-js/modules/es6.regexp.replace":"../../node_modules/core-js/modules/es6.regexp.replace.js","core-js/modules/es6.regexp.split":"../../node_modules/core-js/modules/es6.regexp.split.js","core-js/modules/es6.regexp.search":"../../node_modules/core-js/modules/es6.regexp.search.js","core-js/modules/es6.regexp.to-string":"../../node_modules/core-js/modules/es6.regexp.to-string.js","core-js/modules/es6.set":"../../node_modules/core-js/modules/es6.set.js","core-js/modules/es6.symbol":"../../node_modules/core-js/modules/es6.symbol.js","core-js/modules/es7.symbol.async-iterator":"../../node_modules/core-js/modules/es7.symbol.async-iterator.js","core-js/modules/es6.string.anchor":"../../node_modules/core-js/modules/es6.string.anchor.js","core-js/modules/es6.string.big":"../../node_modules/core-js/modules/es6.string.big.js","core-js/modules/es6.string.blink":"../../node_modules/core-js/modules/es6.string.blink.js","core-js/modules/es6.string.bold":"../../node_modules/core-js/modules/es6.string.bold.js","core-js/modules/es6.string.code-point-at":"../../node_modules/core-js/modules/es6.string.code-point-at.js","core-js/modules/es6.string.ends-with":"../../node_modules/core-js/modules/es6.string.ends-with.js","core-js/modules/es6.string.fixed":"../../node_modules/core-js/modules/es6.string.fixed.js","core-js/modules/es6.string.fontcolor":"../../node_modules/core-js/modules/es6.string.fontcolor.js","core-js/modules/es6.string.fontsize":"../../node_modules/core-js/modules/es6.string.fontsize.js","core-js/modules/es6.string.from-code-point":"../../node_modules/core-js/modules/es6.string.from-code-point.js","core-js/modules/es6.string.includes":"../../node_modules/core-js/modules/es6.string.includes.js","core-js/modules/es6.string.italics":"../../node_modules/core-js/modules/es6.string.italics.js","core-js/modules/es6.string.iterator":"../../node_modules/core-js/modules/es6.string.iterator.js","core-js/modules/es6.string.link":"../../node_modules/core-js/modules/es6.string.link.js","core-js/modules/es7.string.pad-start":"../../node_modules/core-js/modules/es7.string.pad-start.js","core-js/modules/es7.string.pad-end":"../../node_modules/core-js/modules/es7.string.pad-end.js","core-js/modules/es6.string.raw":"../../node_modules/core-js/modules/es6.string.raw.js","core-js/modules/es6.string.repeat":"../../node_modules/core-js/modules/es6.string.repeat.js","core-js/modules/es6.string.small":"../../node_modules/core-js/modules/es6.string.small.js","core-js/modules/es6.string.starts-with":"../../node_modules/core-js/modules/es6.string.starts-with.js","core-js/modules/es6.string.strike":"../../node_modules/core-js/modules/es6.string.strike.js","core-js/modules/es6.string.sub":"../../node_modules/core-js/modules/es6.string.sub.js","core-js/modules/es6.string.sup":"../../node_modules/core-js/modules/es6.string.sup.js","core-js/modules/es7.string.trim-left":"../../node_modules/core-js/modules/es7.string.trim-left.js","core-js/modules/es7.string.trim-right":"../../node_modules/core-js/modules/es7.string.trim-right.js","core-js/modules/es6.typed.array-buffer":"../../node_modules/core-js/modules/es6.typed.array-buffer.js","core-js/modules/es6.typed.int8-array":"../../node_modules/core-js/modules/es6.typed.int8-array.js","core-js/modules/es6.typed.uint8-array":"../../node_modules/core-js/modules/es6.typed.uint8-array.js","core-js/modules/es6.typed.uint8-clamped-array":"../../node_modules/core-js/modules/es6.typed.uint8-clamped-array.js","core-js/modules/es6.typed.int16-array":"../../node_modules/core-js/modules/es6.typed.int16-array.js","core-js/modules/es6.typed.uint16-array":"../../node_modules/core-js/modules/es6.typed.uint16-array.js","core-js/modules/es6.typed.int32-array":"../../node_modules/core-js/modules/es6.typed.int32-array.js","core-js/modules/es6.typed.uint32-array":"../../node_modules/core-js/modules/es6.typed.uint32-array.js","core-js/modules/es6.typed.float32-array":"../../node_modules/core-js/modules/es6.typed.float32-array.js","core-js/modules/es6.typed.float64-array":"../../node_modules/core-js/modules/es6.typed.float64-array.js","core-js/modules/es6.weak-map":"../../node_modules/core-js/modules/es6.weak-map.js","core-js/modules/es6.weak-set":"../../node_modules/core-js/modules/es6.weak-set.js","core-js/modules/web.timers":"../../node_modules/core-js/modules/web.timers.js","core-js/modules/web.immediate":"../../node_modules/core-js/modules/web.immediate.js","core-js/modules/web.dom.iterable":"../../node_modules/core-js/modules/web.dom.iterable.js","regenerator-runtime/runtime":"../../node_modules/regenerator-runtime/runtime.js","./mapbox":"mapbox.js","./login":"login.js","./updateSettings":"updateSettings.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
-let global = arguments[3];
-let OVERLAY_ID = '__parcel__error__overlay__';
-let OldModule = module.bundle.Module;
+var global = arguments[3];
+var OVERLAY_ID = '__parcel__error__overlay__';
+var OldModule = module.bundle.Module;
 
 function Module(moduleName) {
   OldModule.call(this, moduleName);
@@ -8942,24 +8942,24 @@ function Module(moduleName) {
 }
 
 module.bundle.Module = Module;
-let checkedAssets, assetsToAccept;
-let parent = module.bundle.parent;
+var checkedAssets, assetsToAccept;
+var parent = module.bundle.parent;
 
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
-  let hostname = "" || location.hostname;
-  let protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  let ws = new WebSocket(protocol + '://' + hostname + ':' + "54617" + '/');
+  var hostname = "" || location.hostname;
+  var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49511" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
-    let data = JSON.parse(event.data);
+    var data = JSON.parse(event.data);
 
     if (data.type === 'update') {
-      let handled = false;
+      var handled = false;
       data.assets.forEach(function (asset) {
         if (!asset.isNew) {
-          let didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
+          var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
 
           if (didAccept) {
             handled = true;
@@ -9001,14 +9001,14 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
     if (data.type === 'error') {
       console.error('[parcel] 🚨  ' + data.error.message + '\n' + data.error.stack);
       removeErrorOverlay();
-      let overlay = createErrorOverlay(data);
+      var overlay = createErrorOverlay(data);
       document.body.appendChild(overlay);
     }
   };
 }
 
 function removeErrorOverlay() {
-  let overlay = document.getElementById(OVERLAY_ID);
+  var overlay = document.getElementById(OVERLAY_ID);
 
   if (overlay) {
     overlay.remove();
@@ -9016,11 +9016,11 @@ function removeErrorOverlay() {
 }
 
 function createErrorOverlay(data) {
-  let overlay = document.createElement('div');
+  var overlay = document.createElement('div');
   overlay.id = OVERLAY_ID; // html encode message and stack trace
 
-  let message = document.createElement('div');
-  let stackTrace = document.createElement('pre');
+  var message = document.createElement('div');
+  var stackTrace = document.createElement('pre');
   message.innerText = data.error.message;
   stackTrace.innerText = data.error.stack;
   overlay.innerHTML = '<div style="background: black; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; opacity: 0.85; font-family: Menlo, Consolas, monospace; z-index: 9999;">' + '<span style="background: red; padding: 2px 4px; border-radius: 2px;">ERROR</span>' + '<span style="top: 2px; margin-left: 5px; position: relative;">🚨</span>' + '<div style="font-size: 18px; font-weight: bold; margin-top: 20px;">' + message.innerHTML + '</div>' + '<pre>' + stackTrace.innerHTML + '</pre>' + '</div>';
@@ -9028,14 +9028,14 @@ function createErrorOverlay(data) {
 }
 
 function getParents(bundle, id) {
-  let modules = bundle.modules;
+  var modules = bundle.modules;
 
   if (!modules) {
     return [];
   }
 
-  let parents = [];
-  let k, d, dep;
+  var parents = [];
+  var k, d, dep;
 
   for (k in modules) {
     for (d in modules[k][1]) {
@@ -9055,14 +9055,14 @@ function getParents(bundle, id) {
 }
 
 function hmrApply(bundle, asset) {
-  let modules = bundle.modules;
+  var modules = bundle.modules;
 
   if (!modules) {
     return;
   }
 
   if (modules[asset.id] || !bundle.parent) {
-    let fn = new Function('require', 'module', 'exports', asset.generated.js);
+    var fn = new Function('require', 'module', 'exports', asset.generated.js);
     asset.isNew = !modules[asset.id];
     modules[asset.id] = [fn, asset.deps];
   } else if (bundle.parent) {
@@ -9071,7 +9071,7 @@ function hmrApply(bundle, asset) {
 }
 
 function hmrAcceptCheck(bundle, id) {
-  let modules = bundle.modules;
+  var modules = bundle.modules;
 
   if (!modules) {
     return;
@@ -9086,7 +9086,7 @@ function hmrAcceptCheck(bundle, id) {
   }
 
   checkedAssets[id] = true;
-  let cached = bundle.cache[id];
+  var cached = bundle.cache[id];
   assetsToAccept.push([bundle, id]);
 
   if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
@@ -9099,7 +9099,7 @@ function hmrAcceptCheck(bundle, id) {
 }
 
 function hmrAcceptRun(bundle, id) {
-  let cached = bundle.cache[id];
+  var cached = bundle.cache[id];
   bundle.hotData = {};
 
   if (cached) {
