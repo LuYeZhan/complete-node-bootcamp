@@ -31,3 +31,4 @@ config.env
 
 # cache
 4-natours/starter/.cache
+.cache/

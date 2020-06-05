@@ -18,10 +18,8 @@ const bookBtn = document.getElementById('book-tour');
 // delegation
 
 if (mapBox) {
-  console.log(mapBox);
   const locations = JSON.parse(mapBox.dataset.locations);
   displayMap(locations);
-  console.log(locations);
 }
 
 if (loginForm)
@@ -41,7 +39,6 @@ if (userDataForm)
     form.append('name', document.getElementById('name').value);
     form.append('email', document.getElementById('email').value);
     form.append('photo', document.getElementById('photo').files[0]);
-    console.log(form);
     updateSettings(form, 'data');
   });
 
